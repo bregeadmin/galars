@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect width="200" height="200" fill="#1F2A33"/>
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" opacity="0.95">
+    <line x1="40" y1="40" x2="120" y2="40"/>
+    <line x1="120" y1="40" x2="120" y2="120"/>
+    <line x1="120" y1="120" x2="40" y2="120"/>
+    <line x1="40" y1="120" x2="40" y2="40"/>
+    <line x1="60" y1="60" x2="140" y2="60"/>
+    <line x1="140" y1="60" x2="140" y2="140"/>
+    <line x1="140" y1="140" x2="60" y2="140"/>
+    <line x1="60" y1="140" x2="60" y2="60"/>
+    <line x1="40" y1="40" x2="60" y2="60"/>
+    <line x1="120" y1="40" x2="140" y2="60"/>
+    <line x1="40" y1="120" x2="60" y2="140"/>
+    <line x1="120" y1="120" x2="140" y2="140"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" opacity="0.85">
+    <line x1="78" y1="92" x2="58" y2="106"/>
+    <line x1="78" y1="92" x2="80" y2="110"/>
+    <line x1="78" y1="92" x2="66" y2="122"/>
+    <line x1="58" y1="106" x2="80" y2="110"/>
+    <line x1="58" y1="106" x2="66" y2="122"/>
+    <line x1="80" y1="110" x2="66" y2="122"/>
+  </g>
+  <g stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" opacity="0.65">
+    <line x1="60" y1="60" x2="78" y2="92"/>
+    <line x1="140" y1="60" x2="78" y2="92"/>
+    <line x1="40" y1="120" x2="58" y2="106"/>
+    <line x1="120" y1="120" x2="80" y2="110"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="40" cy="40" r="6.5"/>
+    <circle cx="120" cy="40" r="6.5"/>
+    <circle cx="40" cy="120" r="6.5"/>
+    <circle cx="120" cy="120" r="6.5"/>
+    <circle cx="60" cy="60" r="6.5"/>
+    <circle cx="140" cy="60" r="6.5"/>
+    <circle cx="60" cy="140" r="6.5"/>
+    <circle cx="140" cy="140" r="6.5"/>
+  </g>
+  <g fill="#FFFFFF">
+    <circle cx="78" cy="92" r="5"/>
+    <circle cx="58" cy="106" r="5"/>
+    <circle cx="80" cy="110" r="5"/>
+    <circle cx="66" cy="122" r="5"/>
+  </g>
+</svg>

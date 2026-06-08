@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /privacy.html
+Disallow: /404.html
+
+# Заблокированные служебные файлы
+Disallow: /vendor/
+Disallow: /fonts/google.css
+
+Sitemap: https://galars.ru/sitemap.xml
+
+Host: galars.ru

@@ -1,0 +1,257 @@
+/* ГАЛАРС — общие стили страниц (шапка, подвал, drawer, общие секции, мобильное) */
+
+/* — HEADER — */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px var(--pad-x);
+  background: transparent;
+  color: #fff;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.site-header.is-condensed {
+  background: rgba(31,42,51,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.site-header.on-light {
+  color: var(--graphite);
+  background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(31,42,51,0.06);
+}
+.site-header .nav-bar { display: flex; align-items: center; gap: 32px; }
+.site-header nav { display: flex; align-items: center; gap: 32px; }
+.site-header nav a {
+  font-family: var(--f-text); font-weight: 500; font-size: 14px;
+  opacity: 0.85;
+}
+.site-header nav a:hover { opacity: 1; }
+.site-header .header-cta {
+  padding: 10px 20px;
+  border: 1px solid currentColor;
+  border-radius: 24px;
+  font-family: var(--f-text); font-weight: 500; font-size: 13px; line-height: 1;
+  transition: background .2s, color .2s;
+}
+.site-header .header-cta:hover { background: currentColor; }
+.site-header .header-cta:hover span { color: var(--graphite); }
+
+.logo-h { display: inline-flex; align-items: center; gap: 14px; }
+.logo-h .logo-mark { width: 34px; height: 34px; }
+.logo-h .logo-word {
+  font-family: var(--f-display); font-weight: 700;
+  font-size: 18px; letter-spacing: 0.08em;
+  line-height: 1;
+}
+.logo-h .logo-sub {
+  font-family: var(--f-mono); font-size: 10px;
+  letter-spacing: 0.08em; opacity: 0.55; margin-top: 4px;
+  text-transform: lowercase;
+}
+/* — Логотип ГАЛАРС: два варианта брендбука (dark — белый лого на графитовой плашке,
+   light — тёмный лого с прозрачным фоном). Шапка переключает варианты, чтобы плашка
+   совпадала с фоном секции и не была заметна. */
+.logo-img { display: inline-flex; align-items: center; gap: 0; }
+.logo-img img {
+  display: block;
+  height: 72px;
+  width: auto;
+  transition: height .2s ease;
+}
+.site-header.is-condensed .logo-img img { height: 56px; }
+/* Тёмная шапка (по умолчанию + condensed) — показываем dark-вариант, плашка сливается с графитом */
+.logo-img .for-dark  { display: inline-block; }
+.logo-img .for-light { display: none; }
+/* Светлая шапка — показываем light-вариант (прозрачный фон + тёмный лого) */
+.site-header.on-light .logo-img .for-dark  { display: none; }
+.site-header.on-light .logo-img .for-light { display: inline-block; }
+/* Footer/drawer wordmark — light-вариант (прозрачный фон + тёмный лого),
+   перекрашиваем в белый через filter, чтобы не было плашки поверх графита. */
+.footer .galars-stamp-img {
+  display: block;
+  height: 52px;
+  width: auto;
+  margin-bottom: 8px;
+  filter: brightness(0) invert(1);
+}
+.drawer-head .galars-stamp-img {
+  display: block;
+  height: 32px;
+  width: auto;
+  margin-bottom: 4px;
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 900px) {
+  .logo-img img { height: 48px; }
+  .site-header.is-condensed .logo-img img { height: 40px; }
+}
+
+/* — Burger / mobile drawer — */
+.burger {
+  display: none;
+  width: 40px; height: 40px;
+  align-items: center; justify-content: center;
+  border-radius: 8px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit; cursor: pointer;
+}
+.burger span {
+  display: block; width: 18px; height: 1.5px; background: currentColor;
+  position: relative;
+}
+.burger span::before, .burger span::after {
+  content: ""; position: absolute; left: 0; width: 18px; height: 1.5px; background: currentColor;
+}
+.burger span::before { top: -6px; }
+.burger span::after { top: 6px; }
+
+.drawer {
+  position: fixed; inset: 0; z-index: 100;
+  display: none;
+  background: rgba(31,42,51,0.5);
+}
+.drawer.is-open { display: block; }
+.drawer-panel {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 80%; max-width: 360px;
+  background: var(--graphite); color: #fff;
+  padding: 32px 28px;
+  overflow-y: auto;
+  box-shadow: -16px 0 48px rgba(0,0,0,0.4);
+}
+.drawer-head { display: flex; justify-content: space-between; align-items: flex-start; }
+.drawer-head .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 28px; letter-spacing: 0.08em; }
+.drawer-head .galars-sub { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.drawer-close {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent; color: #fff; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+}
+.drawer-nav { margin-top: 48px; display: grid; gap: 0; }
+.drawer-nav a {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--f-display); font-weight: 500; font-size: 22px;
+  color: #fff;
+}
+.drawer-nav a .n { font-family: var(--f-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-right: 14px; }
+.drawer-nav a .arrow { color: rgba(255,255,255,0.4); }
+.drawer-contact { margin-top: 40px; }
+.drawer-contact a {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0;
+  font-family: var(--f-mono); font-size: 14px;
+  color: var(--steel);
+}
+
+/* — Универсальная шапка-баннер для внутренних страниц — */
+.page-banner {
+  position: relative;
+  background: var(--graphite); color: #fff;
+  padding: 200px var(--pad-x) 100px;
+  overflow: hidden;
+}
+.page-banner::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(900px 600px at 80% 30%, rgba(31,111,139,0.25), transparent 60%);
+  pointer-events: none;
+}
+.page-banner-pattern {
+  position: absolute; inset: 0;
+  background-image: url('molecule.svg');
+  background-size: 220px 220px;
+  background-repeat: repeat;
+  opacity: 0.05; color: #fff; pointer-events: none;
+}
+.page-banner-inner {
+  position: relative; max-width: var(--max-w); margin: 0 auto;
+}
+.page-banner .breadcrumb {
+  font-family: var(--f-mono); font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 32px;
+}
+.page-banner .breadcrumb a { color: rgba(255,255,255,0.55); }
+.page-banner .breadcrumb a:hover { color: #fff; }
+.page-banner .breadcrumb .sep { margin: 0 10px; opacity: 0.4; }
+.page-banner h1 {
+  margin: 0;
+  font-family: var(--f-display); font-weight: 700;
+  font-size: clamp(48px, 6.6vw, 88px);
+  line-height: 1.02; letter-spacing: -0.025em;
+}
+.page-banner .lead {
+  margin-top: 28px;
+  font-size: 19px; color: rgba(255,255,255,0.72);
+  line-height: 1.5; max-width: 720px;
+}
+.page-banner .meta-row {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  margin-top: 48px;
+  font-family: var(--f-mono); font-size: 13px;
+  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.page-banner .meta-row .v { color: #fff; }
+
+/* — Общий контейнер контента — */
+.page-content {
+  background: var(--warm-white);
+  padding: 100px var(--pad-x);
+}
+.page-content-inner { max-width: var(--max-w); margin: 0 auto; }
+
+/* — FOOTER — */
+.footer { background: var(--graphite); color: #fff; padding: 80px var(--pad-x) 40px; position: relative; overflow: hidden; }
+.footer .pattern {
+  position: absolute; inset: 0;
+  background-image: url('molecule.svg');
+  background-size: 220px 220px;
+  background-repeat: repeat;
+  opacity: 0.04; color: #fff; pointer-events: none;
+}
+.footer-inner { position: relative; max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 80px; align-items: flex-start; }
+.footer .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 36px; letter-spacing: 0.08em; }
+/* (старая копия правил перекрыта в начале файла — см. блок с filter: brightness(0) invert(1)) */
+.footer .stamp-sub {
+  font-family: var(--f-mono); font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: rgba(255,255,255,0.45); margin-top: 8px;
+}
+.footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
+.footer-col .h {
+  font-family: var(--f-mono); font-size: 12px;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.45); margin-bottom: 16px;
+}
+.footer-col ul { display: grid; gap: 10px; }
+.footer-col a { font-family: var(--f-mono); font-size: 13px; color: rgba(255,255,255,0.78); }
+.footer-col a:hover { color: var(--steel); }
+.footer-social { display: flex; flex-direction: column; gap: 12px; }
+.footer-social a { font-family: var(--f-mono); font-size: 13px; color: rgba(255,255,255,0.78); }
+.footer-bottom {
+  position: relative;
+  max-width: var(--max-w); margin: 64px auto 0;
+  display: flex; justify-content: space-between;
+  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-family: var(--f-mono); font-size: 12px;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.04em;
+}
+
+@media (max-width: 1100px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 48px; }
+  .footer-cols { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 900px) {
+  .burger { display: inline-flex; }
+  .site-header .nav-bar { display: none; }
+  .page-banner { padding: 140px var(--pad-x) 64px; }
+  .page-content { padding: 64px var(--pad-x); }
+  .footer-cols { grid-template-columns: 1fr; gap: 24px; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
+  .page-banner .meta-row { gap: 16px; }
+}

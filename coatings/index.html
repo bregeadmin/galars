@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Гальванические покрытия · ГАЛАРС — каталог 40+ типов покрытий в Санкт-Петербурге</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Каталог гальванических покрытий ГАЛАРС: хромирование, никелирование, цинкование, серебрение, латунирование, золочение, меднение, оловянирование. ГОСТ 9.305-84.">
+<link rel="stylesheet" href="../fonts/google.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../shared.css">
+<link rel="icon" type="image/svg+xml" href="../molecule.svg">
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../img/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
+<meta property="og:title" content="Каталог гальванических покрытий · ГАЛАРС">
+<meta property="og:description" content="Все виды гальванопокрытий ГАЛАРС: хромирование, никелирование, цинкование, серебрение, латунирование, золочение, меднение, оловянирование по ГОСТ.">
+<meta property="og:image" content="https://galars.ru/img/og-image.png">
+<meta property="og:url" content="https://galars.ru/coatings/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Каталог гальванических покрытий · ГАЛАРС">
+<meta name="twitter:description" content="Все виды гальванопокрытий ГАЛАРС: хромирование, никелирование, цинкование, серебрение, латунирование, золочение, меднение, оловянирование по ГОСТ.">
+<meta name="twitter:image" content="https://galars.ru/img/og-image.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ГАЛАРС-СПб", "alternateName": "ГАЛАРС", "url": "https://galars.ru", "logo": "https://galars.ru/img/favicon-192.png", "image": "https://galars.ru/img/og-image.png", "description": "Центр гальванических покрытий в Санкт-Петербурге. Основан в 2003 году на базе цеха завода «Арсенал». 40+ типов покрытий, серийные партии для ОПК и авиации, штучные работы для реставрации.", "foundingDate": "2003", "telephone": "+7-812-7777-811", "email": "info@galars.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Химиков, 26", "addressLocality": "Санкт-Петербург", "addressCountry": "RU"}, "sameAs": ["https://spb.hh.ru/employer/2626935"]}</script>
+<style>
+  .page-banner-pattern { background-image: url('../molecule.svg'); }
+  .footer .pattern { background-image: url('../molecule.svg'); }
+
+  .catalog-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .catalog-card {
+    display: grid;
+    grid-template-columns: 8px 1fr auto;
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(31,42,51,0.08);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    color: var(--graphite);
+  }
+  .catalog-card:hover {
+    border-color: var(--steel);
+    box-shadow: 0 12px 32px rgba(31,42,51,0.06);
+    transform: translateY(-2px);
+  }
+  .cc-swatch { width: 8px; height: 100%; min-height: 140px; }
+  .cc-body { padding: 28px 32px; }
+  .cc-tag {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 8px;
+  }
+  .catalog-card h3 {
+    margin: 0 0 6px;
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 24px; line-height: 1.15;
+  }
+  .catalog-card p {
+    margin: 0 0 12px;
+    font-size: 14px; line-height: 1.45; color: var(--fog);
+  }
+  .cc-spec {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--graphite);
+  }
+  .cc-arrow {
+    padding: 28px 32px;
+    font-family: var(--f-text); font-size: 24px; color: var(--fog);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .catalog-card:hover .cc-arrow { color: var(--steel); transform: translateX(4px); }
+
+  .more-block {
+    margin-top: 64px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(31,42,51,0.10);
+    display: grid; grid-template-columns: 220px 1fr; gap: 64px;
+  }
+  .more-block h2 {
+    margin: 0 0 16px;
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 28px; line-height: 1.2;
+  }
+  .more-block p { margin: 0; font-size: 16px; color: var(--graphite); line-height: 1.55; max-width: 720px; }
+  .more-block .num {
+    font-family: var(--f-mono); font-size: 13px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog);
+  }
+  .more-block .num::before {
+    content: ""; display: inline-block; vertical-align: middle;
+    width: 32px; height: 1px; background: var(--fog); margin-right: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .cc-body { padding: 20px 24px; }
+    .cc-arrow { padding: 20px 24px; font-size: 20px; }
+    .more-block { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header">
+  <a class="logo-h logo-img" href="../index.html" aria-label="ГАЛАРС — на главную">
+      <img class="for-dark"  src="../img/logo/galars-02-horizontal-dark.png"  alt="ГАЛАРС — центр гальванических покрытий">
+      <img class="for-light" src="../img/logo/galars-02-horizontal-light.png" alt="ГАЛАРС — центр гальванических покрытий">
+    </a>
+  <div class="nav-bar">
+    <nav>
+      <a href="../index.html#prod">Производство</a>
+      <a href="../index.html#works">Работы</a>
+      <a href="../index.html#how">Как работаем</a>
+      <a href="../vacancies.html">Вакансии</a>
+      <a href="../index.html#contact">Контакты</a>
+    </nav>
+    <a class="header-cta" href="../index.html#contact"><span>Связаться</span></a>
+  </div>
+  <button type="button" class="burger" id="burger" aria-label="Меню"><span></span></button>
+</header>
+
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <div>
+        <img class="galars-stamp-img" src="../img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+        <div class="galars-sub">С 2003 · СПб</div>
+      </div>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Закрыть">×</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="../index.html#prod"><span><span class="n">01</span>Производство</span><span class="arrow">→</span></a>
+      <a href="../index.html#works"><span><span class="n">02</span>Работы</span><span class="arrow">→</span></a>
+      <a href="../index.html#how"><span><span class="n">03</span>Как работаем</span><span class="arrow">→</span></a>
+      <a href="../vacancies.html"><span><span class="n">04</span>Вакансии</span><span class="arrow">→</span></a>
+      <a href="../index.html#contact"><span><span class="n">05</span>Контакты</span><span class="arrow">→</span></a>
+    </nav>
+    <div class="drawer-contact">
+      <a href="tel:+78127777811">☎ +7 (812) 7777-811</a>
+      <a href="mailto:info@galars.ru">✉ info@galars.ru</a>
+    </div>
+  </div>
+</div>
+
+<section class="page-banner">
+  <div class="page-banner-pattern"></div>
+  <div class="page-banner-inner">
+    <div class="breadcrumb">
+      <a href="../index.html">Главная</a><span class="sep">/</span>
+      <span>Покрытия</span>
+    </div>
+    <h1>Каталог покрытий.</h1>
+    <p class="lead">Восемь основных типов гальванических покрытий по ГОСТ 9.305-84. От массового серийного цинкования для крепежа до бережного золочения иконы. Каждое покрытие — отдельная страница с технологией, применениями и сроками.</p>
+    <div class="meta-row">
+      <span>40+ типов покрытий</span>
+      <span>ГОСТ · ISO</span>
+      <span>Серийные и штучные работы</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="page-content-inner">
+    <div class="catalog-grid">
+      <a class="catalog-card" href="chrome.html">
+        <div class="cc-swatch" style="background:#C0C0C0"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Защитно-декоративное · Износостойкое</div>
+          <h3>Хромирование</h3>
+          <p>Декоративное и твёрдое хромирование по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–60 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="nickel.html">
+        <div class="cc-swatch" style="background:#B5B5B5"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Защитно-декоративное · Подслой</div>
+          <h3>Никелирование</h3>
+          <p>Защитно-декоративное никелевое покрытие по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 6–30 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="zinc.html">
+        <div class="cc-swatch" style="background:#C8C8C8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Антикоррозионное · Массовое серийное</div>
+          <h3>Цинкование</h3>
+          <p>Антикоррозионное гальваническое цинкование по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 6–24 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="silver.html">
+        <div class="cc-swatch" style="background:#E8E8E8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Декоративное · Электротехническое</div>
+          <h3>Серебрение</h3>
+          <p>Декоративное и проводящее серебрение по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 9–24 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="brass.html">
+        <div class="cc-swatch" style="background:#B87333"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Декоративное · Промежуточный слой</div>
+          <h3>Латунирование</h3>
+          <p>Декоративное латунирование и промежуточный слой по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–18 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="gold.html">
+        <div class="cc-swatch" style="background:#D4A85B"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Премиум-декоративное · Реставрационное</div>
+          <h3>Золочение</h3>
+          <p>Гальваническое золочение по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 2–9 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="copper.html">
+        <div class="cc-swatch" style="background:#B87333"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Подслой · Электротехническое</div>
+          <h3>Меднение</h3>
+          <p>Гальваническое меднение по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 6–30 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+      <a class="catalog-card" href="tin.html">
+        <div class="cc-swatch" style="background:#D5D5D0"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Защитное · Контактное · Пищевое</div>
+          <h3>Оловянирование</h3>
+          <p>Гальваническое оловянирование по ГОСТ 9.305-84</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–20 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
+      </a>
+    </div>
+
+    <div class="more-block">
+      <div class="num">Нет в каталоге</div>
+      <div>
+        <h2>Не нашли нужное покрытие?</h2>
+        <p>В цеху работает более 40 видов покрытий — в каталоге показаны самые востребованные. Если у вас нестандартная задача — кадмирование, оксидирование, фосфатирование, многослойные системы — напишите, разберёмся.</p>
+        <p style="margin-top:24px;"><a class="btn btn-primary" href="../index.html#contact">Описать задачу</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="pattern"></div>
+  <div class="footer-inner">
+    <div>
+      <img class="galars-stamp-img" src="../img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+      <div class="stamp-sub">2003 — 2026 · СПб</div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="h">Покрытия</div>
+        <ul>
+          <li><a href="chrome.html">Хромирование</a></li>
+          <li><a href="nickel.html">Никелирование</a></li>
+          <li><a href="zinc.html">Цинкование</a></li>
+          <li><a href="silver.html">Серебрение</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="h">Ещё покрытия</div>
+        <ul>
+          <li><a href="brass.html">Латунирование</a></li>
+          <li><a href="gold.html">Золочение</a></li>
+          <li><a href="copper.html">Меднение</a></li>
+          <li><a href="tin.html">Оловянирование</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="h">Компания</div>
+        <ul>
+          <li><a href="../index.html">Главная</a></li>
+          <li><a href="../vacancies.html">Вакансии</a></li>
+          <li><a href="../index.html#contact">Контакты</a></li>
+          <li><a href="tel:+78127777811">+7 (812) 7777-811</a></li>
+          <li><a href="mailto:info@galars.ru">info@galars.ru</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <a href="#">Telegram</a>
+      <a href="#">VK</a>
+      <a href="https://yandex.ru/maps/?text=ГАЛАРС+СПб">Яндекс.Карты</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2003 — 2026 ООО «ГАЛАРС». Все права сохранены.</span>
+    <span>ул. Химиков, 26 · СПб</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const h = document.getElementById('header');
+  if (!h) return;
+  const onScroll = () => {
+    if (window.scrollY > 80) h.classList.add('is-condensed');
+    else h.classList.remove('is-condensed');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+(() => {
+  const drawer = document.getElementById('drawer');
+  const burger = document.getElementById('burger');
+  const close = document.getElementById('drawerClose');
+  if (!drawer || !burger || !close) return;
+  const open = () => drawer.classList.add('is-open');
+  const shut = () => drawer.classList.remove('is-open');
+  burger.addEventListener('click', open);
+  close.addEventListener('click', shut);
+  drawer.addEventListener('click', e => { if (e.target === drawer) shut(); });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', shut));
+})();
+</script>
+</body>
+</html>

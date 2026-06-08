@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Страница не найдена · ГАЛАРС</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/fonts/google.css">
+<link rel="stylesheet" href="/tokens.css">
+<link rel="stylesheet" href="/shared.css">
+<link rel="icon" type="image/svg+xml" href="/molecule.svg">
+<style>
+  body {
+    background: var(--graphite);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .nfp-wrap {
+    flex: 1;
+    display: grid;
+    place-items: center;
+    padding: 120px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .nfp-wrap::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: url('/molecule.svg');
+    background-size: 200px 200px;
+    background-repeat: repeat;
+    opacity: 0.04; color: #fff; pointer-events: none;
+  }
+  .nfp-inner { position: relative; max-width: 640px; }
+  .nfp-num {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(120px, 18vw, 200px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--steel);
+    margin-bottom: 24px;
+  }
+  .nfp-num .center { color: rgba(255,255,255,0.85); }
+  .nfp-eyebrow {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 24px;
+  }
+  .nfp-title {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1; letter-spacing: -0.015em;
+    margin: 0 0 16px;
+  }
+  .nfp-sub {
+    font-size: 17px; line-height: 1.5;
+    color: rgba(255,255,255,0.7);
+    max-width: 480px;
+    margin: 0 auto 40px;
+  }
+  .nfp-actions {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+
+  .nfp-mol {
+    width: 120px; height: 120px;
+    margin: 0 auto 32px;
+    color: rgba(255,255,255,0.25);
+    animation: spin 12s linear infinite;
+  }
+  @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  .nfp-links {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .nfp-links a {
+    color: rgba(255,255,255,0.55);
+    transition: color .2s;
+  }
+  .nfp-links a:hover { color: var(--steel); }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="header" style="background: transparent;">
+  <a class="logo-h logo-img" href="/index.html" aria-label="ГАЛАРС — на главную">
+      <img class="for-dark"  src="img/logo/galars-02-horizontal-dark.png"  alt="ГАЛАРС — центр гальванических покрытий">
+      <img class="for-light" src="img/logo/galars-02-horizontal-light.png" alt="ГАЛАРС — центр гальванических покрытий">
+    </a>
+</header>
+
+<main class="nfp-wrap">
+  <div class="nfp-inner">
+
+    <svg class="nfp-mol" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95">
+        <line x1="40" y1="40" x2="120" y2="40"/><line x1="120" y1="40" x2="120" y2="120"/>
+        <line x1="120" y1="120" x2="40" y2="120"/><line x1="40" y1="120" x2="40" y2="40"/>
+        <line x1="60" y1="60" x2="140" y2="60"/><line x1="140" y1="60" x2="140" y2="140"/>
+        <line x1="140" y1="140" x2="60" y2="140"/><line x1="60" y1="140" x2="60" y2="60"/>
+        <line x1="40" y1="40" x2="60" y2="60"/><line x1="120" y1="40" x2="140" y2="60"/>
+        <line x1="120" y1="120" x2="140" y2="140"/><line x1="40" y1="120" x2="60" y2="140"/>
+      </g>
+      <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.85">
+        <line x1="78" y1="92" x2="58" y2="106"/><line x1="78" y1="92" x2="80" y2="110"/>
+        <line x1="78" y1="92" x2="66" y2="122"/>
+        <line x1="58" y1="106" x2="80" y2="110"/><line x1="58" y1="106" x2="66" y2="122"/>
+        <line x1="80" y1="110" x2="66" y2="122"/>
+      </g>
+      <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.7">
+        <line x1="60" y1="60" x2="78" y2="92"/><line x1="140" y1="60" x2="78" y2="92"/>
+        <line x1="40" y1="120" x2="58" y2="106"/><line x1="120" y1="120" x2="80" y2="110"/>
+      </g>
+      <g fill="currentColor">
+        <circle cx="40" cy="40" r="6"/><circle cx="120" cy="40" r="6"/>
+        <circle cx="40" cy="120" r="6"/><circle cx="120" cy="120" r="6"/>
+        <circle cx="60" cy="60" r="6"/><circle cx="140" cy="60" r="6"/>
+        <circle cx="60" cy="140" r="6"/><circle cx="140" cy="140" r="6"/>
+      </g>
+      <g fill="currentColor">
+        <circle cx="78" cy="92" r="4.5"/><circle cx="58" cy="106" r="4.5"/>
+        <circle cx="80" cy="110" r="4.5"/><circle cx="66" cy="122" r="4.5"/>
+      </g>
+    </svg>
+
+    <div class="nfp-num">4<span class="center">0</span>4</div>
+    <div class="nfp-eyebrow">СТРАНИЦА ВНЕ ТЕХНОЛОГИЧЕСКОЙ ЦЕПОЧКИ</div>
+    <h1 class="nfp-title">Здесь покрытия нет.</h1>
+    <p class="nfp-sub">Адрес, на который вы попали, не существует или был перемещён. Возможно, ссылку набрали с опечаткой, или мы переместили раздел.</p>
+
+    <div class="nfp-actions">
+      <a class="btn btn-primary" href="/index.html">На главную</a>
+      <a class="btn btn-secondary on-dark" href="/coatings/">Каталог покрытий</a>
+    </div>
+
+    <nav class="nfp-links">
+      <a href="/index.html#works">Работы</a>
+      <a href="/index.html#prod">Производство</a>
+      <a href="/about.html">О компании</a>
+      <a href="/vacancies.html">Вакансии</a>
+      <a href="/index.html#contact">Контакты</a>
+    </nav>
+
+  </div>
+</main>
+
+</body>
+</html>
