@@ -47,6 +47,9 @@
   .badge.low  { background: rgba(31,42,51,0.15); color: var(--graphite); }
   .badge.new  { background: #2A7B5C; color: #fff; }
   .badge.rm   { background: rgba(31,42,51,0.6); color: #fff; }
+  .badge.done { background: #2A7B5C; color: #fff; }
+  .phase.is-done { border-color: #2A7B5C; }
+  .phase .done-note { font-size: 14px; color: #2A7B5C; margin: 0 0 10px; font-weight: 600; }
 
   .phase { background: #fff; border: 1.5px solid var(--graphite); border-radius: 4px; padding: 22px 26px; margin: 20px 0; }
   .phase h3 { margin-top: 0; }
@@ -550,8 +553,9 @@
 <!-- ============ PLAN ============ -->
 <h2 id="plan">16. План работ — три этапа</h2>
 
-<div class="phase">
+<div class="phase is-done">
   <div class="est">Этап 1 — критические факты · 4–6 часов</div>
+  <p class="done-note"><span class="badge done">сделано</span> Закрыт полностью.</p>
   <h3>Пофиксить всё, что фактически неверно на сайте</h3>
   <ol>
     <li>Заменить адрес во всех 17 HTML + на карте (Химиков, 26 → Электропультовцев, 7 Р/К)</li>
@@ -569,8 +573,9 @@
   <p><strong>Результат:</strong> сайт станет фактически верным. Можно показывать клиенту без страха.</p>
 </div>
 
-<div class="phase">
+<div class="phase is-done">
   <div class="est">Этап 2 — рерайт контента · 12–16 часов</div>
+  <p class="done-note"><span class="badge done">сделано</span> Закрыт полностью.</p>
   <h3>Заменить все тексты по документам клиента</h3>
   <ol>
     <li>Переписать hero и лид на новый текст</li>
@@ -586,8 +591,9 @@
   <p><strong>Результат:</strong> контент полностью соответствует тому, что клиент считает правильной подачей.</p>
 </div>
 
-<div class="phase">
+<div class="phase is-done">
   <div class="est">Этап 3 — новые страницы и блоки · 20–30 часов</div>
+  <p class="done-note"><span class="badge done">сделано</span> Готово всё, кроме реальных фото работ — ждём файлы от клиента.</p>
   <h3>Достроить новое: 13 страниц покрытий + FAQ + новые блоки</h3>
   <ol>
     <li>Сверстать 13 новых страниц покрытий с новой структурой (мета-таблица + 5 блоков). Тексты у клиента готовы</li>
