@@ -255,41 +255,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .site-header .header-cta:hover { background: currentColor; }
 .site-header .header-cta:hover span { color: var(--graphite); }
 
-/* — Лого — */
-.logo-h {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-}
-.logo-h .logo-mark { width: 34px; height: 34px; }
-.logo-h .logo-word {
-  font-family: var(--f-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-.logo-h .logo-sub {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  opacity: 0.55;
-  margin-top: 4px;
-}
-.logo-img { display: inline-flex; align-items: center; gap: 0; }
-.logo-img img {
-  display: block; height: 72px; width: auto;
-  transition: height .2s ease;
-}
-.site-header.is-condensed .logo-img img { height: 56px; }
-.logo-img .for-dark  { display: inline-block; }
-.logo-img .for-light { display: none; }
-.site-header.on-light .logo-img .for-dark  { display: none; }
-.site-header.on-light .logo-img .for-light { display: inline-block; }
-@media (max-width: 900px) {
-  .logo-img img { height: 48px; }
-  .site-header.is-condensed .logo-img img { height: 40px; }
-}
+/* — Лого — все правила .logo-h/.logo-mark/.logo-word/.logo-sub лежат в shared.css */
 
 /* — Утилиты секций — */
 .section { padding: 120px 0; }
