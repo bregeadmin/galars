@@ -1351,7 +1351,7 @@
         Гальванические покрытия по&nbsp;ГОСТ
         <span class="line-2">в&nbsp;Санкт-Петербурге.</span>
       </h1>
-      <p class="hero-sub">Гальванические и химические покрытия. Работаем с предприятиями и частными заказчиками по КД, отраслевым стандартам и ТЗ заказчика. Предварительный расчёт стоимости работ — по чертежам, ТЗ или фото детали.</p>
+      <p class="hero-sub">Гальванические и химические покрытия. Вакуумное напыление. Работаем с предприятиями и частными заказчиками по КД, отраслевым стандартам и ТЗ заказчика. Предварительный расчёт стоимости работ — по чертежам, ТЗ или фото детали.</p>
       <div class="hero-meta-row">
         <a class="btn btn-primary" href="#contact" data-event="cta_calculate">Получить расчёт</a>
         <a class="btn btn-secondary on-dark" href="#contact" data-event="cta_tender">Запросить КП для тендера</a>
@@ -1755,38 +1755,22 @@
         <div class="step is-active" data-step="0">
           <div class="step-num">01</div>
           <h4>Запрос</h4>
-          <p class="step-desc">Описание задачи, фото детали, объём.</p>
-          <div class="step-flow">
-            <div><b>Тендер</b>ТЗ, чертежи, спецификация партии</div>
-            <div><b>Мастер</b>фото детали, что хочется получить</div>
-          </div>
+          <p class="step-desc">Описание задачи, фото деталей, объём работ. Направление технического задания, КД. Согласование требований Заказчика.</p>
         </div>
         <div class="step" data-step="1">
           <div class="step-num">02</div>
           <h4>Согласование</h4>
-          <p class="step-desc">Толщина, тип покрытия, срок, цена.</p>
-          <div class="step-flow">
-            <div><b>Тендер</b>КП, договор, график поставок</div>
-            <div><b>Мастер</b>толщина, бережность, сроки и цена</div>
-          </div>
+          <p class="step-desc">Подготовка коммерческого предложения. Договор / Счёт-Договор. Согласование графика выполнения работ.</p>
         </div>
         <div class="step" data-step="2">
           <div class="step-num">03</div>
           <h4>Производство</h4>
-          <p class="step-desc">Подготовка, гальваника, контроль ОТК.</p>
-          <div class="step-flow">
-            <div><b>Тендер</b>партия по ГОСТу, документы качества</div>
-            <div><b>Мастер</b>штучная подготовка, ручная финишная</div>
-          </div>
+          <p class="step-desc">Входной контроль. Выполнение работ согласно ТЗ / КД и проверка качества на соответствие требованиям ГОСТ.</p>
         </div>
         <div class="step" data-step="3">
           <div class="step-num">04</div>
           <h4>Отгрузка</h4>
-          <p class="step-desc">С документами для индустрии, с биркой и фото для реставрации.</p>
-          <div class="step-flow">
-            <div><b>Тендер</b>партия + паспорт качества + сертификат</div>
-            <div><b>Мастер</b>фото детали + клеймо ГАЛАРС на бирке</div>
-          </div>
+          <p class="step-desc">Комплектация, упаковка согласно требованиям Заказчика. Подготовка закрывающих документов и Сертификата качества.</p>
         </div>
       </div>
 
@@ -1849,14 +1833,24 @@
       <form class="contact-form" id="contactForm" method="post" enctype="multipart/form-data" data-endpoint="" novalidate>
         <p class="form-intro">Пришлите фото, чертёж или описание задачи. Ответим с вариантом покрытия, ориентиром цены и сроком выполнения.</p>
 
+        <div class="form-required-info" style="background: rgba(255,255,255,0.04); border-left: 3px solid var(--steel); padding: 16px 18px; margin-bottom: 24px; border-radius: 0 4px 4px 0;">
+          <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: 10px;">Информация, которая требуется для расчёта</div>
+          <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.78);">
+            <li>Чертёж или эскиз детали, по возможности фото</li>
+            <li>Материал основного металла (если не указан в чертеже или произошла замена)</li>
+            <li>Требуемое покрытие и толщина в микронах (если не указано в КД)</li>
+            <li>Количество деталей — для хромирования и твёрдого анодирования стоимость зависит от разовой загрузки в ванну</li>
+            <li>Наличие старого покрытия / окалины / загрязнений, которые нужно удалить перед нанесением нового</li>
+          </ul>
+        </div>
+
         <div class="form-field">
           <label for="form-type">Тип заявки</label>
           <select id="form-type" class="input input-select" name="type" required>
             <option value="" disabled selected>Выберите вариант…</option>
             <option value="production">Производство (партия по чертежу)</option>
             <option value="tender">Тендер / госзаказ</option>
-            <option value="restoration">Реставрация / штучная деталь</option>
-            <option value="consult">Не знаю, нужна консультация</option>
+            <option value="consult">Нужна консультация технолога</option>
           </select>
         </div>
 
