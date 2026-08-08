@@ -237,6 +237,7 @@
     color: var(--graphite);
     white-space: nowrap;
   }
+  .fact .num.num-text { font-size: 36px; }
   .fact .num .unit { font-size: 24px; color: var(--fog); margin-left: 4px; font-weight: 500; }
   .fact .label {
     margin-top: 16px;
@@ -340,117 +341,82 @@
   .works .section-head .num { color: var(--steel); }
   .works .section-head .num::before { background: var(--steel); }
   .works .lead { color: rgba(255,255,255,0.65); max-width: 580px; }
-  .works-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-bottom: 64px;
+  .works-gallery {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 32px;
   }
-  .work-card {
-    background: var(--graphite-2);
-    border-radius: 8px;
+  .work-tile {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
     overflow: hidden;
-    transition: transform .25s ease, outline-color .25s ease, box-shadow .25s ease;
+    background: var(--graphite-2);
+    padding: 0;
+    display: block;
     outline: 1.5px solid transparent;
     outline-offset: -1.5px;
-    position: relative;
+    transition: outline-color .25s ease, box-shadow .25s ease;
   }
-  .work-card:hover {
-    transform: rotate(-1.2deg) translateY(-2px);
-    outline-color: var(--steel);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  .work-tile img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform .5s ease;
   }
-  .work-photo {
-    aspect-ratio: 4 / 5;
-    position: relative;
-    background: var(--graphite-2);
-    overflow: hidden;
-  }
-  .work-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform .4s ease;
-  }
-  .work-card:hover .work-photo img { transform: scale(1.04); }
-  .work-photo::after {
+  .work-tile::after {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(31,42,51,0.35), transparent 50%);
+    background: linear-gradient(to top, rgba(20,27,33,0.80) 0%, rgba(20,27,33,0.10) 45%, transparent 70%);
     pointer-events: none;
+    transition: opacity .25s ease;
   }
-  .work-card .photo-corner {
-    position: absolute; right: 16px; top: 16px;
+  .work-tile:hover { outline-color: var(--steel); box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+  .work-tile:hover img { transform: scale(1.04); }
+  .work-tile .t-n {
+    position: absolute; right: 12px; top: 10px; z-index: 2;
     font-family: var(--f-mono); font-size: 10px;
-    letter-spacing: 0.1em; color: rgba(255,255,255,0.35);
+    letter-spacing: 0.1em; color: rgba(255,255,255,0.45);
+  }
+  .work-tile .t-cap {
+    position: absolute; left: 14px; right: 14px; bottom: 12px; z-index: 2;
+    font-family: var(--f-text); font-weight: 500; font-size: 13px; line-height: 1.3;
+    color: #fff; text-align: left;
+  }
+  .works-note {
+    max-width: 720px; margin: 0 0 40px;
+    font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.55);
   }
 
-  /* — Placeholder для фото работ (пока реальные фото не пришли от клиента) — */
-  .work-photo.is-placeholder {
-    background: linear-gradient(135deg, var(--graphite) 0%, var(--graphite-2) 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 24px;
+  /* — Лайтбокс галереи работ — */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 210;
+    background: rgba(14,19,24,0.94);
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px;
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox figure { margin: 0; max-width: 1100px; width: 100%; }
+  .lightbox img {
+    width: 100%; height: auto; max-height: 78vh; object-fit: contain;
+    border-radius: 4px;
+  }
+  .lightbox figcaption {
+    margin-top: 16px;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 24px;
+    font-family: var(--f-text); font-size: 15px; color: rgba(255,255,255,0.75);
+  }
+  .lightbox figcaption .lb-n { font-family: var(--f-mono); font-size: 12px; color: rgba(255,255,255,0.4); }
+  .lightbox .lb-close, .lightbox .lb-prev, .lightbox .lb-next {
+    position: absolute; z-index: 2;
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
     color: rgba(255,255,255,0.7);
-  }
-  .work-photo.is-placeholder::after { display: none; }
-  .work-photo.is-placeholder .ph-mark {
-    width: 64px; height: 64px; opacity: 0.35;
-    margin-bottom: 20px;
-  }
-  .work-photo.is-placeholder .ph-mark svg { width: 100%; height: 100%; color: #fff; }
-  .work-photo.is-placeholder .ph-caption {
-    font-family: var(--f-mono); font-size: 11px;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 8px;
-  }
-  .work-photo.is-placeholder .ph-coat {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 17px; line-height: 1.25; color: #fff;
-    margin-bottom: 6px;
-  }
-  .work-photo.is-placeholder .ph-material {
-    font-family: var(--f-mono); font-size: 12px;
-    letter-spacing: 0.04em; color: rgba(255,255,255,0.55);
-  }
-  .work-info { padding: 22px 22px 24px; display: grid; gap: 14px; }
-  .work-info .title {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 18px; line-height: 1.25; color: #fff;
-  }
-  .work-info .tag-line {
-    margin-top: 6px;
-    font-family: var(--f-mono); font-size: 12px;
-    color: var(--steel); letter-spacing: 0.04em;
-  }
-  .w-specs {
-    margin: 0;
-    display: grid;
-    grid-template-columns: 78px 1fr;
-    gap: 6px 12px;
-    font-size: 13px;
-    line-height: 1.45;
-  }
-  .w-specs dt {
-    font-family: var(--f-mono); font-size: 11px;
-    color: rgba(255,255,255,0.42);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding-top: 1px;
-  }
-  .w-specs dd {
-    margin: 0;
-    color: rgba(255,255,255,0.82);
-  }
-  .w-specs dd b { color: #fff; font-weight: 500; }
-  .w-cta {
-    font-family: var(--f-mono); font-size: 12px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--steel);
-    border-bottom: 1px solid rgba(31,111,139,0.5);
-    padding-bottom: 4px;
-    align-self: start;
+    border: 1px solid rgba(255,255,255,0.18); border-radius: 50%;
+    font-size: 20px; line-height: 1;
     transition: color .2s, border-color .2s;
   }
-  .w-cta:hover { color: #fff; border-bottom-color: #fff; }
+  .lightbox .lb-close:hover, .lightbox .lb-prev:hover, .lightbox .lb-next:hover { color: #fff; border-color: #fff; }
+  .lightbox .lb-close { top: 24px; right: 24px; }
+  .lightbox .lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+  .lightbox .lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+
   .works-cta { display: flex; justify-content: center; }
 
   /* — PRODUCTION — */
@@ -548,13 +514,13 @@
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    /* единая обработка: ч/б + чуть тёплый-холодный сдвиг + контраст */
-    filter: grayscale(0.85) contrast(1.05) brightness(0.78) sepia(0.05) hue-rotate(170deg);
+    /* съёмка своя и однородная — цвет не глушим, только слегка выравниваем плотность */
+    filter: saturate(0.92) contrast(1.04) brightness(0.9);
     transition: transform .5s ease, filter .4s ease;
   }
   .prod-gallery .ph:hover img {
     transform: scale(1.04);
-    filter: grayscale(0.7) contrast(1.08) brightness(0.85);
+    filter: saturate(1) contrast(1.06) brightness(1);
   }
   .prod-gallery .ph .ph-label {
     position: absolute; left: 20px; bottom: 18px;
@@ -1307,17 +1273,31 @@
     .stage-hint, .hero-foot, .hero-index, .hero-accent { display: none; }
     /* отступ снизу для sticky-bar */
     body { padding-bottom: 64px; }
-    .facts-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .fact { padding: 0 16px; border-left: 0; border-bottom: 1px solid rgba(31,42,51,0.08); padding-bottom: 24px; }
-    .fact .num { font-size: 40px; }
+    /* minmax(0,1fr) + перенос: без них длинные числа враспор растягивали страницу вбок */
+    .facts-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 20px; }
+    .fact { min-width: 0; padding: 0 8px 24px; border-left: 0; border-bottom: 1px solid rgba(31,42,51,0.08); }
+    .fact .num { font-size: 32px; white-space: normal; }
+    .fact .num .unit { font-size: 18px; }
+    .fact .label { margin-top: 12px; font-size: 12px; }
     .directions, .works, .production, .how, .contact, .trust, .faq, .calc { padding: 56px var(--pad-x); }
     .trust-grid { grid-template-columns: 1fr; gap: 12px; }
     .trust-card { padding: 24px; }
     .directions-grid { grid-template-columns: 1fr; }
     .dir-card { padding: 32px; gap: 24px; }
     .dir-card h3 { font-size: 24px; }
-    .works-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .works-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .work-tile .t-cap { font-size: 12px; left: 10px; right: 10px; bottom: 9px; }
+    .lightbox { padding: 16px; }
+    .lightbox .lb-close { top: 12px; right: 12px; }
+    .lightbox .lb-prev { left: 8px; }
+    .lightbox .lb-next { right: 8px; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 calc(var(--pad-x) * -1); padding: 0 var(--pad-x); }
+    .coatings-table { min-width: 460px; }
     .coatings-table th, .coatings-table td { padding: 14px 16px; font-size: 13px; }
+    /* длинные слова («Производственное») шире экрана — разрешаем перенос */
+    .section-head > * { min-width: 0; }
+    .h1, .h-display, .h2, .dir-card h3 { overflow-wrap: break-word; hyphens: auto; }
+    .dir-card > * { min-width: 0; }
     .prod-blocks { grid-template-columns: 1fr; }
     .prod-gallery { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
     .equip-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1333,7 +1313,7 @@
     .footer-cols { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 520px) {
-    .works-grid { grid-template-columns: 1fr; }
+    .works-gallery { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps-row { grid-template-columns: 1fr; gap: 12px; }
     .step { padding-top: 16px; }
@@ -1498,7 +1478,7 @@
       <div class="label">Видов покрытий</div>
     </div>
     <div class="fact">
-      <div class="num" style="font-size: 36px;">ГОСТ · ISO</div>
+      <div class="num num-text">ГОСТ · ISO</div>
       <div class="label">Системы качества</div>
     </div>
   </div>
@@ -1678,80 +1658,75 @@
       <div class="num">05 — Работы</div>
       <div>
         <h2 class="h1">Работы</h2>
-        <div class="tag" style="color: var(--steel); margin-top: 16px;">СЕРИЙНЫЕ ПАРТИИ · РЕСТАВРАЦИЯ · ШТУЧНЫЕ ПРОЕКТЫ</div>
-        <p class="lead" style="margin-top: 16px;">Фрагмент портфолио. Для производственных заказов фиксируем партию и документы, для штучных — задачу и ожидаемый результат.</p>
+        <div class="tag" style="color: var(--steel); margin-top: 16px;">СЕРИЙНЫЕ ПАРТИИ · ОПЫТНЫЕ ОБРАЗЦЫ · ШТУЧНЫЕ ЗАКАЗЫ</div>
+        <p class="lead" style="margin-top: 16px;">Детали и партии на нашем участке: подготовка, загрузка на подвески, готовое покрытие и контроль. Съёмка на производстве ГАЛАРСа на ул. Электропультовцев.</p>
       </div>
     </div>
 
-    <p style="max-width:720px; margin: 0 auto 40px; font-family:var(--f-mono); font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--fog); text-align:center;">Место для реальных фото работ · клиент дозакинет — заменим 1:1</p>
-
-    <div class="works-grid">
-      <article class="work-card">
-        <div class="work-photo is-placeholder">
-          <span class="ph-mark" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95"><line x1="25" y1="85" x2="105" y2="85"/><line x1="105" y1="85" x2="105" y2="165"/><line x1="105" y1="165" x2="25" y2="165"/><line x1="25" y1="165" x2="25" y2="85"/><line x1="65" y1="65" x2="145" y2="65"/><line x1="145" y1="65" x2="145" y2="145"/><line x1="145" y1="145" x2="65" y2="145"/><line x1="65" y1="145" x2="65" y2="65"/><line x1="25" y1="85" x2="65" y2="65"/><line x1="105" y1="85" x2="145" y2="65"/><line x1="25" y1="165" x2="65" y2="145"/><line x1="105" y1="165" x2="145" y2="145"/></g><g fill="currentColor"><circle cx="25" cy="85" r="6"/><circle cx="105" cy="85" r="6"/><circle cx="25" cy="165" r="6"/><circle cx="105" cy="165" r="6"/><circle cx="65" cy="65" r="6"/><circle cx="145" cy="65" r="6"/><circle cx="65" cy="145" r="6"/><circle cx="145" cy="145" r="6"/></g></svg></span>
-          <div class="ph-caption">Фото 01</div>
-          <div class="ph-coat">Цинкование Ц12.хр</div>
-          <div class="ph-material">Марка материала: Сталь</div>
-          <span class="photo-corner">01</span>
-        </div>
-        <div class="work-info">
-          <div class="title">Партия валов для машиностроения</div>
-          <dl class="w-specs">
-            <dt>Задача</dt><dd>Антикоррозионная защита партии валов по чертежу заказчика</dd>
-            <dt>Покрытие</dt><dd>Цинкование <b>12&nbsp;мкм</b>, голубая пассивация</dd>
-            <dt>Партия</dt><dd>480 деталей в 4 транша</dd>
-            <dt>Документы</dt><dd>Пакет бухгалтерских документов, Сертификат качества (по запросу)</dd>
-            <dt>Срок</dt><dd>14 рабочих дней (по 3,5&nbsp;дня на транш)</dd>
-            <dt>Результат</dt><dd>Принято с первого предъявления, повторный заказ</dd>
-          </dl>
-          <a class="w-cta" href="#contact" data-event="cta_tender">Запросить КП для тендера&nbsp;→</a>
-        </div>
-      </article>
-
-      <article class="work-card">
-        <div class="work-photo is-placeholder">
-          <span class="ph-mark" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95"><line x1="25" y1="85" x2="105" y2="85"/><line x1="105" y1="85" x2="105" y2="165"/><line x1="105" y1="165" x2="25" y2="165"/><line x1="25" y1="165" x2="25" y2="85"/><line x1="65" y1="65" x2="145" y2="65"/><line x1="145" y1="65" x2="145" y2="145"/><line x1="145" y1="145" x2="65" y2="145"/><line x1="65" y1="145" x2="65" y2="65"/><line x1="25" y1="85" x2="65" y2="65"/><line x1="105" y1="85" x2="145" y2="65"/><line x1="25" y1="165" x2="65" y2="145"/><line x1="105" y1="165" x2="145" y2="145"/></g><g fill="currentColor"><circle cx="25" cy="85" r="6"/><circle cx="105" cy="85" r="6"/><circle cx="25" cy="165" r="6"/><circle cx="105" cy="165" r="6"/><circle cx="65" cy="65" r="6"/><circle cx="145" cy="65" r="6"/><circle cx="65" cy="145" r="6"/><circle cx="145" cy="145" r="6"/></g></svg></span>
-          <div class="ph-caption">Фото 02</div>
-          <div class="ph-coat">Кадмирование Кд9.хр</div>
-          <div class="ph-material">Марка материала: Сталь</div>
-          <span class="photo-corner">02</span>
-        </div>
-        <div class="work-info">
-          <div class="title">Крепёж по чертежу для ОПК</div>
-          <dl class="w-specs">
-            <dt>Задача</dt><dd>Покрытие крепежа с требованием контроля толщины на партии</dd>
-            <dt>Покрытие</dt><dd>Кадмирование <b>9&nbsp;мкм</b> с хроматированием</dd>
-            <dt>Партия</dt><dd>3&nbsp;200 единиц</dd>
-            <dt>Документы</dt><dd>Пакет бухгалтерских документов, Договор, Сертификат качества</dd>
-            <dt>Срок</dt><dd>18 рабочих дней</dd>
-            <dt>Результат</dt><dd>Партия сдана в установленный срок, без рекламаций</dd>
-          </dl>
-          <a class="w-cta" href="#contact" data-event="cta_tender">Запросить КП для тендера&nbsp;→</a>
-        </div>
-      </article>
-
-      <article class="work-card">
-        <div class="work-photo is-placeholder">
-          <span class="ph-mark" aria-hidden="true"><svg viewBox="0 0 200 200" fill="none"><g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95"><line x1="25" y1="85" x2="105" y2="85"/><line x1="105" y1="85" x2="105" y2="165"/><line x1="105" y1="165" x2="25" y2="165"/><line x1="25" y1="165" x2="25" y2="85"/><line x1="65" y1="65" x2="145" y2="65"/><line x1="145" y1="65" x2="145" y2="145"/><line x1="145" y1="145" x2="65" y2="145"/><line x1="65" y1="145" x2="65" y2="65"/><line x1="25" y1="85" x2="65" y2="65"/><line x1="105" y1="85" x2="145" y2="65"/><line x1="25" y1="165" x2="65" y2="145"/><line x1="105" y1="165" x2="145" y2="145"/></g><g fill="currentColor"><circle cx="25" cy="85" r="6"/><circle cx="105" cy="85" r="6"/><circle cx="25" cy="165" r="6"/><circle cx="105" cy="165" r="6"/><circle cx="65" cy="65" r="6"/><circle cx="145" cy="65" r="6"/><circle cx="65" cy="145" r="6"/><circle cx="145" cy="145" r="6"/></g></svg></span>
-          <div class="ph-caption">Фото 03</div>
-          <div class="ph-coat">Никель Н6 + Олово О5</div>
-          <div class="ph-material">Марка материала: Медь Л63</div>
-          <span class="photo-corner">03</span>
-        </div>
-        <div class="work-info">
-          <div class="title">Серия контактов под пайку</div>
-          <dl class="w-specs">
-            <dt>Задача</dt><dd>Покрытие электрических контактов под автоматическую пайку</dd>
-            <dt>Покрытие</dt><dd>Никель <b>6&nbsp;мкм</b> + олово <b>5&nbsp;мкм</b></dd>
-            <dt>Партия</dt><dd>1&nbsp;120 деталей, ежемесячная отгрузка</dd>
-            <dt>Документы</dt><dd>Пакет бухгалтерских документов, Сертификат качества (по запросу)</dd>
-            <dt>Срок</dt><dd>9 рабочих дней цикл</dd>
-            <dt>Результат</dt><dd>Стабильная адгезия припоя, контракт продлён на 12&nbsp;месяцев</dd>
-          </dl>
-          <a class="w-cta" href="#contact" data-event="cta_tender">Запросить КП для тендера&nbsp;→</a>
-        </div>
-      </article>
+    <div class="works-gallery">
+      <button type="button" class="work-tile" data-full="img/works/w01.jpg" data-cap="Втулки на подвесках">
+        <img src="img/works/w01.jpg" alt="Втулки на подвесках — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">01</span>
+        <span class="t-cap">Втулки на подвесках</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w02.jpg" data-cap="Алюминиевые радиаторы">
+        <img src="img/works/w02.jpg" alt="Алюминиевые радиаторы — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">02</span>
+        <span class="t-cap">Алюминиевые радиаторы</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w03.jpg" data-cap="Звёздочки цепных передач">
+        <img src="img/works/w03.jpg" alt="Звёздочки цепных передач — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">03</span>
+        <span class="t-cap">Звёздочки цепных передач</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w04.jpg" data-cap="Детали на подвесном приспособлении">
+        <img src="img/works/w04.jpg" alt="Детали на подвесном приспособлении — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">04</span>
+        <span class="t-cap">Детали на подвесном приспособлении</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w05.jpg" data-cap="Партия крепежа">
+        <img src="img/works/w05.jpg" alt="Партия крепежа — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">05</span>
+        <span class="t-cap">Партия крепежа</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w06.jpg" data-cap="Профили и кронштейны">
+        <img src="img/works/w06.jpg" alt="Профили и кронштейны — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">06</span>
+        <span class="t-cap">Профили и кронштейны</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w07.jpg" data-cap="Полированные детали">
+        <img src="img/works/w07.jpg" alt="Полированные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">07</span>
+        <span class="t-cap">Полированные детали</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w08.jpg" data-cap="Крупные точёные детали">
+        <img src="img/works/w08.jpg" alt="Крупные точёные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">08</span>
+        <span class="t-cap">Крупные точёные детали</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w09.jpg" data-cap="Подвеска с деталями">
+        <img src="img/works/w09.jpg" alt="Подвеска с деталями — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">09</span>
+        <span class="t-cap">Подвеска с деталями</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w10.jpg" data-cap="Обмер детали перед запуском">
+        <img src="img/works/w10.jpg" alt="Обмер детали перед запуском — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">10</span>
+        <span class="t-cap">Обмер детали перед запуском</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w11.jpg" data-cap="Контроль толщины покрытия">
+        <img src="img/works/w11.jpg" alt="Контроль толщины покрытия — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">11</span>
+        <span class="t-cap">Контроль толщины покрытия</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w12.jpg" data-cap="Партия колец">
+        <img src="img/works/w12.jpg" alt="Партия колец — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">12</span>
+        <span class="t-cap">Партия колец</span>
+      </button>
     </div>
+
+    <p class="works-note">Марки покрытий и материалы по конкретным позициям не публикуем — работаем по конструкторской документации заказчика. Что именно и как можем покрыть вашу деталь, скажет технолог после оценки.</p>
 
     <div class="works-cta">
       <a class="btn btn-primary" href="#contact" data-event="cta_estimate">Прислать деталь или партию на оценку</a>
@@ -1773,22 +1748,23 @@
 
     <div class="prod-gallery">
       <div class="ph">
-        <img src="img/production/galvanic-line.jpg" alt="Гальваническая линия — ванны нанесения покрытий" loading="lazy">
+        <img src="img/production/galvanic-line.jpg" alt="Гальванический участок ГАЛАРС — ряд ванн нанесения покрытий" loading="lazy" width="1400" height="1050">
         <span class="ph-tag">01 · ЛИНИЯ</span>
-        <span class="ph-label">Гальваническая линия</span>
+        <span class="ph-label">Гальванический участок</span>
       </div>
       <div class="ph">
-        <img src="img/production/factory.jpg" alt="Производственный цех ГАЛАРС" loading="lazy">
+        <img src="img/production/factory.jpg" alt="Производственный цех ГАЛАРС на ул. Электропультовцев" loading="lazy" width="1400" height="1050">
         <span class="ph-tag">02 · ЦЕХ</span>
         <span class="ph-label">Производственный цех</span>
       </div>
       <div class="ph">
-        <img src="img/production/inspection.jpg" alt="Контроль качества ОТК толщиномером" loading="lazy">
+        <img src="img/production/inspection.jpg" alt="Контроль толщины покрытия толщиномером" loading="lazy" width="1400" height="1050">
         <span class="ph-tag">03 · ОТК</span>
-        <span class="ph-label">Контроль качества</span>
+        <span class="ph-label">Контроль толщины</span>
       </div>
     </div>
 
+    <div class="table-scroll">
     <table class="coatings-table">
       <thead>
         <tr><th>Тип покрытия</th><th>ГОСТ</th><th>Типичная толщина</th></tr>
@@ -1809,6 +1785,7 @@
         <tr><td class="type">Химическое оксидирование</td>  <td class="gost">ГОСТ 9.305-84</td>  <td class="thick">не нормируется</td></tr>
       </tbody>
     </table>
+    </div>
 
     <div class="prod-blocks">
       <div class="prod-card">
@@ -2197,6 +2174,18 @@
 </section>
 
 <!-- 10. FOOTER -->
+
+<!-- Лайтбокс галереи работ -->
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lb-close" aria-label="Закрыть">×</button>
+  <button type="button" class="lb-prev" aria-label="Предыдущее фото">‹</button>
+  <button type="button" class="lb-next" aria-label="Следующее фото">›</button>
+  <figure>
+    <img id="lbImg" alt="">
+    <figcaption><span id="lbCap"></span><span class="lb-n" id="lbNum"></span></figcaption>
+  </figure>
+</div>
+
 <footer class="footer">
   <div class="pattern"></div>
   <div class="footer-inner">
@@ -2850,6 +2839,40 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
       const t = e.target.closest('[data-city]');
       if (t) hi(t.dataset.city, false);
     });
+  });
+})();
+
+/* Лайтбокс галереи работ: клик по плитке — большое фото, стрелки и Esc. */
+(() => {
+  const box = document.getElementById('lightbox');
+  const tiles = [...document.querySelectorAll('.work-tile')];
+  if (!box || !tiles.length) return;
+  const img = document.getElementById('lbImg');
+  const cap = document.getElementById('lbCap');
+  const num = document.getElementById('lbNum');
+  let i = 0;
+
+  const show = k => {
+    i = (k + tiles.length) % tiles.length;
+    const t = tiles[i];
+    img.src = t.dataset.full;
+    img.alt = t.dataset.cap;
+    cap.textContent = t.dataset.cap;
+    num.textContent = String(i + 1).padStart(2, '0') + ' / ' + String(tiles.length).padStart(2, '0');
+  };
+  const open = k => { show(k); box.hidden = false; document.body.style.overflow = 'hidden'; };
+  const shut = () => { box.hidden = true; document.body.style.overflow = ''; };
+
+  tiles.forEach((t, k) => t.addEventListener('click', () => open(k)));
+  box.querySelector('.lb-close').addEventListener('click', shut);
+  box.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); show(i - 1); });
+  box.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); show(i + 1); });
+  box.addEventListener('click', e => { if (e.target === box || e.target.tagName === 'FIGURE') shut(); });
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') shut();
+    if (e.key === 'ArrowLeft') show(i - 1);
+    if (e.key === 'ArrowRight') show(i + 1);
   });
 })();
 </script>

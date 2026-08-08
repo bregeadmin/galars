@@ -257,6 +257,8 @@
 @media (max-width: 900px) {
   .burger { display: inline-flex; }
   .site-header .nav-bar { display: none; }
+  /* длинные технические слова шире мобильного экрана — разрешаем перенос */
+  .page-banner h1, .page-content h2, .page-content h3 { overflow-wrap: break-word; hyphens: auto; }
   .page-banner { padding: 140px var(--pad-x) 64px; }
   .page-content { padding: 64px var(--pad-x); }
   .footer-cols { grid-template-columns: 1fr; gap: 24px; }
