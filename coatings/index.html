@@ -76,37 +76,12 @@
   }
   .catalog-card:hover .cc-arrow { color: var(--steel); transform: translateX(4px); }
 
-  /* Вертикальная стопка вместо колонки 220px + отступ 64: на экране 375
-     они не помещались и растягивали страницу вбок. */
-  .more-block {
-    margin-top: 64px;
-    padding-top: 48px;
-    border-top: 1px solid rgba(31,42,51,0.10);
-  }
-  .more-block > div { min-width: 0; }
-  .more-block .num { margin-bottom: 20px; }
-  .more-block h2, .more-block p { overflow-wrap: break-word; }
-  .more-block h2 {
-    margin: 0 0 16px;
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 28px; line-height: 1.2;
-  }
-  .more-block p { margin: 0; font-size: 16px; color: var(--graphite); line-height: 1.55; max-width: 720px; }
-  .more-block .num {
-    font-family: var(--f-mono); font-size: 13px;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog);
-  }
-  .more-block .num::before {
-    content: ""; display: inline-block; vertical-align: middle;
-    width: 32px; height: 1px; background: var(--fog); margin-right: 12px;
-  }
-
   @media (max-width: 900px) {
     .catalog-grid { grid-template-columns: 1fr; }
     .cc-body { padding: 20px 24px; }
     .cc-arrow { padding: 20px 24px; font-size: 20px; }
-    .more-block { grid-template-columns: 1fr; gap: 16px; }
   }
+
   /* — Подбор покрытий по материалу детали. Материалы основы взяты из описаний
      покрытий, написанных по докладной клиента. — */
   .mat-picker { margin-bottom: 28px; }
@@ -129,6 +104,44 @@
   .mat-note { margin: 14px 0 0; font-size: 13px; line-height: 1.55; color: var(--fog); }
   .mat-note b { color: var(--graphite); font-weight: 600; }
   .catalog-card[hidden] { display: none; }
+  /* — Полная номенклатура по двум категориям, как в перечне клиента.
+     Обозначения (Нб, Ц.бцв.хр, АнОкс.тв) — из его же документа: инженер
+     приходит с КД и ищет именно их. — */
+  .nomen { margin-top: 72px; padding-top: 48px; border-top: 1px solid rgba(31,42,51,0.10); }
+  .nm-head { margin-bottom: 40px; }
+  .nm-label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); }
+  .nm-head h2 { margin: 12px 0 12px; font-family: var(--f-display); font-weight: 600; font-size: 30px; line-height: 1.15; letter-spacing: -0.01em; }
+  .nm-head p { margin: 0; max-width: 760px; font-size: 16px; line-height: 1.6; color: var(--fog); }
+
+  .nm-cat { margin-bottom: 56px; }
+  .nm-cat-h { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 18px; }
+  .nm-cat-n { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); }
+  .nm-cat-h h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 21px; line-height: 1.2; }
+  .nm-count { margin-left: auto; font-family: var(--f-mono); font-size: 12px; color: var(--fog); }
+
+  .nm-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; border-top: 1px solid rgba(31,42,51,0.10); }
+  .nm-row {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: baseline; gap: 14px;
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(31,42,51,0.08);
+    transition: background .15s linear;
+  }
+  .nm-row:not(.is-plain):hover { background: rgba(31,111,139,0.05); }
+  .nm-name { font-size: 16px; line-height: 1.35; color: var(--graphite); }
+  .nm-row:not(.is-plain):hover .nm-name { color: var(--steel); }
+  .nm-code { font-family: var(--f-mono); font-size: 12px; color: var(--steel); white-space: nowrap; }
+  .nm-code.nm-req { color: var(--fog); }
+  .nm-go { color: var(--steel); opacity: 0; transition: opacity .15s linear, transform .2s ease; transform: translateX(-6px); }
+  .nm-row:hover .nm-go { opacity: 1; transform: translateX(0); }
+  .nm-row.is-plain .nm-name { color: var(--fog); }
+  .nm-note { margin: 20px 0 0; max-width: 760px; font-size: 14px; line-height: 1.6; color: var(--fog); }
+
+  @media (max-width: 820px) {
+    .nm-list { grid-template-columns: 1fr; column-gap: 0; }
+    .nm-count { margin-left: 0; width: 100%; }
+    .nm-row { grid-template-columns: 1fr auto; }
+    .nm-go { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -385,16 +398,57 @@
       </a>
     </div>
 
-    <div class="more-block">
-      <div class="num">Нестандартные</div>
-      <div>
-        <h2>Многослойные системы и специальные покрытия</h2>
-        <p>Помимо основных 13 позиций выполняем многослойные системы: Никель-Медь-Серебро, Никель-Медь-Олово-Висмут/Свинец, Никель-Хром, Медь-Никель-Хром и другие. А также химическая очистка, дробеструйная обработка, обработка электрокорундом, пропитки, травление.</p>
-        <p>Если у вас нестандартная задача — <a href="../index.html#contact" style="color:var(--steel); text-decoration:underline;">пришлите ТЗ или КД</a>, технолог оценит возможность и предложит схему.</p>
-        <p style="margin-top:24px;"><a class="btn btn-primary" href="../index.html#contact">Описать задачу</a></p>
+    <div class="nomen">
+      <div class="nm-head">
+        <span class="nm-label">Полный перечень</span>
+        <h2>Что мы выполняем</h2>
+        <p>Перечень по номенклатуре производства, с обозначениями по конструкторской документации. Позиции, у которых есть отдельная страница, кликаются. Остальные выполняем по запросу — пришлите ТЗ или КД, технолог оценит возможность и предложит схему.</p>
+      </div>
+
+      <div class="nm-cat">
+        <div class="nm-cat-h"><span class="nm-cat-n">Категория 1</span><h3>Однослойные покрытия и обработки</h3><span class="nm-count">23 позиций</span></div>
+        <div class="nm-list">
+      <a class="nm-row" href="nickel.html"><span class="nm-name">Никелирование</span><span class="nm-code">Нб · Нпб · Нм</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="nickel.html"><span class="nm-name">Никелирование чёрное</span><span class="nm-code">Н.ч</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="nickel-chem.html"><span class="nm-name">Никелирование твёрдое</span><span class="nm-code">Хим.Н.тв</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="nickel-chem.html"><span class="nm-name">Химическое никелирование</span><span class="nm-code">Хим.Н</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="chrome.html"><span class="nm-name">Хромирование</span><span class="nm-code">Х.мол · Х.тв</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="zinc.html"><span class="nm-name">Цинкование</span><span class="nm-code">Ц · Ц.хр · Ц.бцв.хр · Ц.хр.ч</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="cadmium.html"><span class="nm-name">Кадмирование</span><span class="nm-code">Кд · Кд.хр</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="copper.html"><span class="nm-name">Меднение</span><span class="nm-code">М</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="silver.html"><span class="nm-name">Серебрение</span><span class="nm-code">Ср</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="tin.html"><span class="nm-name">Оловянирование</span><span class="nm-code">О</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="tin.html"><span class="nm-name">Олово-висмут, олово-свинец</span><span class="nm-code">О-Ви · О-С</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="anodizing.html"><span class="nm-name">Анодирование</span><span class="nm-code">АнОкс · АнОкс.нхр · АнОкс.хром</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="anodizing.html"><span class="nm-name">Анодирование чёрное</span><span class="nm-code">АнОкс.ч</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="anodizing.html"><span class="nm-name">Анодирование цветное</span><span class="nm-code">красный · синий · золотой</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="anodizing-hard.html"><span class="nm-name">Анодирование твёрдое</span><span class="nm-code">АнОкс.тв</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="phosphating.html"><span class="nm-name">Фосфатирование</span><span class="nm-code">ХимФос</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="oxidation.html"><span class="nm-name">Химическое оксидирование</span><span class="nm-code">ХимОкс</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <a class="nm-row" href="electropolish.html"><span class="nm-name">Электрополировка</span><span class="nm-code">ЭлПол</span><span class="nm-go" aria-hidden="true">→</span></a>
+      <div class="nm-row is-plain"><span class="nm-name">Химическая очистка</span><span class="nm-code nm-req">по запросу</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Дробеструйная обработка</span><span class="nm-code nm-req">по запросу</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Обработка корундом</span><span class="nm-code nm-req">по запросу</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Пропитка маслом или лаком</span><span class="nm-code nm-req">по запросу</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Травление</span><span class="nm-code nm-req">по запросу</span></div>
+        </div>
+      </div>
+
+      <div class="nm-cat">
+        <div class="nm-cat-h"><span class="nm-cat-n">Категория 2</span><h3>Многослойные покрытия</h3><span class="nm-count">7 систем</span></div>
+        <div class="nm-list">
+      <div class="nm-row is-plain"><span class="nm-name">Никель — медь — серебро</span><span class="nm-code">Н.М.Ср · ХимН.М.Ср</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Никель — медь — олово-висмут</span><span class="nm-code">Н.М.О-Ви</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Никель — медь — олово-свинец</span><span class="nm-code">Н.М.О-С</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Никель — хром</span><span class="nm-code">Н.Х</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Медь — никель — хром</span><span class="nm-code">М.Н.Х</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Медь — никель</span><span class="nm-code">М.Н</span></div>
+      <div class="nm-row is-plain"><span class="nm-name">Медь — никель — никель — хром</span><span class="nm-code">М.Н.Н.Х</span></div>
+        </div>
+        <p class="nm-note">Многослойные системы собираются под требования вашей документации. Отдельных страниц у них нет — схему и толщины по слоям технолог подбирает под задачу.</p>
+        <a class="btn btn-secondary" href="../index.html#contact" style="margin-top:24px;">Описать задачу</a>
       </div>
     </div>
-  </div>
 </section>
 
 <footer class="footer">
