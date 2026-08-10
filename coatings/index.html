@@ -28,9 +28,56 @@
   .page-banner-pattern { background-image: url('../molecule.svg'); }
   .footer .pattern { background-image: url('../molecule.svg'); }
 
+  .catalog-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  }
+  .catalog-card {
+    display: grid;
+    grid-template-columns: 8px 1fr auto;
+    align-items: center;
+    background: #fff;
+    border: 1px solid rgba(31,42,51,0.08);
+    border-radius: 8px;
+    padding: 0;
+    overflow: hidden;
+    transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    color: var(--graphite);
+  }
+  .catalog-card:hover {
+    border-color: var(--steel);
+    box-shadow: 0 12px 32px rgba(31,42,51,0.06);
+    transform: translateY(-2px);
+  }
+  .cc-swatch { width: 8px; height: 100%; min-height: 140px; }
+  .cc-body { padding: 28px 32px; }
+  .cc-tag {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 8px;
+  }
+  .catalog-card h3 {
+    margin: 0 0 6px;
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 24px; line-height: 1.15;
+  }
+  .catalog-card p {
+    margin: 0 0 12px;
+    font-size: 14px; line-height: 1.45; color: var(--fog);
+  }
+  .cc-spec {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.04em; color: var(--graphite);
+  }
+  .cc-arrow {
+    padding: 28px 32px;
+    font-family: var(--f-text); font-size: 24px; color: var(--fog);
+    transition: color .2s ease, transform .2s ease;
+  }
+  .catalog-card:hover .cc-arrow { color: var(--steel); transform: translateX(4px); }
 
-  /* Вертикальная стопка вместо колонки 220px + отступ 64: на узком экране
-     они не помещались и растягивали страницу вбок. Тот же закон, что на главной. */
+  /* Вертикальная стопка вместо колонки 220px + отступ 64: на экране 375
+     они не помещались и растягивали страницу вбок. */
   .more-block {
     margin-top: 64px;
     padding-top: 48px;
@@ -54,6 +101,12 @@
     width: 32px; height: 1px; background: var(--fog); margin-right: 12px;
   }
 
+  @media (max-width: 900px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .cc-body { padding: 20px 24px; }
+    .cc-arrow { padding: 20px 24px; font-size: 20px; }
+    .more-block { grid-template-columns: 1fr; gap: 16px; }
+  }
   /* — Подбор покрытий по материалу детали. Материалы основы взяты из описаний
      покрытий, написанных по докладной клиента. — */
   .mat-picker { margin-bottom: 28px; }
@@ -75,68 +128,7 @@
   .mat-chip.is-active { background: var(--steel); border-color: var(--steel); color: #fff; }
   .mat-note { margin: 14px 0 0; font-size: 13px; line-height: 1.55; color: var(--fog); }
   .mat-note b { color: var(--graphite); font-weight: 600; }
-    /* — Список покрытий: только названия, крупно. Подробности живут на страницах,
-     здесь человек выбирает, куда идти. Наведение подкрашивает строку цветом
-     самого металла — единственная честная декорация, какая тут возможна. — */
-  .coat-list { border-top: 1px solid rgba(31,42,51,0.12); }
-  .coat-row {
-    position: relative;
-    display: grid;
-    grid-template-columns: 52px 16px 1fr auto;
-    align-items: center;
-    gap: 18px;
-    padding: 22px 24px 22px 0;
-    border-bottom: 1px solid rgba(31,42,51,0.12);
-    overflow: hidden;
-  }
-  .coat-row::before {
-    content: ""; position: absolute; inset: 0; z-index: 0;
-    background: linear-gradient(90deg, var(--metal) 0%, transparent 72%);
-    opacity: 0;
-    transition: opacity .28s cubic-bezier(0.32, 0.72, 0, 1);
-  }
-  .coat-row:hover::before, .coat-row:focus-visible::before { opacity: 0.22; }
-  .coat-row::after {
-    content: ""; position: absolute; inset: 0; z-index: 0;
-    background: rgba(31,42,51,0.035);
-    opacity: 0; transition: opacity .2s linear;
-  }
-  .coat-row:hover::after, .coat-row:focus-visible::after { opacity: 1; }
-  .coat-row > * { position: relative; z-index: 1; }
-  .cr-n {
-    font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em;
-    color: var(--fog);
-    transition: color .2s linear;
-  }
-  .coat-row:hover .cr-n { color: var(--steel); }
-  .cr-name {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: clamp(22px, 2.6vw, 34px); line-height: 1.15;
-    letter-spacing: -0.01em; color: var(--graphite);
-    min-width: 0; overflow-wrap: break-word; hyphens: auto;
-    transition: transform .28s cubic-bezier(0.32, 0.72, 0, 1);
-  }
-  .coat-row:hover .cr-name, .coat-row:focus-visible .cr-name { transform: translateX(10px); }
-  .cr-dot {
-    width: 14px; height: 14px; border-radius: 50%;
-    background: var(--metal);
-    border: 1px solid rgba(31,42,51,0.20);
-    transform: scale(0.6); opacity: 0.45;
-    transition: transform .28s cubic-bezier(0.32, 0.72, 0, 1), opacity .2s linear;
-  }
-  .coat-row:hover .cr-dot { transform: scale(1); opacity: 1; }
-  .cr-arrow {
-    font-size: 22px; color: var(--steel);
-    opacity: 0; transform: translateX(-10px);
-    transition: opacity .2s linear, transform .28s cubic-bezier(0.32, 0.72, 0, 1);
-  }
-  .coat-row:hover .cr-arrow, .coat-row:focus-visible .cr-arrow { opacity: 1; transform: translateX(0); }
-  .coat-row[hidden] { display: none; }
-  @media (max-width: 700px) {
-    .coat-row { grid-template-columns: 26px 12px minmax(0, 1fr); gap: 10px; padding: 16px 8px 16px 0; }
-    .cr-name { font-size: 19px; }
-    .cr-arrow { display: none; }
-  }
+  .catalog-card[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -260,84 +252,136 @@
       <p class="mat-note">Показано <b id="matCount">13</b> из 13 покрытий. Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
     </div>
 
-    <div class="coat-list">
-      <a class="coat-row" href="nickel.html" data-mat="steel inox cu alu ti" style="--metal: #E4D9B8">
-        <span class="cr-n">01</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Никелирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+    <div class="catalog-grid">
+      <a class="catalog-card" href="nickel.html" data-mat="steel inox cu alu ti">
+        <div class="cc-swatch" style="background:#E4D9B8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Защитно-декоративное · Функциональное</div>
+          <h3>Никелирование</h3>
+          <p>Блестящее, полублестящее и матовое никелирование. Также чёрное никелирование.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–35 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="nickel-chem.html" data-mat="steel inox cu alu ti" style="--metal: #D8CBA8">
-        <span class="cr-n">02</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Химическое никелирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="nickel-chem.html" data-mat="steel inox cu alu ti">
+        <div class="cc-swatch" style="background:#D8CBA8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Функциональное · Равномерное по профилю</div>
+          <h3>Химическое никелирование</h3>
+          <p>Равномерное никель-фосфорное покрытие для деталей сложной конфигурации.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–35 мкм (>35 — по согласованию)</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="chrome.html" data-mat="steel inox cu" style="--metal: #DDE4EC">
-        <span class="cr-n">03</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Хромирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="chrome.html" data-mat="steel inox cu">
+        <div class="cc-swatch" style="background:#DDE4EC"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Твёрдое · Молочное · Декоративное по никелю</div>
+          <h3>Хромирование</h3>
+          <p>Для повышения твёрдости, износостойкости, восстановления размеров и декоративной отделки.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–250 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="zinc.html" data-mat="steel inox" style="--metal: #C8D0D8">
-        <span class="cr-n">04</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Цинкование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="zinc.html" data-mat="steel inox">
+        <div class="cc-swatch" style="background:#C8D0D8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Антикоррозионное · Массовое серийное</div>
+          <h3>Цинкование</h3>
+          <p>Защитное цинковое покрытие для стальных деталей: крепёж, корпусные детали, металлоконструкции.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–35 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="cadmium.html" data-mat="steel inox" style="--metal: #B0B0B8">
-        <span class="cr-n">05</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Кадмирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="cadmium.html" data-mat="steel inox">
+        <div class="cc-swatch" style="background:#B0B0B8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Защитное · Пластичное · Специальное</div>
+          <h3>Кадмирование</h3>
+          <p>Для деталей ответственного назначения с требованиями к пластичности и особым условиям эксплуатации.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–35 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="silver.html" data-mat="cu steel inox alu" style="--metal: #F5F2E8">
-        <span class="cr-n">06</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Серебрение</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="silver.html" data-mat="cu steel inox alu">
+        <div class="cc-swatch" style="background:#F5F2E8"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Электропроводное · Контактное</div>
+          <h3>Серебрение</h3>
+          <p>Электролит без блескообразующих добавок — цвет белый матовый. Для токоведущих и контактных деталей.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–24 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="copper.html" data-mat="steel cu alu" style="--metal: #C07540">
-        <span class="cr-n">07</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Меднение</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="copper.html" data-mat="steel cu alu">
+        <div class="cc-swatch" style="background:#C07540"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Подслой · Функциональное</div>
+          <h3>Меднение</h3>
+          <p>Пирофосфатное меднение как подслой перед последующими покрытиями и функциональное покрытие.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–35 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="tin.html" data-mat="cu steel alu ti" style="--metal: #D0D0D5">
-        <span class="cr-n">08</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Оловянирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="tin.html" data-mat="cu steel alu ti">
+        <div class="cc-swatch" style="background:#D0D0D5"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Паяемое · Контактное · Техническое</div>
+          <h3>Оловянирование</h3>
+          <p>Олово, олово-висмут, олово-свинец. Для паяемости, контактных деталей и защиты от коррозии.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 3–24 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="anodizing.html" data-mat="alu" style="--metal: #8A93A0">
-        <span class="cr-n">09</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Анодирование алюминия</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="anodizing.html" data-mat="alu">
+        <div class="cc-swatch" style="background:#8A93A0"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Алюминий · Защитное · Декоративное</div>
+          <h3>Анодирование алюминия</h3>
+          <p>Оксидное покрытие для деталей из алюминия и его сплавов. Есть цветное (красный, синий, золотой) и чёрное.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · ориентировочно 6–20 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="anodizing-hard.html" data-mat="alu" style="--metal: #5A6270">
-        <span class="cr-n">10</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Твёрдое анодирование алюминия</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="anodizing-hard.html" data-mat="alu">
+        <div class="cc-swatch" style="background:#5A6270"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Алюминий · Износостойкое · Твёрдое</div>
+          <h3>Твёрдое анодирование алюминия</h3>
+          <p>Твёрдое оксидное покрытие для алюминиевых деталей с требованиями к износостойкости и жаростойкости.</p>
+          <div class="cc-spec">ГОСТ 9.305-84 · 20–80 мкм</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="electropolish.html" data-mat="inox" style="--metal: #D0D0D0">
-        <span class="cr-n">11</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Электрополирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="electropolish.html" data-mat="inox">
+        <div class="cc-swatch" style="background:#D0D0D0"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Обработка · Нержавеющие стали</div>
+          <h3>Электрополирование</h3>
+          <p>Электрохимическая обработка немагнитных коррозионностойких сталей. Осветление и сглаживание микрорельефа.</p>
+          <div class="cc-spec">Со съёмом металла</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="phosphating.html" data-mat="steel" style="--metal: #7A6A55">
-        <span class="cr-n">12</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Фосфатирование стали</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="phosphating.html" data-mat="steel">
+        <div class="cc-swatch" style="background:#7A6A55"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Конверсионное · Подготовка под ЛКП</div>
+          <h3>Фосфатирование стали</h3>
+          <p>Подготовка под лакокрасочные покрытия, удержание смазки, снижение отражательной способности.</p>
+          <div class="cc-spec">Толщина не нормируется</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
-      <a class="coat-row" href="oxidation.html" data-mat="steel alu cu mg" style="--metal: #3E3128">
-        <span class="cr-n">13</span>
-        <span class="cr-dot" aria-hidden="true"></span>
-        <span class="cr-name">Химическое оксидирование</span>
-        <span class="cr-arrow" aria-hidden="true">→</span>
+      <a class="catalog-card" href="oxidation.html" data-mat="steel alu cu mg">
+        <div class="cc-swatch" style="background:#3E3128"></div>
+        <div class="cc-body">
+          <div class="cc-tag">Конверсионное · Тонкий слой</div>
+          <h3>Химическое оксидирование</h3>
+          <p>Для стали (воронение), алюминия (в т.ч. электропроводное), меди и магниевых сплавов.</p>
+          <div class="cc-spec">Толщина не нормируется</div>
+        </div>
+        <div class="cc-arrow">→</div>
       </a>
     </div>
 
@@ -435,7 +479,7 @@
 (() => {
   const chips = document.getElementById('matChips');
   const count = document.getElementById('matCount');
-  const cards = [...document.querySelectorAll('.coat-row[data-mat]')];
+  const cards = [...document.querySelectorAll('.catalog-card[data-mat]')];
   if (!chips || !count || !cards.length) return;
 
   const apply = mat => {

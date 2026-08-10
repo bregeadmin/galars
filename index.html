@@ -434,29 +434,83 @@
   .production-inner { max-width: var(--max-w); margin: 0 auto; }
   .production .section-head .num { color: var(--steel); }
   .production .section-head .num::before { background: var(--steel); }
-  /* — Вход в каталог по материалу детали. Сама таблица живёт на странице
-     «Покрытия»: держать один и тот же список в двух местах незачем. — */
-  .mat-picker { max-width: 1040px; margin-bottom: 72px; }
-  .mat-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-  /* Метка отдельной строкой: в один ряд с плашками она выталкивала последнюю
-     на вторую строку, а одинокий элемент внизу читается как ошибка вёрстки. */
-  .mat-label {
-    display: block; width: 100%;
+  /* — Тизер каталога: только названия покрытий, крупно. Подробности — в каталоге,
+     здесь человек видит перечень целиком и уходит в нужное покрытие одним кликом.
+     Наведение подкрашивает строку цветом самого металла. — */
+  .coat-teaser { max-width: 1040px; margin-bottom: 72px; }
+  .ct-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 24px;
+    padding-bottom: 14px;
+  }
+  .ct-label {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog);
-    margin-bottom: 4px;
   }
-  .mat-chip {
-    padding: 10px 18px; border-radius: 22px;
-    border: 1px solid rgba(31,42,51,0.16);
-    background: #fff;
-    font-family: var(--f-text); font-size: 15px; color: var(--graphite);
-    transition: border-color .15s linear, color .15s linear, background .15s linear;
+  .ct-all {
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--steel);
+    border-bottom: 1px solid var(--steel-50); padding-bottom: 3px;
+    white-space: nowrap;
+    transition: border-color .15s linear;
   }
-  .mat-chip:hover { border-color: var(--steel); color: var(--steel); }
-  .mat-chip.is-all { border-style: dashed; color: var(--fog); }
-  .mat-chip.is-all:hover { color: var(--steel); border-color: var(--steel); }
-  .mat-note { margin: 16px 0 0; max-width: 720px; font-size: 13px; line-height: 1.55; color: var(--fog); }
+  .ct-all:hover { border-bottom-color: var(--steel); }
+  .ct-all .arrow { display: inline-block; transition: transform .18s ease; }
+  .ct-all:hover .arrow { transform: translateX(3px); }
+  .ct-note { margin: 20px 0 0; max-width: 760px; font-size: 13px; line-height: 1.6; color: var(--fog); }
+
+  /* Колоночный поток: слева 01-07, справа 08-13. При обычном строчном потоке
+     номера скакали через колонку — 01, 03, 05 слева и 02, 04, 06 справа. */
+  .coat-list {
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(7, auto);
+    grid-auto-flow: column;
+    column-gap: 48px;
+    border-top: 1px solid rgba(31,42,51,0.12);
+  }
+  .coat-row {
+    position: relative;
+    display: grid; grid-template-columns: 34px 14px minmax(0, 1fr) auto;
+    align-items: center; gap: 14px;
+    padding: 15px 16px 15px 0;
+    border-bottom: 1px solid rgba(31,42,51,0.10);
+    overflow: hidden;
+  }
+  .coat-row::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(90deg, var(--metal) 0%, transparent 78%);
+    opacity: 0; transition: opacity .26s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .coat-row::after {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background: rgba(31,42,51,0.035);
+    opacity: 0; transition: opacity .18s linear;
+  }
+  .coat-row:hover::before, .coat-row:focus-visible::before { opacity: 0.24; }
+  .coat-row:hover::after, .coat-row:focus-visible::after { opacity: 1; }
+  .coat-row > * { position: relative; z-index: 1; }
+  .cr-n { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--fog); transition: color .18s linear; }
+  .coat-row:hover .cr-n { color: var(--steel); }
+  .cr-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--metal); border: 1px solid rgba(31,42,51,0.20);
+    transform: scale(0.6); opacity: 0.5;
+    transition: transform .26s cubic-bezier(0.32, 0.72, 0, 1), opacity .18s linear;
+  }
+  .coat-row:hover .cr-dot { transform: scale(1); opacity: 1; }
+  .cr-name {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: clamp(17px, 1.5vw, 21px); line-height: 1.2;
+    letter-spacing: -0.01em; color: var(--graphite);
+    min-width: 0; overflow-wrap: break-word;
+    transition: transform .26s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .coat-row:hover .cr-name, .coat-row:focus-visible .cr-name { transform: translateX(8px); }
+  .cr-arrow {
+    font-size: 17px; color: var(--steel);
+    opacity: 0; transform: translateX(-8px);
+    transition: opacity .18s linear, transform .26s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+  .coat-row:hover .cr-arrow, .coat-row:focus-visible .cr-arrow { opacity: 1; transform: translateX(0); }
 
   .prod-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
   .prod-card {
@@ -1186,6 +1240,10 @@
     /* длинные слова («Производственное») шире экрана — разрешаем перенос */
     .section-head > * { min-width: 0; }
     .h1, .h-display, .h2 { overflow-wrap: break-word; hyphens: auto; }
+    .coat-list { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .coat-row { grid-template-columns: 28px 12px minmax(0, 1fr); gap: 10px; padding: 14px 8px 14px 0; }
+    .cr-arrow { display: none; }
+    .ct-head { flex-wrap: wrap; gap: 8px; }
     .prod-blocks { grid-template-columns: 1fr; }
     .prod-gallery { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
     .equip-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1396,18 +1454,92 @@
       </div>
     </div>
 
-    <div class="mat-picker">
-      <div class="mat-chips">
-        <span class="mat-label">Из чего ваша деталь</span>
-        <a class="mat-chip" href="coatings/?mat=steel">Сталь</a>
-        <a class="mat-chip" href="coatings/?mat=inox">Нержавеющая сталь</a>
-        <a class="mat-chip" href="coatings/?mat=alu">Алюминий</a>
-        <a class="mat-chip" href="coatings/?mat=cu">Медь и сплавы</a>
-        <a class="mat-chip" href="coatings/?mat=ti">Титан</a>
-        <a class="mat-chip" href="coatings/?mat=mg">Магний</a>
-        <a class="mat-chip is-all" href="coatings/">Все 13 покрытий</a>
+    <div class="coat-teaser">
+      <div class="ct-head">
+        <span class="ct-label">Что делаем</span>
+        <a class="ct-all" href="coatings/">Каталог покрытий <span class="arrow">→</span></a>
       </div>
-      <p class="mat-note">Выберите материал — в каталоге останутся покрытия, которые на него ложатся. Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
+      <div class="coat-list">
+        <a class="coat-row" href="coatings/nickel.html" style="--metal: #E4D9B8">
+          <span class="cr-n">01</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Никелирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/nickel-chem.html" style="--metal: #D8CBA8">
+          <span class="cr-n">02</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Химическое никелирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/chrome.html" style="--metal: #DDE4EC">
+          <span class="cr-n">03</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Хромирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/zinc.html" style="--metal: #C8D0D8">
+          <span class="cr-n">04</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Цинкование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/cadmium.html" style="--metal: #B0B0B8">
+          <span class="cr-n">05</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Кадмирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/silver.html" style="--metal: #F5F2E8">
+          <span class="cr-n">06</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Серебрение</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/copper.html" style="--metal: #C07540">
+          <span class="cr-n">07</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Меднение</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/tin.html" style="--metal: #D0D0D5">
+          <span class="cr-n">08</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Оловянирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/anodizing.html" style="--metal: #8A93A0">
+          <span class="cr-n">09</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Анодирование алюминия</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/anodizing-hard.html" style="--metal: #5A6270">
+          <span class="cr-n">10</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Твёрдое анодирование алюминия</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/electropolish.html" style="--metal: #D0D0D0">
+          <span class="cr-n">11</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Электрополирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/phosphating.html" style="--metal: #7A6A55">
+          <span class="cr-n">12</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Фосфатирование стали</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="coat-row" href="coatings/oxidation.html" style="--metal: #3E3128">
+          <span class="cr-n">13</span>
+          <span class="cr-dot" aria-hidden="true"></span>
+          <span class="cr-name">Химическое оксидирование</span>
+          <span class="cr-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+      <p class="ct-note">Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88. В каталоге по каждому покрытию — толщины, материалы основы и ограничения, плюс подбор по материалу вашей детали.</p>
     </div>
 
     <div class="prod-blocks">
