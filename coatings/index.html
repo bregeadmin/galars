@@ -103,6 +103,28 @@
     .cc-arrow { padding: 20px 24px; font-size: 20px; }
     .more-block { grid-template-columns: 1fr; gap: 16px; }
   }
+  /* — Подбор покрытий по материалу детали. Материалы основы взяты из описаний
+     покрытий, написанных по докладной клиента. — */
+  .mat-picker { margin-bottom: 28px; }
+  .mat-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .mat-label {
+    display: block; width: 100%;
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog);
+    margin-bottom: 4px;
+  }
+  .mat-chip {
+    padding: 9px 16px; border-radius: 20px;
+    border: 1px solid rgba(31,42,51,0.16);
+    background: #fff;
+    font-family: var(--f-text); font-size: 14px; color: var(--graphite);
+    transition: border-color .15s linear, color .15s linear, background .15s linear;
+  }
+  .mat-chip:hover { border-color: var(--steel); color: var(--steel); }
+  .mat-chip.is-active { background: var(--steel); border-color: var(--steel); color: #fff; }
+  .mat-note { margin: 14px 0 0; font-size: 13px; line-height: 1.55; color: var(--fog); }
+  .mat-note b { color: var(--graphite); font-weight: 600; }
+  .catalog-card[hidden] { display: none; }
 </style>
 </head>
 <body>
@@ -212,8 +234,22 @@
       <p style="margin:12px 0 0; color:var(--fog); font-size:15px; line-height:1.5;">Каждое покрытие — отдельная страница с описанием, характеристиками и особенностями работы. По неосновным покрытиям (многослойные системы, редкие процессы) — оставьте заявку, ответит технолог.</p>
     </div>
 
+    <div class="mat-picker">
+      <div class="mat-chips" id="matChips" role="group" aria-label="Подбор покрытий по материалу детали">
+        <span class="mat-label">Материал детали</span>
+        <button type="button" class="mat-chip is-active" data-mat="all">Все покрытия</button>
+        <button type="button" class="mat-chip" data-mat="steel">Сталь</button>
+        <button type="button" class="mat-chip" data-mat="inox">Нержавеющая сталь</button>
+        <button type="button" class="mat-chip" data-mat="alu">Алюминий</button>
+        <button type="button" class="mat-chip" data-mat="cu">Медь и сплавы</button>
+        <button type="button" class="mat-chip" data-mat="ti">Титан</button>
+        <button type="button" class="mat-chip" data-mat="mg">Магний</button>
+      </div>
+      <p class="mat-note">Показано <b id="matCount">13</b> из 13 покрытий. Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
+    </div>
+
     <div class="catalog-grid">
-      <a class="catalog-card" href="nickel.html">
+      <a class="catalog-card" href="nickel.html" data-mat="steel inox cu alu ti">
         <div class="cc-swatch" style="background:#E4D9B8"></div>
         <div class="cc-body">
           <div class="cc-tag">Защитно-декоративное · Функциональное</div>
@@ -223,7 +259,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="nickel-chem.html">
+      <a class="catalog-card" href="nickel-chem.html" data-mat="steel inox cu alu ti">
         <div class="cc-swatch" style="background:#D8CBA8"></div>
         <div class="cc-body">
           <div class="cc-tag">Функциональное · Равномерное по профилю</div>
@@ -233,7 +269,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="chrome.html">
+      <a class="catalog-card" href="chrome.html" data-mat="steel inox cu">
         <div class="cc-swatch" style="background:#DDE4EC"></div>
         <div class="cc-body">
           <div class="cc-tag">Твёрдое · Молочное · Декоративное по никелю</div>
@@ -243,7 +279,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="zinc.html">
+      <a class="catalog-card" href="zinc.html" data-mat="steel inox">
         <div class="cc-swatch" style="background:#C8D0D8"></div>
         <div class="cc-body">
           <div class="cc-tag">Антикоррозионное · Массовое серийное</div>
@@ -253,7 +289,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="cadmium.html">
+      <a class="catalog-card" href="cadmium.html" data-mat="steel inox">
         <div class="cc-swatch" style="background:#B0B0B8"></div>
         <div class="cc-body">
           <div class="cc-tag">Защитное · Пластичное · Специальное</div>
@@ -263,7 +299,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="silver.html">
+      <a class="catalog-card" href="silver.html" data-mat="cu steel inox alu">
         <div class="cc-swatch" style="background:#F5F2E8"></div>
         <div class="cc-body">
           <div class="cc-tag">Электропроводное · Контактное</div>
@@ -273,7 +309,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="copper.html">
+      <a class="catalog-card" href="copper.html" data-mat="steel cu alu">
         <div class="cc-swatch" style="background:#C07540"></div>
         <div class="cc-body">
           <div class="cc-tag">Подслой · Функциональное</div>
@@ -283,7 +319,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="tin.html">
+      <a class="catalog-card" href="tin.html" data-mat="cu steel alu ti">
         <div class="cc-swatch" style="background:#D0D0D5"></div>
         <div class="cc-body">
           <div class="cc-tag">Паяемое · Контактное · Техническое</div>
@@ -293,7 +329,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="anodizing.html">
+      <a class="catalog-card" href="anodizing.html" data-mat="alu">
         <div class="cc-swatch" style="background:#8A93A0"></div>
         <div class="cc-body">
           <div class="cc-tag">Алюминий · Защитное · Декоративное</div>
@@ -303,7 +339,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="anodizing-hard.html">
+      <a class="catalog-card" href="anodizing-hard.html" data-mat="alu">
         <div class="cc-swatch" style="background:#5A6270"></div>
         <div class="cc-body">
           <div class="cc-tag">Алюминий · Износостойкое · Твёрдое</div>
@@ -313,7 +349,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="electropolish.html">
+      <a class="catalog-card" href="electropolish.html" data-mat="inox">
         <div class="cc-swatch" style="background:#D0D0D0"></div>
         <div class="cc-body">
           <div class="cc-tag">Обработка · Нержавеющие стали</div>
@@ -323,7 +359,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="phosphating.html">
+      <a class="catalog-card" href="phosphating.html" data-mat="steel">
         <div class="cc-swatch" style="background:#7A6A55"></div>
         <div class="cc-body">
           <div class="cc-tag">Конверсионное · Подготовка под ЛКП</div>
@@ -333,7 +369,7 @@
         </div>
         <div class="cc-arrow">→</div>
       </a>
-      <a class="catalog-card" href="oxidation.html">
+      <a class="catalog-card" href="oxidation.html" data-mat="steel alu cu mg">
         <div class="cc-swatch" style="background:#3E3128"></div>
         <div class="cc-body">
           <div class="cc-tag">Конверсионное · Тонкий слой</div>
@@ -433,5 +469,41 @@
 })();
 </script>
 <script src="../search.js" defer></script>
+<script>
+/* Подбор по материалу детали. Материал можно передать в адресе: ?mat=steel —
+   так работает переход с главной страницы. */
+(() => {
+  const chips = document.getElementById('matChips');
+  const count = document.getElementById('matCount');
+  const cards = [...document.querySelectorAll('.catalog-card[data-mat]')];
+  if (!chips || !count || !cards.length) return;
+
+  const apply = mat => {
+    let shown = 0;
+    cards.forEach(c => {
+      const ok = mat === 'all' || c.dataset.mat.split(' ').includes(mat);
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    count.textContent = shown;
+    chips.querySelectorAll('.mat-chip').forEach(c => {
+      const on = c.dataset.mat === mat;
+      c.classList.toggle('is-active', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  };
+
+  chips.addEventListener('click', e => {
+    const c = e.target.closest('.mat-chip');
+    if (!c) return;
+    apply(c.dataset.mat);
+    history.replaceState(null, '', c.dataset.mat === 'all' ? location.pathname : '?mat=' + c.dataset.mat);
+  });
+
+  const known = ['all','steel','inox','alu','cu','ti','mg'];
+  const fromUrl = new URLSearchParams(location.search).get('mat');
+  apply(known.includes(fromUrl) ? fromUrl : 'all');
+})();
+</script>
 </body>
 </html>
