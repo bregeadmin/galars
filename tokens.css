@@ -144,6 +144,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   transition: transform .18s ease;
 }
 .btn:hover::after { transform: translateX(3px); }
+.btn:active { transform: translateY(1px); }
 .btn-primary {
   background: var(--steel);
   color: #fff;
