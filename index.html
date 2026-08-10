@@ -928,6 +928,7 @@
     transition: border-color .2s;
   }
   .form-field:focus-within { border-bottom: 2px solid var(--steel); padding-bottom: 11px; }
+  .form-field label .opt { color: rgba(255,255,255,0.45); font-weight: 400; text-transform: none; letter-spacing: 0; }
   .form-field label {
     font-family: var(--f-mono); font-size: 12px;
     text-transform: uppercase; letter-spacing: 0.08em;
@@ -940,11 +941,17 @@
   }
   .form-field .input::placeholder { color: rgba(255,255,255,0.4); }
   .form-field textarea.input { min-height: 80px; resize: vertical; }
+  .form-field textarea.input-task { min-height: 132px; }
   .contact-form .btn-submit {
     justify-self: flex-start;
     background: #fff; color: var(--steel); border-color: #fff;
   }
   .contact-form .btn-submit:hover { background: var(--graphite); color: #fff; border-color: var(--graphite); }
+  .req-list li { position: relative; padding: 3px 0 3px 18px; }
+  .req-list li::before {
+    content: ""; position: absolute; left: 0; top: 12px;
+    width: 8px; height: 1px; background: rgba(255,255,255,0.5);
+  }
   .form-intro {
     margin: 0 0 8px;
     font-size: 15px; line-height: 1.55;
@@ -1986,18 +1993,17 @@
         <div class="value" style="font-size:15px; line-height:1.5;"><a href="tel:+78127777811,114" data-event="phone_click">+7 (812) 777-78-11 доб. 114</a> · <a href="mailto:hr@galars.ru" data-event="email_click">hr@galars.ru</a></div>
         <div class="label" style="margin-top:16px;">Бухгалтерия</div>
         <div class="value" style="font-size:15px; line-height:1.5;"><a href="tel:+78127777811,113" data-event="phone_click">+7 (812) 777-78-11 доб. 113</a> · <a href="mailto:buh3@galars.ru" data-event="email_click">buh3@galars.ru</a></div>
-        <p class="contact-hint" style="margin-top:24px;">Пришлите фото, чертёж или короткое описание задачи&nbsp;— технолог ответит с вариантом покрытия, сроком и ориентиром цены.</p>
         <div class="reqs">
           ООО «ГАЛАРС-СПб» · Юр. адрес: 195030, СПб, ул. Электропультовцев, д. 7, литер Р<br>
           Полные реквизиты и лицензии — по запросу
         </div>
       </div>
       <form class="contact-form" id="contactForm" method="post" enctype="multipart/form-data" data-endpoint="" novalidate>
-        <p class="form-intro">Пришлите фото, чертёж или описание задачи. Ответим с вариантом покрытия, ориентиром цены и сроком выполнения.</p>
+        <p class="form-intro">Напишите, что нужно, и приложите чертежи — хоть один, хоть двадцать на разные детали. Технолог посмотрит и ответит с вариантом покрытия, ориентиром цены и сроком.</p>
 
-        <div class="form-required-info" style="background: rgba(255,255,255,0.04); border-left: 3px solid var(--steel); padding: 16px 18px; margin-bottom: 24px; border-radius: 0 4px 4px 0;">
-          <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-bottom: 10px;">Информация, которая требуется для расчёта</div>
-          <ul style="margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.78);">
+        <div class="form-required-info" style="background: rgba(255,255,255,0.07); border-left: 3px solid rgba(255,255,255,0.55); padding: 16px 18px; margin-bottom: 24px; border-radius: 0 4px 4px 0;">
+          <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; margin-bottom: 10px;">Что помогает нам посчитать быстрее</div>
+          <ul class="req-list" style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,0.82);">
             <li>Чертёж или эскиз детали, по возможности фото</li>
             <li>Материал основного металла (если не указан в чертеже или произошла замена)</li>
             <li>Требуемое покрытие и толщина в микронах (если не указано в КД)</li>
@@ -2007,38 +2013,23 @@
         </div>
 
         <div class="form-field">
-          <label for="form-coating">1 · Вид покрытия</label>
-          <input id="form-coating" class="input" name="coating" placeholder="Например: цинкование, никелирование, твёрдое анодирование" required>
+          <label for="form-name">Как к вам обращаться</label>
+          <input id="form-name" class="input" name="name" placeholder="Имя и фамилия" required autocomplete="name">
         </div>
 
         <div class="form-field">
-          <label for="form-thickness">2 · Толщина покрытия</label>
-          <input id="form-thickness" class="input" name="thickness" placeholder="В микронах (если не указано в КД)" required>
+          <label for="form-contact">Телефон или email для ответа</label>
+          <input id="form-contact" class="input" name="contact" placeholder="+7 900 000-00-00 или mail@company.ru" required>
         </div>
 
         <div class="form-field">
-          <label for="form-mass">3 · Масса детали и количество</label>
-          <input id="form-mass" class="input" name="mass" placeholder="Например: 0,3 кг × 500 шт" required>
+          <label for="form-company">Организация <span class="opt">— если пишете от предприятия</span></label>
+          <input id="form-company" class="input" name="company" placeholder="Название, ИНН" autocomplete="organization">
         </div>
 
         <div class="form-field">
-          <label for="form-prep">4 · Подготовка поверхности</label>
-          <input id="form-prep" class="input" name="prep" placeholder="Есть ли старое покрытие, окалина, загрязнения" required>
-        </div>
-
-        <div class="form-field">
-          <label for="form-special">5 · Особые требования</label>
-          <textarea id="form-special" class="input" name="special" placeholder="Материал основного металла, спец. подготовка, отраслевые нормы" required></textarea>
-        </div>
-
-        <div class="form-field">
-          <label for="form-company">6 · Карточка предприятия</label>
-          <input id="form-company" class="input" name="company" placeholder="Название организации, ИНН (для юр. лиц)" autocomplete="organization">
-        </div>
-
-        <div class="form-field">
-          <label for="form-contact">7 · Контактные данные для обратной связи</label>
-          <input id="form-contact" class="input" name="contact" placeholder="Имя, телефон, email" required autocomplete="name">
+          <label for="form-task">Задача</label>
+          <textarea id="form-task" class="input input-task" name="task" placeholder="Опишите своими словами: какая деталь, какое покрытие и толщина, из чего сделана, сколько штук. Если чертежей много и работы разные — просто перечислите, технолог разберёт." required></textarea>
         </div>
 
         <div class="form-file">
@@ -2046,8 +2037,8 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M21 12.5L12.5 21a5.5 5.5 0 0 1-7.78-7.78L13 5a3.5 3.5 0 0 1 4.95 4.95L9.71 18.19a1.5 1.5 0 0 1-2.12-2.12L15 8.59" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-            <span class="file-text">Прикрепить чертежи, эскизы, фото (несколько файлов)</span>
-            <span class="file-hint">JPG / PNG / PDF · до 50 МБ суммарно · можно выбрать несколько за раз</span>
+            <span class="file-text">Прикрепить чертежи, эскизы, фото</span>
+            <span class="file-hint">JPG · PNG · PDF · несколько файлов за раз, до 50 МБ суммарно</span>
           </label>
           <input id="file-input" class="file-input-hidden" type="file" name="photos" accept="image/jpeg,image/png,image/webp,application/pdf" multiple>
           <div class="file-list" id="fileList"></div>
@@ -2069,7 +2060,7 @@
           </label>
         </div>
 
-        <button type="submit" class="btn btn-submit" data-event="form_submit">Отправить на расчёт</button>
+        <button type="submit" class="btn btn-submit" data-event="form_submit">Отправить</button>
         <p class="form-meta">Обычно отвечаем в течение 1 рабочего дня. Для срочных задач — звоните: <a href="tel:+78127777811" data-event="phone_click">+7&nbsp;(812)&nbsp;777-78-11</a>.</p>
 
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
@@ -2572,7 +2563,7 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
       fileList.appendChild(row);
     });
     fileText.textContent = selectedFiles.length === 0
-      ? 'Прикрепить фото или чертёж'
+      ? 'Прикрепить чертежи, эскизы, фото'
       : `Прикреплено файлов: ${selectedFiles.length}`;
   };
 
@@ -2616,10 +2607,15 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
       renderList();
       setStatus('');
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Отправить на расчёт';
-      form.querySelector('input[name="name"]').focus();
+      submitBtn.textContent = 'Отправить';
+      focusField('form-name');
     });
   }
+
+  const focusField = id => {
+    const el = document.getElementById(id);
+    if (el) { el.focus(); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  };
 
   const showSuccess = () => {
     form.classList.add('is-sent');
@@ -2632,86 +2628,68 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
     setStatus('');
 
     const data = new FormData(form);
-    const type    = (data.get('type')    || '').toString().trim();
     const name    = (data.get('name')    || '').toString().trim();
     const contact = (data.get('contact') || '').toString().trim();
+    const company = (data.get('company') || '').toString().trim();
     const task    = (data.get('task')    || '').toString().trim();
     const consent = data.get('consent') === 'on';
     const hp      = (data.get('website') || '').toString().trim();
 
-    // 1) honeypot — silently accept (бот думает что отправил)
-    if (hp) {
-      showSuccess();
-      return;
-    }
+    // 1) honeypot — молча показываем успех, бот думает что отправил
+    if (hp) { showSuccess(); return; }
 
-    // 2) базовая валидация
-    if (!type)    { setStatus('Выберите тип заявки.', 'error'); return; }
-    if (!name)    { setStatus('Укажите имя.', 'error'); return; }
-    if (!contact) { setStatus('Укажите телефон или email.', 'error'); return; }
-    if (!task)    { setStatus('Опишите задачу — деталь, покрытие, объём.', 'error'); return; }
+    // 2) валидация ровно по тем полям, что есть в форме
+    if (!name)    { setStatus('Укажите, как к вам обращаться.', 'error'); focusField('form-name'); return; }
+    if (!contact) { setStatus('Оставьте телефон или email — иначе не сможем ответить.', 'error'); focusField('form-contact'); return; }
+    if (!task)    { setStatus('Опишите задачу хотя бы в двух словах.', 'error'); focusField('form-task'); return; }
     if (!consent) { setStatus('Отметьте согласие на обработку персональных данных.', 'error'); return; }
-
-    const TYPE_LABELS = {
-      production: 'Производство (партия по чертежу)',
-      tender:     'Тендер / госзаказ',
-      restoration:'Реставрация / штучная деталь',
-      consult:    'Консультация'
-    };
-    const typeLabel = TYPE_LABELS[type] || type;
 
     const endpoint = (form.dataset.endpoint || '').trim();
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправляем…';
 
-    // 3) если задан endpoint — POST с файлами
+    // 3) если задан endpoint — POST вместе с файлами
     if (endpoint && endpoint.startsWith('https://')) {
       try {
         const fd = new FormData();
-        fd.append('type', typeLabel);
         fd.append('name', name);
         fd.append('contact', contact);
+        if (company) fd.append('company', company);
         fd.append('task', task);
         fd.append('consent', 'Дано');
         selectedFiles.forEach((f, i) => fd.append(`file_${i + 1}`, f, f.name));
-
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          body: fd,
-          headers: { 'Accept': 'application/json' }
-        });
+        const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         showSuccess();
       } catch (err) {
-        setStatus('Не получилось отправить. Попробуйте позже или напишите на info@galars.ru.', 'error');
+        setStatus('Не получилось отправить. Попробуйте ещё раз или напишите на info@galars.ru.', 'error');
         submitBtn.disabled = false;
-        submitBtn.textContent = 'Отправить на расчёт';
+        submitBtn.textContent = 'Отправить';
       }
       return;
     }
 
-    // 4) fallback — mailto: (без вложений, открывает почтовый клиент)
-    const subject = `Запрос с сайта · ${typeLabel} · ${name || 'без имени'}`;
+    // 4) запасной путь — письмо через почтовую программу (без вложений)
+    const subject = `Заявка с сайта — ${company || name}`;
     const bodyLines = [
-      `Тип заявки: ${typeLabel}`,
       `Имя: ${name}`,
       `Контакт: ${contact}`,
+      company ? `Организация: ${company}` : null,
       '',
       'Задача:',
       task,
       '',
-      'Согласие на обработку перс. данных: дано'
-    ];
+      'Согласие на обработку персональных данных: дано'
+    ].filter(l => l !== null);
     if (selectedFiles.length > 0) {
-      bodyLines.push('', `(К запросу подготовлено файлов: ${selectedFiles.length}. Прикрепите вручную перед отправкой.)`);
+      bodyLines.push('', `(Файлов подготовлено: ${selectedFiles.length}. Прикрепите их вручную перед отправкой письма.)`);
     }
-    const body = encodeURIComponent(bodyLines.join('\n'));
-    window.location.href = `mailto:info@galars.ru?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = `mailto:info@galars.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
     setStatus(selectedFiles.length > 0
       ? 'Открыта почтовая программа. Прикрепите файлы вручную перед отправкой.'
       : 'Открыта почтовая программа с готовым письмом.');
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Отправить на расчёт';
+    submitBtn.textContent = 'Отправить';
   });
 })();
 
