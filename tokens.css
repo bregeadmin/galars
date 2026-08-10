@@ -6,7 +6,8 @@
   --graphite-2: #2A3540;        /* чуть светлее графит, для карточек на тёмном */
   --warm-white: #FAFAF7;
   --bone: #EEE0EB;
-  --fog: #9CA3AF;
+  --fog: #5C6570;              /* текстовый серый: контраст 5.7:1 на кремовом */
+  --hairline: #9CA3AF;         /* прежний светлый — только для линеек и разделителей */
   --bronze: #B87333;
   --steel: #1F6F8B;
   --steel-12: rgba(31,111,139,0.12);
@@ -72,7 +73,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .h1 {
   font-family: var(--f-display);
   font-weight: 600;
-  font-size: clamp(40px, 4.4vw, 64px);
+  font-size: clamp(30px, 3vw, 44px);   /* герой остаётся единственным 64px на странице */
   line-height: 1.05;
   letter-spacing: -0.015em;
 }
@@ -310,4 +311,16 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   .h2 { font-size: 26px; }
   .site-header { padding: 16px var(--pad-x); }
   .site-header nav { display: none; }
+}
+
+/* — Уважение к системной настройке «меньше движения».
+     Для этого проекта это не формальность: непрерывно вращающийся 3D-объект —
+     ровно тот тип движения, который части людей физически неприятен. — */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

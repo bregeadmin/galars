@@ -16,14 +16,14 @@
 <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <meta property="og:title" content="ГАЛАРС — гальваническое производство в Санкт-Петербурге">
-<meta property="og:description" content="Хромирование, никелирование, цинкование, серебрение и ещё 40+ покрытий по ГОСТ. Серийные партии для ОПК и авиации, штучные работы для реставрации.">
+<meta property="og:description" content="Хромирование, никелирование, цинкование, кадмирование, серебрение, анодирование и другие покрытия по ГОСТ. Работаем по КД заказчика: серийные партии, опытные образцы, штучные заказы.">
 <meta property="og:image" content="https://galars.ru/img/og-image.png">
 <meta property="og:url" content="https://galars.ru/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ГАЛАРС — гальваническое производство в Санкт-Петербурге">
-<meta name="twitter:description" content="Хромирование, никелирование, цинкование, серебрение и ещё 40+ покрытий по ГОСТ. Серийные партии для ОПК и авиации, штучные работы для реставрации.">
+<meta name="twitter:description" content="Хромирование, никелирование, цинкование, кадмирование, серебрение, анодирование и другие покрытия по ГОСТ. Работаем по КД заказчика: серийные партии, опытные образцы, штучные заказы.">
 <meta name="twitter:image" content="https://galars.ru/img/og-image.png">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "ГАЛАРС-СПб", "alternateName": "ГАЛАРС", "url": "https://galars.ru", "logo": "https://galars.ru/img/favicon-192.png", "image": "https://galars.ru/img/og-image.png", "description": "Центр гальванических покрытий в Санкт-Петербурге. Основан в 2003 году на базе цеха завода «Арсенал». 40+ видов покрытий, работа по КД заказчика для предприятий ВПК, авиации, судостроения и приборостроения.", "foundingDate": "2003", "telephone": "+7-812-777-78-11", "email": "info@galars.ru", "address": {"@type": "PostalAddress", "streetAddress": "ул. Электропультовцев, 7", "addressLocality": "Санкт-Петербург", "addressCountry": "RU"}, "sameAs": ["https://spb.hh.ru/employer/2626935"]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "@id": "https://galars.ru/#organization", "name": "ГАЛАРС-СПб", "image": "https://galars.ru/img/og-image.png", "description": "Гальваническое производство в Санкт-Петербурге. Хромирование, никелирование, цинкование, серебрение, меднение, оловянирование по ГОСТ 9.305-84.", "url": "https://galars.ru", "telephone": "+7-812-777-78-11", "email": "info@galars.ru", "priceRange": "₽₽", "address": {"@type": "PostalAddress", "streetAddress": "ул. Электропультовцев, 7", "addressLocality": "Санкт-Петербург", "postalCode": "195030", "addressCountry": "RU"}, "geo": {"@type": "GeoCoordinates", "latitude": 59.9285, "longitude": 30.4462}, "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "08:00", "closes": "16:30"}, "sameAs": ["https://spb.hh.ru/employer/2626935"]}</script>
@@ -131,8 +131,8 @@
   .stage .halo {
     position: absolute; inset: -10%;
     border-radius: 50%;
-    background: radial-gradient(closest-side, rgba(31,111,139,0.30), transparent 70%);
-    filter: blur(20px);
+    background: radial-gradient(closest-side, rgba(31,111,139,0.55), transparent 72%);
+    filter: blur(28px);
     pointer-events: none;
   }
   #molecule-canvas {
@@ -166,12 +166,13 @@
     flex-direction: row;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 6px;
     width: 100%;
   }
   .hero-chips .chips-label { display: none; } /* лейбл не нужен — индикатор сверху уже подсказывает */
   .hero-chips .chip {
-    padding: 10px 18px;
+    padding: 10px 12px;
+    font-size: 13.5px;
     border-radius: 24px;
     display: inline-flex; align-items: center; gap: 8px;
     transition: all .2s ease;
@@ -246,35 +247,70 @@
   }
 
   /* — DIRECTIONS — */
-  .directions { background: #fff; padding: 96px var(--pad-x); }
+  .directions { background: var(--warm-white); padding: 96px var(--pad-x); }
   .directions-inner { max-width: var(--max-w); margin: 0 auto; }
-  .section-head {
-    display: grid; grid-template-columns: 220px 1fr; gap: 56px;
-    margin-bottom: 56px; align-items: end;
-  }
+  /* Шапка секции — вертикальная стопка на общем левом крае страницы.
+     Раньше здесь была сетка 220px + 1fr с align-items:end: заголовок уезжал
+     вправо на 276px, а метка падала на дно строки и оказывалась НИЖЕ
+     собственного заголовка. Отсюда и бралась «непричёсанность» всей страницы. */
+  .section-head { display: block; margin-bottom: 48px; }
+  .section-head > div { min-width: 0; }
+  .section-head .h1 { max-width: 960px; }
+  .section-head .lead { max-width: 720px; margin-top: 16px; }
   .section-head .num {
-    font-family: var(--f-mono); font-size: 13px;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog);
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel);
+    margin-bottom: 20px;
   }
   .section-head .num::before {
     content: ""; display: inline-block; vertical-align: middle;
     width: 32px; height: 1px; background: var(--fog); margin-right: 12px;
   }
-  .directions-grid {
-    display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 760px; margin: 0 auto;
+  /* Разворот на всю ширину вместо одной карточки по центру: карточка была
+     третьим левым краем страницы (340px) и выглядела как остаток от двух. */
+  .dir-split {
+    display: grid; grid-template-columns: 1fr 380px; gap: 80px;
+    align-items: start;
   }
-  .dir-card {
-    padding: 48px; border-radius: 8px; background: var(--warm-white);
-    border: 1px solid rgba(31,42,51,0.06);
-    display: flex; flex-direction: column; gap: 32px;
+  .dir-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 56px; }
+  .dir-list li {
+    break-inside: avoid;
+    position: relative; padding: 14px 0 14px 24px;
+    border-bottom: 1px solid rgba(31,42,51,0.10);
+    font-size: 17px; line-height: 1.35; color: var(--graphite);
   }
-  .dir-card .icon-mol { width: 56px; height: 56px; }
-  .dir-card h3 {
-    margin: 0; font-family: var(--f-display); font-weight: 600;
-    font-size: 32px; line-height: 1.1; letter-spacing: -0.01em;
+  .dir-list li::before {
+    content: ""; position: absolute; left: 0; top: 23px;
+    width: 12px; height: 1px; background: var(--steel);
   }
-  .dir-card[data-tone="industrial"] .icon-mol { color: var(--graphite); }
-  .dir-card[data-tone="restoration"] .icon-mol { color: var(--steel); }
+  .dir-out {
+    background: #fff; border: 1px solid rgba(31,42,51,0.08);
+    border-radius: 8px; padding: 32px;
+    display: grid; gap: 16px; justify-items: start;
+  }
+  .dir-out-h {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel);
+  }
+  .dir-out p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--graphite); }
+
+  /* Полоса доказательств под причинами — то из блока «Доверие», чего нет в причинах */
+  .proof-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+    margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid rgba(31,42,51,0.10);
+  }
+  .proof .p-tag {
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel);
+    margin-bottom: 10px;
+  }
+  .proof .p-val {
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 16px; line-height: 1.25; color: var(--graphite);
+    margin-bottom: 8px;
+  }
+  .proof p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--fog); }
   .dir-list { display: grid; gap: 12px; }
   .dir-list li {
     font-family: var(--f-text); font-size: 16px;
@@ -284,52 +320,13 @@
     content: ""; position: absolute; left: 0; top: 10px;
     width: 8px; height: 1px; background: var(--steel);
   }
-  .dir-meta {
-    padding-top: 24px; border-top: 1px dashed rgba(31,42,51,0.15);
-    color: var(--fog); font-size: 14px;
-  }
-  .dir-meta b { color: var(--graphite); font-weight: 500; font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
-  .dir-card .arrow-link { margin-top: auto; }
-  .dir-card[data-tone="restoration"] .arrow-link { color: var(--steel); }
 
-  /* — TRUST — Документы и контроль качества — */
-  .trust { background: #fff; padding: 88px var(--pad-x); }
-  .trust-inner { max-width: var(--max-w); margin: 0 auto; }
-  .trust .section-head .num { color: var(--steel); }
-  .trust .section-head .num::before { background: var(--steel); }
-  .trust-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
-  .trust-card {
-    background: var(--warm-white);
-    border: 1px solid rgba(31,42,51,0.06);
-    border-radius: 8px;
-    padding: 32px;
-    display: grid; gap: 12px; align-content: start;
-    transition: border-color .2s ease, transform .2s ease;
-  }
-  .trust-card:hover { border-color: var(--steel); transform: translateY(-2px); }
-  .trust-card .t-tag {
-    font-family: var(--f-mono); font-size: 11px;
-    letter-spacing: 0.10em; text-transform: uppercase;
-    color: var(--steel);
-  }
-  .trust-card h3 {
-    margin: 0;
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 20px; line-height: 1.2;
-    color: var(--graphite);
-  }
-  .trust-card p {
-    margin: 0;
-    font-size: 14px; line-height: 1.55; color: var(--graphite);
-  }
 
   /* — WORKS — */
   .works {
     position: relative;
     background: var(--graphite); color: #fff;
-    padding: 96px var(--pad-x);
+    padding: 120px var(--pad-x);
     overflow: hidden;
   }
   .works::before {
@@ -425,6 +422,7 @@
   .production .section-head .num { color: var(--steel); }
   .production .section-head .num::before { background: var(--steel); }
   .coatings-table {
+    max-width: 1040px;
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 80px;
@@ -643,7 +641,7 @@
   }
 
   /* — HOW WE WORK / Технологический конвейер — */
-  .how { background: #fff; padding: 96px var(--pad-x); overflow: hidden; }
+  .how { background: var(--warm-white); padding: 96px var(--pad-x); overflow: hidden; }
   .how-inner { max-width: var(--max-w); margin: 0 auto; }
   .conveyor { margin-top: 40px; }
   .conveyor-svg {
@@ -711,8 +709,7 @@
   .step {
     padding-top: 24px;
     border-top: 2px solid rgba(31,42,51,0.08);
-    transition: border-color .3s ease, opacity .3s ease;
-    opacity: 0.45;
+    transition: border-color .18s linear;
     cursor: pointer;
   }
   .step:hover { opacity: 0.7; }
@@ -761,18 +758,16 @@
   .conveyor-controls .dot {
     display: inline-block; width: 6px; height: 6px;
     border-radius: 50%; background: var(--steel);
-    animation: blink 1.4s infinite;
     margin-right: 8px;
     vertical-align: middle;
   }
-  @keyframes blink { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
 
   /* — FAQ — */
-  .faq { background: var(--warm-white); padding: 88px var(--pad-x); }
+  .faq { background: var(--warm-white); padding: 96px var(--pad-x); }
   .faq-inner { max-width: var(--max-w); margin: 0 auto; }
   .faq .section-head .num { color: var(--steel); }
   .faq .section-head .num::before { background: var(--steel); }
-  .faq-list { display: grid; gap: 1px; background: rgba(31,42,51,0.10); border-top: 1px solid rgba(31,42,51,0.10); border-bottom: 1px solid rgba(31,42,51,0.10); }
+  .faq-list { max-width: 900px; display: grid; gap: 1px; background: rgba(31,42,51,0.10); border-top: 1px solid rgba(31,42,51,0.10); border-bottom: 1px solid rgba(31,42,51,0.10); }
   .faq-item {
     background: var(--warm-white);
     transition: background .2s ease;
@@ -840,7 +835,7 @@
   .why-item p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--graphite); }
 
   /* — GEO (география работы) — схема связей, а не рисованная карта — */
-  .geo { position: relative; background: var(--graphite); color: #fff; padding: 96px var(--pad-x); overflow: hidden; }
+  .geo { position: relative; background: var(--graphite); color: #fff; padding: 120px var(--pad-x); overflow: hidden; }
   .geo-inner { position: relative; max-width: var(--max-w); margin: 0 auto; }
   .geo .section-head .num { color: var(--bronze); }
   .geo .section-head .num::before { background: var(--bronze); }
@@ -1257,7 +1252,6 @@
   @media (max-width: 900px) {
     .burger { display: inline-flex; }
     .site-header .nav-bar { display: none; }
-    .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 48px; }
     .section { padding: 80px 0; }
     .hero { padding: 96px var(--pad-x) 56px; }
     .hero-inner { grid-template-columns: 1fr; gap: 24px; min-height: 0; }
@@ -1279,12 +1273,11 @@
     .fact .num { font-size: 32px; white-space: normal; }
     .fact .num .unit { font-size: 18px; }
     .fact .label { margin-top: 12px; font-size: 12px; }
-    .directions, .works, .production, .how, .contact, .trust, .faq, .calc { padding: 56px var(--pad-x); }
-    .trust-grid { grid-template-columns: 1fr; gap: 12px; }
-    .trust-card { padding: 24px; }
-    .directions-grid { grid-template-columns: 1fr; }
-    .dir-card { padding: 32px; gap: 24px; }
-    .dir-card h3 { font-size: 24px; }
+    .directions, .works, .production, .how, .contact, .faq, .calc { padding: 56px var(--pad-x); }
+    .dir-split { grid-template-columns: 1fr; gap: 32px; }
+    .dir-list { grid-template-columns: 1fr; }
+    .dir-out { padding: 24px; }
+    .proof-strip { grid-template-columns: 1fr 1fr; gap: 24px 20px; margin-top: 40px; padding-top: 32px; }
     .works-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
     .work-tile .t-cap { font-size: 12px; left: 10px; right: 10px; bottom: 9px; }
     .lightbox { padding: 16px; }
@@ -1296,8 +1289,7 @@
     .coatings-table th, .coatings-table td { padding: 14px 16px; font-size: 13px; }
     /* длинные слова («Производственное») шире экрана — разрешаем перенос */
     .section-head > * { min-width: 0; }
-    .h1, .h-display, .h2, .dir-card h3 { overflow-wrap: break-word; hyphens: auto; }
-    .dir-card > * { min-width: 0; }
+    .h1, .h-display, .h2 { overflow-wrap: break-word; hyphens: auto; }
     .prod-blocks { grid-template-columns: 1fr; }
     .prod-gallery { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
     .equip-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1306,23 +1298,21 @@
     .steps-row { grid-template-columns: 1fr 1fr; gap: 16px; }
     .step .step-num { font-size: 40px; }
     .conveyor-svg { height: 120px; }
-    .calc-grid { grid-template-columns: 1fr; padding: 24px; gap: 16px; }
-    .calc-row-2 { grid-template-columns: 1fr; gap: 12px; }
-    .calc-result { padding: 28px; }
     .contact-grid { grid-template-columns: 1fr; grid-template-areas: "info" "form" "map"; gap: 32px; }
     .footer-cols { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 520px) {
     .works-gallery { grid-template-columns: 1fr; }
+    .proof-strip { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
     .steps-row { grid-template-columns: 1fr; gap: 12px; }
     .step { padding-top: 16px; }
     .step .step-num { font-size: 32px; }
     .conveyor-svg { height: 100px; }
     .hero-title { font-size: 36px; }
-    .h1 { font-size: 32px !important; }
+    .h1 { font-size: 30px !important; }
   }
-</style>
+  </style>
 </head>
 <body>
 
@@ -1400,8 +1390,8 @@
       <a href="#contact"><span><span class="n">08</span>Контакты</span><span class="arrow">→</span></a>
     </nav>
     <div class="drawer-contact">
-      <a href="tel:+78127777811">☎ +7 (812) 777-78-11</a>
-      <a href="mailto:info@galars.ru">✉ info@galars.ru</a>
+      <a href="tel:+78127777811">+7 (812) 777-78-11</a>
+      <a href="mailto:info@galars.ru">info@galars.ru</a>
     </div>
   </div>
 </div>
@@ -1426,7 +1416,6 @@
         <li>40+&nbsp;покрытий</li>
         <li>12&nbsp;000&nbsp;м²&nbsp;производства</li>
         <li>ГОСТ&nbsp;9.305-84</li>
-        <li>Документы для приёмки</li>
       </ul>
     </div>
 
@@ -1435,18 +1424,17 @@
         <div class="halo"></div>
         <div class="stage-current"><span class="dot" id="stage-current-dot"></span>СЕЙЧАС:&nbsp;<span class="label" id="stage-current-label">ХРОМ</span></div>
         <canvas id="molecule-canvas"></canvas>
-        <div class="stage-hint"><span class="dot"></span>ВРАЩЕНИЕ · ИНЕРЦИЯ · 0.4 ОБ/С</div>
       </div>
 
       <div class="hero-chips">
         <button type="button" class="chip is-active" data-coat="chrome">Хром</button>
         <button type="button" class="chip" data-coat="nickel">Никель</button>
         <button type="button" class="chip" data-coat="copper">Медь</button>
-        <button type="button" class="chip" data-coat="silver">Серебрение</button>
+        <button type="button" class="chip" data-coat="silver">Серебро</button>
         <button type="button" class="chip" data-coat="tin">Олово</button>
       </div>
 
-      <div class="chips-hint">Кликни покрытие — увидишь как наносится</div>
+      <div class="chips-hint">Выберите покрытие — посмотрите, как оно наносится</div>
     </div>
 
     <!-- декоративная диагональ с узелками (graphic accent из брендбука) -->
@@ -1458,11 +1446,9 @@
       <circle cx="220" cy="22" r="4" fill="#1F6F8B"/>
     </svg>
   </div>
-  <div class="hero-foot"><span>SCROLL</span><span class="vline"></span><span>01 / 07</span></div>
-  <div class="hero-index">Кликните покрытие, чтобы нанести ↘</div>
+  <div class="hero-foot"><span>ПРОКРУТИТЬ</span><span class="vline"></span><span>ниже</span></div>
 </section>
 
-<!-- 2. FACTS -->
 <section class="facts">
   <div class="facts-inner">
     <div class="fact">
@@ -1478,267 +1464,16 @@
       <div class="label">Видов покрытий</div>
     </div>
     <div class="fact">
-      <div class="num num-text">ГОСТ · ISO</div>
-      <div class="label">Системы качества</div>
+      <div class="num num-text">ГОСТ</div>
+      <div class="label">Работаем по стандартам</div>
     </div>
   </div>
 </section>
 
-<!-- 3. DIRECTIONS -->
-<section class="directions">
-  <div class="directions-inner">
-    <div class="section-head">
-      <div class="num">02 — Направление</div>
-      <h2 class="h1">Производственное направление.</h2>
-    </div>
-    <div class="directions-grid">
-
-      <div class="dir-card" data-tone="industrial">
-        <svg class="icon-mol" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-          <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95">
-            <line x1="25" y1="85" x2="105" y2="85"/><line x1="105" y1="85" x2="105" y2="165"/>
-            <line x1="105" y1="165" x2="25" y2="165"/><line x1="25" y1="165" x2="25" y2="85"/>
-            <line x1="65" y1="65" x2="145" y2="65"/><line x1="145" y1="65" x2="145" y2="145"/>
-            <line x1="145" y1="145" x2="65" y2="145"/><line x1="65" y1="145" x2="65" y2="65"/>
-            <line x1="25" y1="85" x2="65" y2="65"/><line x1="105" y1="85" x2="145" y2="65"/>
-            <line x1="25" y1="165" x2="65" y2="145"/><line x1="105" y1="165" x2="145" y2="145"/>
-          </g>
-          <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.85">
-            <line x1="72" y1="108" x2="48" y2="135"/><line x1="72" y1="108" x2="78" y2="137"/>
-            <line x1="72" y1="108" x2="62" y2="150"/>
-            <line x1="48" y1="135" x2="78" y2="137"/><line x1="48" y1="135" x2="62" y2="150"/>
-            <line x1="78" y1="137" x2="62" y2="150"/>
-          </g>
-          <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.65">
-            <line x1="65" y1="65" x2="72" y2="108"/><line x1="145" y1="65" x2="72" y2="108"/>
-            <line x1="25" y1="165" x2="48" y2="135"/><line x1="105" y1="165" x2="78" y2="137"/>
-          </g>
-          <g fill="currentColor">
-            <circle cx="25" cy="85" r="6"/><circle cx="105" cy="85" r="6"/>
-            <circle cx="25" cy="165" r="6"/><circle cx="105" cy="165" r="6"/>
-            <circle cx="65" cy="65" r="6"/><circle cx="145" cy="65" r="6"/>
-            <circle cx="65" cy="145" r="6"/><circle cx="145" cy="145" r="6"/>
-          </g>
-          <g fill="currentColor">
-            <circle cx="72" cy="108" r="4.5"/><circle cx="48" cy="135" r="4.5"/>
-            <circle cx="78" cy="137" r="4.5"/><circle cx="62" cy="150" r="4.5"/>
-          </g>
-        </svg>
-        <div>
-          <h3>Производственное направление</h3>
-          <p style="margin: 16px 0 0; color: var(--graphite); font-size: 15px; line-height: 1.55;">Выполнение покрытий согласно чертежей и ТЗ Заказчика. Проверка качества в соответствии с требованиями ГОСТ. Работаем в сфере Государственного оборонного заказа (№275-ФЗ).</p>
-          <ul class="dir-list" style="margin-top: 20px;">
-            <li>Военно-промышленный комплекс</li>
-            <li>Авиастроение и авиаремонт</li>
-            <li>Лёгкое и тяжёлое машиностроение</li>
-            <li>Приборостроение</li>
-            <li>Топливно-энергетический комплекс</li>
-            <li>Судостроение и судоремонт</li>
-          </ul>
-        </div>
-        <div class="dir-meta">
-          <b>На выходе:</b><br>
-          КП, договор, паспорт качества, закрывающие документы, оформление по 275-ФЗ.
-        </div>
-        <a class="btn btn-secondary" href="#contact" data-event="cta_tender" style="align-self: flex-start;">Запросить КП</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 3.5. TRUST — Документы и контроль качества -->
-<!-- 3. WHY -->
-<section class="why" id="why">
-  <div class="why-inner">
-    <div class="section-head">
-      <div class="num">03 — Почему ГАЛАРС</div>
-      <div>
-        <h2 class="h1">Шесть причин отдать деталь нам</h2>
-        <p class="lead" style="margin-top: 16px; color: var(--graphite); max-width: 720px;">Гальваника — процесс, в котором ошибку видно только на готовой детали. Поэтому мы разбираем задачу до запуска, а не после.</p>
-      </div>
-    </div>
-    <div class="why-grid">
-      <div class="why-item">
-        <div class="w-n">01</div>
-        <div>
-          <h3>Работа по технической документации</h3>
-          <p>Выполняем покрытия по ГОСТ, ОСТ, РД, техническому заданию заказчика и техническим требованиям чертежей.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="w-n">02</div>
-        <div>
-          <h3>Технологическая оценка до запуска</h3>
-          <p>Перед началом работ технологический отдел анализирует материал, геометрию детали, требования к покрытию и возможные ограничения процесса.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="w-n">03</div>
-        <div>
-          <h3>Широкий перечень покрытий и обработок</h3>
-          <p>Гальванические, химические и конверсионные покрытия, электрополирование, химическая очистка и вакуумное напыление на одной производственной площадке.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="w-n">04</div>
-        <div>
-          <h3>Сложные и нестандартные задачи</h3>
-          <p>Берём в работу детали сложной геометрии, опытные образцы, серийные партии и штучные заказы — после оценки технологической возможности.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="w-n">05</div>
-        <div>
-          <h3>Контроль качества</h3>
-          <p>ОТК контролирует внешний вид, толщину покрытия и соответствие требованиям документации. Производственный контроль включает анализ рабочих растворов и корректировку гальванических ванн.</p>
-        </div>
-      </div>
-      <div class="why-item">
-        <div class="w-n">06</div>
-        <div>
-          <h3>Документы для приёмки</h3>
-          <p>Оформляем коммерческое предложение, договор, паспорт качества и закрывающие документы для производственных заказчиков.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. TRUST -->
-<section class="trust">
-  <div class="trust-inner">
-    <div class="section-head">
-      <div class="num">04 — Доверие</div>
-      <div>
-        <h2 class="h1">Документы и контроль качества</h2>
-        <p class="lead" style="margin-top: 16px; color: var(--graphite); max-width: 720px;">Для производственных партий готовим комплект документов под приёмку: КП, договор, паспорт качества, сертификаты и закрывающие документы. Для штучных работ фиксируем покрытие, срок и ожидаемый результат до запуска.</p>
-      </div>
-    </div>
-    <div class="trust-grid">
-      <div class="trust-card">
-        <div class="t-tag">СТАНДАРТЫ</div>
-        <h3>ГОСТ 9.301, 9.302, 9.305</h3>
-        <p>Работаем по действующим ГОСТам на металлические и неметаллические покрытия. Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
-      </div>
-      <div class="trust-card">
-        <div class="t-tag">СЕРТИФИКАЦИЯ СМК</div>
-        <h3>ГОСТ ISO 9001-2015 и ГОСТ РВ 0015-002-2020</h3>
-        <p>Система менеджмента качества ООО «ГАЛАРС СПб» сертифицирована на соответствие СМК Военного стандарта. Система экологического менеджмента — по ГОСТ Р ISO 14001-2016.</p>
-      </div>
-      <div class="trust-card">
-        <div class="t-tag">ПАКЕТ ДОКУМЕНТОВ</div>
-        <h3>Полный комплект при отгрузке</h3>
-        <p>Пакет бухгалтерских документов (Счёт, Счёт-фактура, Акт-сдачи-приёмки / УПД), Сертификат качества. При штучном заказе — Счёт-Договор, при серийном — Договор.</p>
-      </div>
-      <div class="trust-card">
-        <div class="t-tag">ОТК И ПРОИЗВОДСТВЕННЫЙ КОНТРОЛЬ</div>
-        <h3>Контроль на каждом этапе</h3>
-        <p>ОТК контролирует внешний вид, толщину покрытия и соответствие требованиям КД. Внутренний производственный контроль — технологической лабораторией (анализ и корректировка гальванических ванн).</p>
-      </div>
-      <div class="trust-card">
-        <div class="t-tag">ТЗ / КД</div>
-        <h3>Работа по чертежам</h3>
-        <p>Принимаем чертежи в PDF, DWG и бумажном виде. Технолог прорабатывает возможность нанесения покрытия, отмечает технологические особенности детали.</p>
-      </div>
-      <div class="trust-card">
-        <div class="t-tag">ВПК · 275-ФЗ</div>
-        <h3>Государственный оборонный заказ</h3>
-        <p>Работаем в сфере ГОЗ (№275-ФЗ) с оформлением всех сопутствующих документов. Сертификация СМК по ГОСТ РВ 0015-002-2020.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. WORKS -->
-<section class="works" id="works">
-  <div class="pattern"></div>
-  <div class="works-inner">
-    <div class="section-head">
-      <div class="num">05 — Работы</div>
-      <div>
-        <h2 class="h1">Работы</h2>
-        <div class="tag" style="color: var(--steel); margin-top: 16px;">СЕРИЙНЫЕ ПАРТИИ · ОПЫТНЫЕ ОБРАЗЦЫ · ШТУЧНЫЕ ЗАКАЗЫ</div>
-        <p class="lead" style="margin-top: 16px;">Детали и партии на нашем участке: подготовка, загрузка на подвески, готовое покрытие и контроль. Съёмка на производстве ГАЛАРСа на ул. Электропультовцев.</p>
-      </div>
-    </div>
-
-    <div class="works-gallery">
-      <button type="button" class="work-tile" data-full="img/works/w01.jpg" data-cap="Втулки на подвесках">
-        <img src="img/works/w01.jpg" alt="Втулки на подвесках — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">01</span>
-        <span class="t-cap">Втулки на подвесках</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w02.jpg" data-cap="Алюминиевые радиаторы">
-        <img src="img/works/w02.jpg" alt="Алюминиевые радиаторы — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">02</span>
-        <span class="t-cap">Алюминиевые радиаторы</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w03.jpg" data-cap="Звёздочки цепных передач">
-        <img src="img/works/w03.jpg" alt="Звёздочки цепных передач — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">03</span>
-        <span class="t-cap">Звёздочки цепных передач</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w04.jpg" data-cap="Детали на подвесном приспособлении">
-        <img src="img/works/w04.jpg" alt="Детали на подвесном приспособлении — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">04</span>
-        <span class="t-cap">Детали на подвесном приспособлении</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w05.jpg" data-cap="Партия крепежа">
-        <img src="img/works/w05.jpg" alt="Партия крепежа — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">05</span>
-        <span class="t-cap">Партия крепежа</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w06.jpg" data-cap="Профили и кронштейны">
-        <img src="img/works/w06.jpg" alt="Профили и кронштейны — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">06</span>
-        <span class="t-cap">Профили и кронштейны</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w07.jpg" data-cap="Полированные детали">
-        <img src="img/works/w07.jpg" alt="Полированные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">07</span>
-        <span class="t-cap">Полированные детали</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w08.jpg" data-cap="Крупные точёные детали">
-        <img src="img/works/w08.jpg" alt="Крупные точёные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">08</span>
-        <span class="t-cap">Крупные точёные детали</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w09.jpg" data-cap="Подвеска с деталями">
-        <img src="img/works/w09.jpg" alt="Подвеска с деталями — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">09</span>
-        <span class="t-cap">Подвеска с деталями</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w10.jpg" data-cap="Обмер детали перед запуском">
-        <img src="img/works/w10.jpg" alt="Обмер детали перед запуском — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">10</span>
-        <span class="t-cap">Обмер детали перед запуском</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w11.jpg" data-cap="Контроль толщины покрытия">
-        <img src="img/works/w11.jpg" alt="Контроль толщины покрытия — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">11</span>
-        <span class="t-cap">Контроль толщины покрытия</span>
-      </button>
-      <button type="button" class="work-tile" data-full="img/works/w12.jpg" data-cap="Партия колец">
-        <img src="img/works/w12.jpg" alt="Партия колец — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
-        <span class="t-n">12</span>
-        <span class="t-cap">Партия колец</span>
-      </button>
-    </div>
-
-    <p class="works-note">Марки покрытий и материалы по конкретным позициям не публикуем — работаем по конструкторской документации заказчика. Что именно и как можем покрыть вашу деталь, скажет технолог после оценки.</p>
-
-    <div class="works-cta">
-      <a class="btn btn-primary" href="#contact" data-event="cta_estimate">Прислать деталь или партию на оценку</a>
-    </div>
-  </div>
-</section>
-
-<!-- 6. PRODUCTION -->
 <section class="production" id="prod">
   <div class="production-inner">
     <div class="section-head">
-      <div class="num">06 — Производство</div>
+      <div class="num">Что умеем</div>
       <div>
         <h2 class="h1">Производство</h2>
         <div class="tag" style="color: var(--steel); margin-top: 16px;">ОПК · АВИАЦИЯ · СЕРИЙНОЕ МАШИНОСТРОЕНИЕ</div>
@@ -1821,12 +1556,284 @@
   </div>
 </section>
 
-<!-- 7. GEO — география заказчиков -->
+<section class="directions" id="directions">
+  <div class="directions-inner">
+    <div class="section-head">
+      <div class="num">Для кого работаем</div>
+      <div>
+        <h2 class="h1">Отрасли и предприятия</h2>
+        <p class="lead">Выполняем покрытия согласно чертежам и техническому заданию заказчика, с проверкой качества по требованиям ГОСТ. Работаем в сфере государственного оборонного заказа (№&nbsp;275-ФЗ).</p>
+      </div>
+    </div>
+    <div class="dir-split">
+      <ul class="dir-list">
+        <li>Оборонно-промышленный комплекс</li>
+        <li>Авиастроение и авиаремонт</li>
+        <li>Судостроение и судоремонт</li>
+        <li>Лёгкое и тяжёлое машиностроение</li>
+        <li>Приборостроение</li>
+        <li>Топливно-энергетический комплекс</li>
+      </ul>
+      <aside class="dir-out">
+        <div class="dir-out-h">На выходе</div>
+        <p>Коммерческое предложение, договор, паспорт качества, закрывающие документы, оформление по 275-ФЗ.</p>
+        <a class="btn btn-secondary" href="#contact" data-event="cta_tender">Запросить КП</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="works" id="works">
+  <div class="pattern"></div>
+  <div class="works-inner">
+    <div class="section-head">
+      <div class="num">Съёмка на производстве</div>
+      <div>
+        <h2 class="h1">Работы</h2>
+        <div class="tag" style="color: var(--steel); margin-top: 16px;">СЕРИЙНЫЕ ПАРТИИ · ОПЫТНЫЕ ОБРАЗЦЫ · ШТУЧНЫЕ ЗАКАЗЫ</div>
+        <p class="lead" style="margin-top: 16px;">Детали и партии на нашем участке: подготовка, загрузка на подвески, готовое покрытие и контроль. Съёмка на производстве ГАЛАРСа на ул. Электропультовцев.</p>
+      </div>
+    </div>
+
+    <div class="works-gallery">
+      <button type="button" class="work-tile" data-full="img/works/w01.jpg" data-cap="Втулки на подвесках">
+        <img src="img/works/w01.jpg" alt="Втулки на подвесках — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">01</span>
+        <span class="t-cap">Втулки на подвесках</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w02.jpg" data-cap="Алюминиевые радиаторы">
+        <img src="img/works/w02.jpg" alt="Алюминиевые радиаторы — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">02</span>
+        <span class="t-cap">Алюминиевые радиаторы</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w03.jpg" data-cap="Звёздочки цепных передач">
+        <img src="img/works/w03.jpg" alt="Звёздочки цепных передач — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">03</span>
+        <span class="t-cap">Звёздочки цепных передач</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w04.jpg" data-cap="Детали на подвесном приспособлении">
+        <img src="img/works/w04.jpg" alt="Детали на подвесном приспособлении — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">04</span>
+        <span class="t-cap">Детали на подвесном приспособлении</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w05.jpg" data-cap="Партия крепежа">
+        <img src="img/works/w05.jpg" alt="Партия крепежа — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">05</span>
+        <span class="t-cap">Партия крепежа</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w06.jpg" data-cap="Профили и кронштейны">
+        <img src="img/works/w06.jpg" alt="Профили и кронштейны — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">06</span>
+        <span class="t-cap">Профили и кронштейны</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w07.jpg" data-cap="Полированные детали">
+        <img src="img/works/w07.jpg" alt="Полированные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">07</span>
+        <span class="t-cap">Полированные детали</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w08.jpg" data-cap="Крупные точёные детали">
+        <img src="img/works/w08.jpg" alt="Крупные точёные детали — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">08</span>
+        <span class="t-cap">Крупные точёные детали</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w09.jpg" data-cap="Подвеска с деталями">
+        <img src="img/works/w09.jpg" alt="Подвеска с деталями — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">09</span>
+        <span class="t-cap">Подвеска с деталями</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w10.jpg" data-cap="Обмер детали перед запуском">
+        <img src="img/works/w10.jpg" alt="Обмер детали перед запуском — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">10</span>
+        <span class="t-cap">Обмер детали перед запуском</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w11.jpg" data-cap="Контроль толщины покрытия">
+        <img src="img/works/w11.jpg" alt="Контроль толщины покрытия — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">11</span>
+        <span class="t-cap">Контроль толщины покрытия</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/w12.jpg" data-cap="Партия колец">
+        <img src="img/works/w12.jpg" alt="Партия колец — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900">
+        <span class="t-n">12</span>
+        <span class="t-cap">Партия колец</span>
+      </button>
+    </div>
+
+    <p class="works-note">Марки покрытий и материалы по конкретным позициям не публикуем — работаем по конструкторской документации заказчика. Что именно и как можем покрыть вашу деталь, скажет технолог после оценки.</p>
+
+    <div class="works-cta">
+      <a class="btn btn-primary" href="#contact" data-event="cta_estimate">Прислать деталь или партию на оценку</a>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="why-inner">
+    <div class="section-head">
+      <div class="num">Почему нам доверяют</div>
+      <div>
+        <h2 class="h1">Почему деталь можно отдать нам</h2>
+        <p class="lead" style="margin-top: 16px; color: var(--graphite); max-width: 720px;">Гальваника — процесс, в котором ошибку видно только на готовой детали. Поэтому мы разбираем задачу до запуска, а не после.</p>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="w-n">01</div>
+        <div>
+          <h3>Работа по технической документации</h3>
+          <p>Выполняем покрытия по ГОСТ, ОСТ, РД, техническому заданию заказчика и техническим требованиям чертежей. Принимаем чертежи в PDF, DWG и на бумаге.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="w-n">02</div>
+        <div>
+          <h3>Технологическая оценка до запуска</h3>
+          <p>Перед началом работ технологический отдел анализирует материал, геометрию детали, требования к покрытию и возможные ограничения процесса.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="w-n">03</div>
+        <div>
+          <h3>Широкий перечень покрытий и обработок</h3>
+          <p>Гальванические, химические и конверсионные покрытия, электрополирование, химическая очистка и вакуумное напыление на одной производственной площадке.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="w-n">04</div>
+        <div>
+          <h3>Сложные и нестандартные задачи</h3>
+          <p>Берём в работу детали сложной геометрии, опытные образцы, серийные партии и штучные заказы — после оценки технологической возможности.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="w-n">05</div>
+        <div>
+          <h3>Контроль качества</h3>
+          <p>ОТК контролирует внешний вид, толщину покрытия и соответствие требованиям документации. Производственный контроль включает анализ рабочих растворов и корректировку гальванических ванн.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="w-n">06</div>
+        <div>
+          <h3>Документы для приёмки</h3>
+          <p>Оформляем коммерческое предложение, договор, паспорт качества и закрывающие документы для производственных заказчиков.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-strip">
+      <div class="proof">
+        <div class="p-tag">Стандарты</div>
+        <div class="p-val">ГОСТ 9.301 · 9.302 · 9.305</div>
+        <p>Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
+      </div>
+      <div class="proof">
+        <div class="p-tag">Сертификация СМК</div>
+        <div class="p-val">ГОСТ Р ИСО 9001-2015 · ГОСТ РВ 0015-002-2020</div>
+        <p>Система экологического менеджмента — по ГОСТ Р ИСО 14001-2016.</p>
+      </div>
+      <div class="proof">
+        <div class="p-tag">Пакет документов</div>
+        <div class="p-val">Счёт · Счёт-фактура · УПД</div>
+        <p>Сертификат качества — по запросу. При штучном заказе Счёт-Договор, при серийном — Договор.</p>
+      </div>
+      <div class="proof">
+        <div class="p-tag">Гособоронзаказ</div>
+        <div class="p-val">275-ФЗ</div>
+        <p>Работаем в сфере ГОЗ с оформлением всех сопутствующих документов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="how-inner">
+    <div class="section-head">
+      <div class="num">Порядок работы</div>
+      <div>
+        <h2 class="h1">Как мы работаем</h2>
+        <div class="tag" style="color: var(--steel); margin-top: 16px;">ЗАПРОС → СОГЛАСОВАНИЕ → ПРОИЗВОДСТВО → ОТГРУЗКА</div>
+      </div>
+    </div>
+
+    <div class="conveyor">
+      <svg class="conveyor-svg" id="conveyor" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+        <!-- station labels above -->
+        <g>
+          <text class="station-num" x="60" y="34" text-anchor="middle" data-num="0">01</text>
+          <text class="station-num" x="420" y="34" text-anchor="middle" data-num="1">02</text>
+          <text class="station-num" x="780" y="34" text-anchor="middle" data-num="2">03</text>
+          <text class="station-num" x="1140" y="34" text-anchor="middle" data-num="3">04</text>
+        </g>
+        <!-- track lines -->
+        <line class="track-base" x1="60" y1="80" x2="1140" y2="80"/>
+        <line class="track-dash" x1="60" y1="80" x2="1140" y2="80"/>
+        <!-- stations -->
+        <g>
+          <circle class="station" cx="60"   cy="80" r="14" data-step="0"/>
+          <circle class="station" cx="420"  cy="80" r="14" data-step="1"/>
+          <circle class="station" cx="780"  cy="80" r="14" data-step="2"/>
+          <circle class="station" cx="1140" cy="80" r="14" data-step="3"/>
+        </g>
+        <!-- traveler — small molecule -->
+        <g class="traveler" id="traveler" transform="translate(60, 80)">
+          <circle class="traveler-pulse" cx="0" cy="0" r="18"/>
+          <g transform="translate(-22, -22)">
+            <!-- compact molecule, viewBox 0 0 44 44 around -->
+            <g stroke="var(--steel)" stroke-width="1.6" stroke-linecap="round" fill="none">
+              <line x1="10" y1="10" x2="28" y2="10"/><line x1="28" y1="10" x2="28" y2="28"/>
+              <line x1="28" y1="28" x2="10" y2="28"/><line x1="10" y1="28" x2="10" y2="10"/>
+              <line x1="16" y1="16" x2="34" y2="16"/><line x1="34" y1="16" x2="34" y2="34"/>
+              <line x1="34" y1="34" x2="16" y2="34"/><line x1="16" y1="34" x2="16" y2="16"/>
+              <line x1="10" y1="10" x2="16" y2="16"/><line x1="28" y1="10" x2="34" y2="16"/>
+              <line x1="10" y1="28" x2="16" y2="34"/><line x1="28" y1="28" x2="34" y2="34"/>
+            </g>
+            <g fill="var(--steel)">
+              <circle cx="10" cy="10" r="2"/><circle cx="28" cy="10" r="2"/>
+              <circle cx="10" cy="28" r="2"/><circle cx="28" cy="28" r="2"/>
+              <circle cx="16" cy="16" r="2"/><circle cx="34" cy="16" r="2"/>
+              <circle cx="16" cy="34" r="2"/><circle cx="34" cy="34" r="2"/>
+              <circle cx="20" cy="20" r="1.2"/><circle cx="24" cy="20" r="1.2"/>
+              <circle cx="20" cy="24" r="1.2"/><circle cx="24" cy="24" r="1.2"/>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <div class="steps-row" id="stepsRow">
+        <div class="step is-active" data-step="0">
+          <div class="step-num">01</div>
+          <h4>Запрос</h4>
+          <p class="step-desc">Описание задачи, фото деталей, объём работ. Направление технического задания, КД. Согласование требований Заказчика.</p>
+        </div>
+        <div class="step" data-step="1">
+          <div class="step-num">02</div>
+          <h4>Согласование</h4>
+          <p class="step-desc">Подготовка коммерческого предложения. Договор / Счёт-Договор. Согласование графика выполнения работ.</p>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-num">03</div>
+          <h4>Производство</h4>
+          <p class="step-desc">Входной контроль. Выполнение работ согласно ТЗ / КД и проверка качества на соответствие требованиям ГОСТ.</p>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-num">04</div>
+          <h4>Отгрузка</h4>
+          <p class="step-desc">Комплектация, упаковка согласно требованиям Заказчика. Подготовка закрывающих документов и Сертификата качества.</p>
+        </div>
+      </div>
+
+      <div class="conveyor-controls">
+        <span>Нажмите на этап, чтобы посмотреть подробнее</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="geo" id="geo">
   <div class="pattern-molecule"></div>
   <div class="geo-inner">
     <div class="section-head">
-      <div class="num">07 — География</div>
+      <div class="num">География заказчиков</div>
       <div>
         <h2 class="h1">Заказчики от Мурманска до Томска</h2>
         <p class="lead" style="margin-top: 16px;">Гальваническое производство нужного профиля есть не в каждом регионе. Детали на покрытие нам передают предприятия из городов России и из Беларуси — приём и отправка через транспортные компании.</p>
@@ -1936,96 +1943,10 @@
   </div>
 </section>
 
-<!-- 8. HOW — технологический конвейер -->
-<section class="how" id="how">
-  <div class="how-inner">
-    <div class="section-head">
-      <div class="num">08 — Процесс</div>
-      <div>
-        <h2 class="h1">Как мы работаем</h2>
-        <div class="tag" style="color: var(--steel); margin-top: 16px;">ЗАПРОС → СОГЛАСОВАНИЕ → ПРОИЗВОДСТВО → ОТГРУЗКА</div>
-      </div>
-    </div>
-
-    <div class="conveyor">
-      <svg class="conveyor-svg" id="conveyor" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-        <!-- station labels above -->
-        <g>
-          <text class="station-num" x="60" y="34" text-anchor="middle" data-num="0">01</text>
-          <text class="station-num" x="420" y="34" text-anchor="middle" data-num="1">02</text>
-          <text class="station-num" x="780" y="34" text-anchor="middle" data-num="2">03</text>
-          <text class="station-num" x="1140" y="34" text-anchor="middle" data-num="3">04</text>
-        </g>
-        <!-- track lines -->
-        <line class="track-base" x1="60" y1="80" x2="1140" y2="80"/>
-        <line class="track-dash" x1="60" y1="80" x2="1140" y2="80"/>
-        <!-- stations -->
-        <g>
-          <circle class="station" cx="60"   cy="80" r="14" data-step="0"/>
-          <circle class="station" cx="420"  cy="80" r="14" data-step="1"/>
-          <circle class="station" cx="780"  cy="80" r="14" data-step="2"/>
-          <circle class="station" cx="1140" cy="80" r="14" data-step="3"/>
-        </g>
-        <!-- traveler — small molecule -->
-        <g class="traveler" id="traveler" transform="translate(60, 80)">
-          <circle class="traveler-pulse" cx="0" cy="0" r="18"/>
-          <g transform="translate(-22, -22)">
-            <!-- compact molecule, viewBox 0 0 44 44 around -->
-            <g stroke="var(--steel)" stroke-width="1.6" stroke-linecap="round" fill="none">
-              <line x1="10" y1="10" x2="28" y2="10"/><line x1="28" y1="10" x2="28" y2="28"/>
-              <line x1="28" y1="28" x2="10" y2="28"/><line x1="10" y1="28" x2="10" y2="10"/>
-              <line x1="16" y1="16" x2="34" y2="16"/><line x1="34" y1="16" x2="34" y2="34"/>
-              <line x1="34" y1="34" x2="16" y2="34"/><line x1="16" y1="34" x2="16" y2="16"/>
-              <line x1="10" y1="10" x2="16" y2="16"/><line x1="28" y1="10" x2="34" y2="16"/>
-              <line x1="10" y1="28" x2="16" y2="34"/><line x1="28" y1="28" x2="34" y2="34"/>
-            </g>
-            <g fill="var(--steel)">
-              <circle cx="10" cy="10" r="2"/><circle cx="28" cy="10" r="2"/>
-              <circle cx="10" cy="28" r="2"/><circle cx="28" cy="28" r="2"/>
-              <circle cx="16" cy="16" r="2"/><circle cx="34" cy="16" r="2"/>
-              <circle cx="16" cy="34" r="2"/><circle cx="34" cy="34" r="2"/>
-              <circle cx="20" cy="20" r="1.2"/><circle cx="24" cy="20" r="1.2"/>
-              <circle cx="20" cy="24" r="1.2"/><circle cx="24" cy="24" r="1.2"/>
-            </g>
-          </g>
-        </g>
-      </svg>
-
-      <div class="steps-row" id="stepsRow">
-        <div class="step is-active" data-step="0">
-          <div class="step-num">01</div>
-          <h4>Запрос</h4>
-          <p class="step-desc">Описание задачи, фото деталей, объём работ. Направление технического задания, КД. Согласование требований Заказчика.</p>
-        </div>
-        <div class="step" data-step="1">
-          <div class="step-num">02</div>
-          <h4>Согласование</h4>
-          <p class="step-desc">Подготовка коммерческого предложения. Договор / Счёт-Договор. Согласование графика выполнения работ.</p>
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-num">03</div>
-          <h4>Производство</h4>
-          <p class="step-desc">Входной контроль. Выполнение работ согласно ТЗ / КД и проверка качества на соответствие требованиям ГОСТ.</p>
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-num">04</div>
-          <h4>Отгрузка</h4>
-          <p class="step-desc">Комплектация, упаковка согласно требованиям Заказчика. Подготовка закрывающих документов и Сертификата качества.</p>
-        </div>
-      </div>
-
-      <div class="conveyor-controls">
-        <span><span class="dot"></span>АВТОМАТ · 4 СЕК НА ЭТАП · КЛИК ПО СТАНЦИИ — ПЕРЕХОД</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 8. FAQ -->
 <section class="faq" id="faq">
   <div class="faq-inner">
     <div class="section-head">
-      <div class="num">09 — Вопросы</div>
+      <div class="num">Вопросы технологам</div>
       <div>
         <h2 class="h1">Частые вопросы</h2>
         <p class="lead" style="margin-top: 16px; color: var(--graphite); max-width: 720px;">Коротко о том, что чаще всего спрашивают до запуска партии. Развёрнутые технологические ответы со ссылками на стандарты — на <a href="faq.html" style="color: var(--steel); text-decoration: underline;">отдельной странице</a>.</p>
@@ -2047,11 +1968,10 @@
   </div>
 </section>
 
-<!-- 9. CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div class="section-head" style="margin-bottom: 0;">
-      <div class="num" style="color: rgba(255,255,255,0.65);">10 — Контакты</div>
+      <div class="num" style="color: rgba(255,255,255,0.65);">Связаться с нами</div>
       <h2 class="h1">Связаться</h2>
     </div>
     <div class="contact-grid">
@@ -2476,14 +2396,17 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
   resize();
 
   // — Animate —
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let last = performance.now();
   function loop() {
     const now = performance.now();
     const dt = Math.min(50, now - last);
     last = now;
 
-    // Auto-rotate (slow), reduced when user is dragging
-    if (!isDragging) {
+    // Auto-rotate (slow), reduced when user is dragging.
+    // При системной настройке «меньше движения» молекула стоит на месте,
+    // но остаётся интерактивной: её по-прежнему можно повернуть мышью.
+    if (!isDragging && !REDUCED_MOTION) {
       molecule.rotation.y += 0.4 * dt * 0.001;
       molecule.rotation.x += Math.sin(now * 0.0004) * 0.0003;
     }
@@ -2572,18 +2495,13 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
   const svg = document.getElementById('conveyor');
   const traveler = document.getElementById('traveler');
   const stepsRow = document.getElementById('stepsRow');
-  const section = document.getElementById('how');
-  if (!svg || !traveler || !stepsRow || !section) return;
+  if (!svg || !traveler || !stepsRow) return;
 
   const stations = svg.querySelectorAll('.station');
   const stationNums = svg.querySelectorAll('.station-num');
   const stepCards = stepsRow.querySelectorAll('.step');
   const stationX = [60, 420, 780, 1140];
-  const STEP_MS = 4000;
-
   let current = 0;
-  let timer = null;
-  let running = false;
 
   function setStep(n, fromUser) {
     current = n;
@@ -2595,34 +2513,11 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
     stations.forEach((s, i) => s.classList.toggle('is-active', i === n));
     stationNums.forEach((s, i) => s.classList.toggle('is-active', i === n));
     stepCards.forEach((c, i) => c.classList.toggle('is-active', i === n));
-    if (fromUser) restart();
   }
 
-  function tick() {
-    setStep((current + 1) % stationX.length);
-  }
-  function start() {
-    if (running) return;
-    running = true;
-    timer = setInterval(tick, STEP_MS);
-  }
-  function stop() {
-    running = false;
-    clearInterval(timer);
-  }
-  function restart() {
-    stop();
-    start();
-  }
 
   stations.forEach((s, i) => s.addEventListener('click', () => setStep(i, true)));
   stepCards.forEach((c, i) => c.addEventListener('click', () => setStep(i, true)));
-
-  // Start only when scrolled into view; pause when out
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => e.isIntersecting ? start() : stop());
-  }, { threshold: 0.25 });
-  obs.observe(section);
 
   setStep(0);
 })();
