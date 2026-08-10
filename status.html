@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Правки клиента — что сделано · ГАЛАРС</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Отчёт по правкам клиента: что просили и что сделано.">
+<link rel="stylesheet" href="fonts/google.css">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="shared.css">
+<link rel="icon" type="image/svg+xml" href="molecule.svg">
+<style>
+  .sum { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 72px; }
+  .sum .s { background: #fff; border: 1px solid rgba(31,42,51,0.08); border-radius: 8px; padding: 24px; }
+  .sum .s .v { font-family: var(--f-display); font-weight: 600; font-size: 40px; line-height: 1; }
+  .sum .s .k { margin-top: 10px; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); }
+  .sum .s.done .v { color: var(--steel); }
+  .sum .s.other .v { color: var(--bronze); }
+
+  .rg { margin-bottom: 72px; }
+  .rg-head { margin-bottom: 32px; }
+  .rg-n { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.08em; color: var(--steel); }
+  .rg h2 { margin: 12px 0 0; font-family: var(--f-display); font-weight: 600; font-size: 30px; line-height: 1.15; letter-spacing: -0.01em; }
+  .rg .lead { margin: 10px 0 0; max-width: 720px; font-size: 16px; line-height: 1.55; color: var(--fog); }
+
+  .ri { padding: 24px 0; border-top: 1px solid rgba(31,42,51,0.10); }
+  .ri-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; }
+  .ri h3 { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 19px; line-height: 1.25; }
+  .badge {
+    flex-shrink: 0; padding: 5px 12px; border-radius: 20px;
+    font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; white-space: nowrap;
+  }
+  .b-done  { background: rgba(31,111,139,0.12); color: var(--steel); }
+  .b-other { background: rgba(184,115,51,0.14); color: var(--bronze); }
+  .b-wait  { background: rgba(31,42,51,0.07); color: var(--graphite); }
+  .b-off   { background: rgba(31,42,51,0.05); color: var(--fog); }
+  .ri-ask { margin: 14px 0 0; max-width: 860px; font-size: 15px; line-height: 1.6; color: var(--fog); }
+  .ri-who { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--steel); margin-right: 6px; }
+  .ri-do { margin: 10px 0 0; max-width: 860px; font-size: 16px; line-height: 1.6; color: var(--graphite); }
+
+  .ask-block { background: var(--graphite); color: #fff; border-radius: 8px; padding: 40px; margin-top: 8px; }
+  .ask-block h2 { margin: 0 0 8px; font-family: var(--f-display); font-weight: 600; font-size: 26px; }
+  .ask-block p.sub { margin: 0 0 24px; color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.55; max-width: 720px; }
+  .ask-block ul { display: grid; gap: 12px; }
+  .ask-block li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.55; color: rgba(255,255,255,0.88); }
+  .ask-block li::before { content: ""; position: absolute; left: 0; top: 12px; width: 12px; height: 1px; background: var(--bronze); }
+  @media (max-width: 900px) {
+    .sum { grid-template-columns: 1fr 1fr; }
+    .ri-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .ask-block { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body>
+
+
+<header class="site-header" id="header">
+  <a class="logo-h" href="index.html" aria-label="ГАЛАРС — на главную">
+      <span class="logo-mark" aria-hidden="true">
+        <svg width="56" height="56" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet" fill="none">
+          <g stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity="0.95">
+            <line x1="25" y1="85" x2="105" y2="85"/><line x1="105" y1="85" x2="105" y2="165"/>
+            <line x1="105" y1="165" x2="25" y2="165"/><line x1="25" y1="165" x2="25" y2="85"/>
+            <line x1="65" y1="65" x2="145" y2="65"/><line x1="145" y1="65" x2="145" y2="145"/>
+            <line x1="145" y1="145" x2="65" y2="145"/><line x1="65" y1="145" x2="65" y2="65"/>
+            <line x1="25" y1="85" x2="65" y2="65"/><line x1="105" y1="85" x2="145" y2="65"/>
+            <line x1="25" y1="165" x2="65" y2="145"/><line x1="105" y1="165" x2="145" y2="145"/>
+          </g>
+          <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.85">
+            <line x1="72" y1="108" x2="48" y2="135"/><line x1="72" y1="108" x2="78" y2="137"/>
+            <line x1="72" y1="108" x2="62" y2="150"/>
+            <line x1="48" y1="135" x2="78" y2="137"/><line x1="48" y1="135" x2="62" y2="150"/>
+            <line x1="78" y1="137" x2="62" y2="150"/>
+          </g>
+          <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity="0.65">
+            <line x1="65" y1="65" x2="72" y2="108"/><line x1="145" y1="65" x2="72" y2="108"/>
+            <line x1="25" y1="165" x2="48" y2="135"/><line x1="105" y1="165" x2="78" y2="137"/>
+          </g>
+          <g fill="currentColor">
+            <circle cx="25" cy="85" r="6"/><circle cx="105" cy="85" r="6"/>
+            <circle cx="25" cy="165" r="6"/><circle cx="105" cy="165" r="6"/>
+            <circle cx="65" cy="65" r="6"/><circle cx="145" cy="65" r="6"/>
+            <circle cx="65" cy="145" r="6"/><circle cx="145" cy="145" r="6"/>
+          </g>
+          <g fill="currentColor">
+            <circle cx="72" cy="108" r="4.5"/><circle cx="48" cy="135" r="4.5"/>
+            <circle cx="78" cy="137" r="4.5"/><circle cx="62" cy="150" r="4.5"/>
+          </g>
+        </svg>
+      </span>
+      <span class="logo-text">
+        <span class="logo-word">ГАЛАРС</span>
+        <span class="logo-sub">центр гальванических покрытий</span>
+      </span>
+    </a>
+  <div class="nav-bar">
+    <nav>
+      <a href="index.html#prod">Производство</a>
+      <a href="coatings/">Покрытия</a>
+      <a href="index.html#works">Работы</a>
+      <a href="faq.html" aria-current="page">Вопросы</a>
+      <a href="about.html">О компании</a>
+      <a href="index.html#contact">Контакты</a>
+    </nav>
+    <a class="header-cta" href="index.html#contact" data-event="cta_calculate"><span>Получить расчёт</span></a>
+  </div>
+  <button type="button" class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="drawer"><span></span></button>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer" id="drawer">
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <div>
+        <img class="galars-stamp-img" src="img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+        <div class="galars-sub">С 2003 · СПб</div>
+      </div>
+      <button type="button" class="drawer-close" id="drawerClose" aria-label="Закрыть меню">×</button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html#prod"><span><span class="n">01</span>Производство</span><span class="arrow">→</span></a>
+      <a href="coatings/"><span><span class="n">02</span>Покрытия</span><span class="arrow">→</span></a>
+      <a href="index.html#works"><span><span class="n">03</span>Работы</span><span class="arrow">→</span></a>
+      <a href="index.html#how"><span><span class="n">04</span>Как работаем</span><span class="arrow">→</span></a>
+      <a href="faq.html"><span><span class="n">05</span>Вопросы</span><span class="arrow">→</span></a>
+      <a href="about.html"><span><span class="n">06</span>О компании</span><span class="arrow">→</span></a>
+      <a href="vacancies.html"><span><span class="n">07</span>Вакансии</span><span class="arrow">→</span></a>
+      <a href="index.html#contact"><span><span class="n">08</span>Контакты</span><span class="arrow">→</span></a>
+    </nav>
+    <div class="drawer-contact">
+      <a href="tel:+78127777811">+7 (812) 777-78-11</a>
+      <a href="mailto:info@galars.ru">info@galars.ru</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="page-banner">
+  <div class="page-banner-pattern"></div>
+  <div class="page-banner-inner">
+    <div class="breadcrumb"><a href="index.html">Главная</a><span class="sep">/</span><span>Правки клиента</span></div>
+    <h1>Что просили и что сделано.</h1>
+    <p class="lead">Все замечания из пояснительной записки технологического отдела и приложений №1–3, с отметкой о выполнении. Обновлено 10 августа 2026 года.</p>
+    <div class="meta-row">
+      <span><span class="v">29 пунктов</span></span>
+      <span>5 документов клиента + рукописные правки</span>
+      <span>Сайт: bregeadmin.github.io/galars</span>
+    </div>
+  </div>
+</section>
+
+<section class="page-content">
+  <div class="page-content-inner">
+    <div class="sum">
+      <div class="s done"><div class="v">24</div><div class="k">Сделано</div></div>
+      <div class="s other"><div class="v">1</div><div class="k">Сделано иначе</div></div>
+      <div class="s"><div class="v">3</div><div class="k">Ждём данных</div></div>
+      <div class="s"><div class="v">1</div><div class="k">Снято</div></div>
+    </div>
+
+      <section class="rg" id="g1">
+        <div class="rg-head">
+          <span class="rg-n">01</span>
+          <h2>Критические факты</h2>
+        <p class="lead">Ошибки, из-за которых сайт вводил заказчика в заблуждение.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Адрес компании</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> На сайте стояла ул. Химиков, 26. Правильно: юр. адрес 195030, ул. Электропультовцев, д. 7, литер Р; производство — литер К.</p>
+          <p class="ri-do">Исправлено во всех подвалах, контактах и на карте — 22 страницы.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Золочение и латунирование</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> «Не выполняем». Убрать страницы и все ссылки.</p>
+          <p class="ri-do">Страницы gold.html и brass.html удалены, ссылки вычищены из каталога, подвала и карты сайта.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Хромирование</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Не делаем декоративное хромирование бамперов и мототехники — это вакуумное напыление. Есть три вида хрома: молочное, твёрдое, декоративное по подслою никеля.</p>
+          <p class="ri-do">Бамперы и мототехника убраны. На странице описаны все три вида.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Никелирование</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> В цепочке «подслой под серебро» неправильная последовательность.</p>
+          <p class="ri-do">Неверная цепочка убрана из описания.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Серебрение</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Сайт называл покрытие реставрационным. На деле — электролит без блескообразующих добавок, для повышения электропроводности.</p>
+          <p class="ri-do">Переписано. Матовость и отсутствие блескообразующих объяснены отдельным вопросом в разделе «Вопросы».</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Меднение</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Как реставрационный вариант не применяется, «состаренную медь» не делаем.</p>
+          <p class="ri-do">Реставрационные формулировки убраны.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Оловянирование</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> «Пищевая безопасность» — неправда. Покрытие техническое.</p>
+          <p class="ri-do">Убрано. В карточке покрытия на главной прямо написано: не для контакта с пищевыми продуктами.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Лаборатория</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Не аккредитована, коррозионную стойкость не контролируем.</p>
+          <p class="ri-do">Убраны «толщинометрия каждой партии» и «коррозионная стойкость». Из истории компании убран пункт про аккредитацию.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Паспорт качества</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Выдаём только по запросу заказчика, не на каждую партию.</p>
+          <p class="ri-do">Исправлено. Последнее место — этап «Отгрузка», где обещание оставалось до 10 августа.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Сертификация СМК</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> ISO указано неправильно. Правильно: ГОСТ Р ИСО 9001-2015 + ГОСТ РВ 0015-002-2020, экология — ГОСТ Р ИСО 14001-2016.</p>
+          <p class="ri-do">Исправлено, сканы двух сертификатов размещены. Номер сертификата и срок действия на сайте пока не указаны.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Калькулятор стоимости</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Убрать полностью: стоимость зависит от слишком многих факторов.</p>
+          <p class="ri-do">Убран.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Раздел «Отрасли»</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Три страницы — ОПК, Авиация, Реставрация — убрать целиком. Отрасли упоминать списком.</p>
+          <p class="ri-do">Страницы удалены. Отрасли остались перечнем в блоке «Отрасли и предприятия».</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Жаргон</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> «Оборонка», «тендер-мастер» — заменить на профессиональные формулировки.</p>
+          <p class="ri-do">Заменено на «предприятия ОПК, авиационной и судостроительной отрасли».</p>
+        </div>
+      </section>
+      <section class="rg" id="g2">
+        <div class="rg-head">
+          <span class="rg-n">02</span>
+          <h2>Тексты и структура</h2>
+        <p class="lead">Приложения №2 и №3 — переписанные клиентом тексты.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>13 страниц покрытий</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Полностью переписанные описания по Приложению №3. Структура: нормативная основа, толщина, материалы основы, назначение, описание, применение, последующая обработка, особенности и ограничения.</p>
+          <p class="ri-do">Все 13 страниц собраны по текстам клиента.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Технологические цепочки</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Убрать: технологию нанесения показывать нежелательно.</p>
+          <p class="ri-do">Убраны со всех страниц покрытий.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Каталог покрытий</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Новая вводная, убрать золочение и латунь.</p>
+          <p class="ri-do">Вводная заменена, каталог из 13 покрытий.</p>
+        </div>
+        <div class="ri" data-st="wait">
+          <div class="ri-head">
+            <h3>Категории покрытий</h3>
+            <span class="badge b-wait">Ждём данных</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Разделить на однослойные (24 позиции) и многослойные (7 позиций).</p>
+          <p class="ri-do">Не сделано. Сейчас каталог плоский, а многослойные системы описаны текстом внизу страницы. Разделение требует согласования: в списке клиента 24 позиции против 13 страниц на сайте.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>О компании</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Новые вехи истории, блок «Три качества», блок «Кто работает в ГАЛАРСе».</p>
+          <p class="ri-do">Переписано по текстам клиента. Точные даты вех 2018–2024 клиент обещал уточнить — стоят обобщённо.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Контакты</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Юр. адрес и адрес производства раздельно, телефоны по отделам с добавочными.</p>
+          <p class="ri-do">Размещены: многоканальный, отдел продаж, отдел кадров доб. 114, бухгалтерия доб. 113.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Порядок работы</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Новые тексты четырёх этапов: запрос, согласование, производство, отгрузка.</p>
+          <p class="ri-do">Тексты клиента размещены. Анимированный конвейер убран 10 августа: он не добавлял информации, а надпись обещала раскрытие, которого не было.</p>
+        </div>
+      </section>
+      <section class="rg" id="g3">
+        <div class="rg-head">
+          <span class="rg-n">03</span>
+          <h2>Новые блоки</h2>
+        <p class="lead">То, чего на сайте не было вообще.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Отдельная страница вопросов</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> FAQ доступен только после прокрутки главной, нужна отдельная вкладка в меню. 14 технических вопросов с ответами.</p>
+          <p class="ri-do">Страница собрана, все 14 вопросов со ссылками на ГОСТ и ОСТ. Вкладка «Вопросы» в меню.</p>
+        </div>
+        <div class="ri" data-st="off">
+          <div class="ri-head">
+            <h3>Короткий FAQ на главной</h3>
+            <span class="badge b-off">Снято</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Семь коммерческих вопросов: расчёт стоимости, минимальный заказ, расчёт по фото, сроки, восстановление покрытия, материалы, от чего зависит результат.</p>
+          <p class="ri-do">Снято по решению заказчика 10 августа. Важно: в этих вопросах были минимальная сумма заказа и срок выполнения — на сайте их сейчас нет нигде.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Почему нам доверяют</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Шесть пунктов: работа по документации, технологическая оценка, широкий перечень, сложные задачи, контроль качества, документы для приёмки.</p>
+          <p class="ri-do">Размещены все шесть, плюс полоса с конкретикой: номера стандартов, сертификация, состав пакета документов, ГОЗ.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>География работы</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Карта с точками городов: Белгород, Омск, Нижнекамск, Архангельск, Мурманск, Саранск, Подольск, Могилёв, Великий Новгород, Новосибирск, Томск.</p>
+          <p class="ri-do">Схема по географическим координатам, наведение подсвечивает город.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Поиск по сайту</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> «Поиск по сайту — будет ли?»</p>
+          <p class="ri-do">Есть на всех страницах, ищет с учётом падежей, ведёт в нужное место страницы.</p>
+        </div>
+      </section>
+      <section class="rg" id="g4">
+        <div class="rg-head">
+          <span class="rg-n">04</span>
+          <h2>Форма заявки</h2>
+        </div>
+        <div class="ri" data-st="other">
+          <div class="ri-head">
+            <h3>Форма под много чертежей</h3>
+            <span class="badge b-other">Сделано иначе</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> «Адаптировать это под заявки с большим количеством чертежей на разные виды работ. Иначе пользоваться этим блоком крайне неудобно.» Семь параметров, загрузка нескольких файлов.</p>
+          <p class="ri-do">Сначала собрали семиполевую анкету. 10 августа заменили на простую форму связи по решению заказчика: имя, контакт, организация, задача текстом и вложения. Семь параметров остались памяткой рядом с формой. Отдельно: форма вообще не отправлялась — проверка требовала полей, которых в ней уже не было. Починено.</p>
+        </div>
+      </section>
+      <section class="rg" id="g5">
+        <div class="rg-head">
+          <span class="rg-n">05</span>
+          <h2>Оборудование и цифры</h2>
+        </div>
+        <div class="ri" data-st="wait">
+          <div class="ri-head">
+            <h3>Оборудование и мощности</h3>
+            <span class="badge b-wait">Ждём данных</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Точные цифры получить у клиента: гальванические ванны, линии, приборы контроля, четвёртый параметр придумать вместе.</p>
+          <p class="ri-do">На сайте стоят приблизительные значения: 40+ покрытий, 13 процессов, 150+ специалистов, 22 года. Точных цифр от клиента не поступало.</p>
+        </div>
+        <div class="ri" data-st="wait">
+          <div class="ri-head">
+            <h3>Габариты ванн по процессам</h3>
+            <span class="badge b-wait">Ждём данных</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Клиент прислал таблицу внутренних габаритов ванн по каждому процессу.</p>
+          <p class="ri-do">Таблица у нас есть, на сайт не выносилась. Сейчас указан только общий максимум 4000 × 780 × 800 мм. Для конструктора это ценные данные — стоит разместить.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head">
+            <h3>Фото работ</h3>
+            <span class="badge b-done">Сделано</span>
+          </div>
+          <p class="ri-ask"><span class="ri-who">Клиент:</span> Реальные фото вместо текущих декоративных.</p>
+          <p class="ri-do">8 августа получена съёмка Ивана Смелова. Размещены 12 снимков в разделе «Работы» и 3 в «Производстве». Подписи без марок покрытий — по фотографии их не подтвердить.</p>
+        </div>
+      </section>
+
+      <section class="rg">
+        <div class="rg-head">
+          <span class="rg-n">06</span>
+          <h2>Сделано сверх плана</h2>
+          <p class="lead">Найдено и починено по ходу работы — в исходном перечне правок этого не было.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Пересборка главной страницы</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">Заголовки секций разъезжались: на странице было три разных левых края, а серая метка секции оказывалась ниже собственного заголовка. Приведено к одной вертикали.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Удалены выдуманные кейсы</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">В разделе «Работы» стояли несуществующие цифры: «480 деталей в 4 транша», «принято с первого предъявления», «контракт продлён на 12 месяцев». Удалены как недостоверные.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Починена форма связи</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">Заявку с сайта нельзя было отправить: проверка полей осталась от старой версии формы.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Мобильная вёрстка</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">Главная и три других страницы разъезжались вбок на телефоне. Проверено на 375, 768 и 1440 пикселях.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Доступность с клавиатуры</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">По сайту нельзя было пройти без мыши — фокус нигде не отображался. Добавлена подсветка.</p>
+        </div>
+        <div class="ri" data-st="done">
+          <div class="ri-head"><h3>Тизер каталога и подбор по материалу</h3><span class="badge b-done">Сделано</span></div>
+          <p class="ri-do">На главной перечень всех 13 покрытий с переходом на страницу. В каталоге — подбор покрытий по материалу детали, собранный из описаний клиента.</p>
+        </div>
+      </section>
+
+      <div class="ask-block">
+        <h2>Что нужно от клиента</h2>
+        <p class="sub">Без этих данных пункты выше останутся в статусе «ждём».</p>
+        <ul>
+          <li>Точные цифры оборудования: сколько гальванических ванн, линий, приборов контроля. И какой четвёртый параметр показывать.</li>
+          <li>Точные даты вех 2018–2024 для раздела «О компании».</li>
+          <li>Подтверждение, что таблицу габаритов ванн по процессам можно публиковать.</li>
+          <li>Номер сертификата СМК и срок действия — размещать ли на сайте.</li>
+          <li>Актуальны ли минимальная сумма заказа 10 000 рублей с НДС и срок 5–10 рабочих дней. Сейчас этих цифр на сайте нет.</li>
+          <li>Нужно ли разделять каталог на однослойные и многослойные покрытия, и по какому перечню.</li>
+          <li>Куда присылать заявки с сайта, чтобы письма приходили на почту вместе с чертежами.</li>
+        </ul>
+      </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="pattern"></div>
+  <div class="footer-inner">
+    <div>
+      <img class="galars-stamp-img" src="img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+      <div class="stamp-sub">2003 — 2026 · СПб</div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <div class="h">Покрытия</div>
+        <ul>
+          <li><a href="coatings/index.html">Каталог покрытий</a></li>
+          <li><a href="coatings/chrome.html">Хромирование</a></li>
+          <li><a href="coatings/nickel.html">Никелирование</a></li>
+          <li><a href="coatings/zinc.html">Цинкование</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="h">Компания</div>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="faq.html">Частые вопросы</a></li>
+          <li><a href="vacancies.html">Вакансии</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="h">Контакты</div>
+        <ul>
+          <li><a href="tel:+78127777811">+7 (812) 777-78-11</a></li>
+          <li><a href="mailto:info@galars.ru">info@galars.ru</a></li>
+          <li><a href="index.html#contact">Отправить заявку</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-social">
+      <a href="#">Telegram</a>
+      <a href="#">VK</a>
+      <a href="https://yandex.ru/maps/?text=ГАЛАРС+СПб">Яндекс.Карты</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2003 — 2026 ООО «ГАЛАРС». Все права сохранены.</span>
+    <span>ул. Электропультовцев, 7 · СПб</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const h = document.getElementById('header');
+  if (!h) return;
+  h.classList.add('on-light');
+  const onScroll = () => {
+    if (window.scrollY > 80) h.classList.add('is-condensed');
+    else h.classList.remove('is-condensed');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+(() => {
+  const drawer = document.getElementById('drawer');
+  const burger = document.getElementById('burger');
+  const close = document.getElementById('drawerClose');
+  if (!drawer || !burger || !close) return;
+  burger.addEventListener('click', () => drawer.classList.add('is-open'));
+  close.addEventListener('click', () => drawer.classList.remove('is-open'));
+  drawer.addEventListener('click', e => { if (e.target === drawer) drawer.classList.remove('is-open'); });
+})();
+</script>
+</body>
+</html>

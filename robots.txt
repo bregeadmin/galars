@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /privacy.html
 Disallow: /404.html
+Disallow: /status.html
 
 # Заблокированные служебные файлы
 Disallow: /vendor/

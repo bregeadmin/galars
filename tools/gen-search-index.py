@@ -17,7 +17,7 @@ from html.parser import HTMLParser
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Служебные страницы (планы, карта сайта для клиента, 404) в поиск не попадают.
-EXCLUDE = {"plan.html", "site-map.html", "404.html"}
+EXCLUDE = {"plan.html", "site-map.html", "status.html", "404.html"}
 
 SKIP_TAGS = {"script", "style", "svg", "noscript", "canvas", "template"}
 SKIP_SECTIONS = {"header", "footer"}          # шапка и подвал
