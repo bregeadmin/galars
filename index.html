@@ -643,124 +643,34 @@
   /* — HOW WE WORK / Технологический конвейер — */
   .how { background: var(--warm-white); padding: 96px var(--pad-x); overflow: hidden; }
   .how-inner { max-width: var(--max-w); margin: 0 auto; }
-  .conveyor { margin-top: 40px; }
-  .conveyor-svg {
-    width: 100%;
-    height: 160px;
-    display: block;
-    overflow: visible;
-  }
-  .conveyor-svg .track-base {
-    stroke: rgba(31,42,51,0.10);
-    stroke-width: 1;
-    fill: none;
-  }
-  .conveyor-svg .track-dash {
-    stroke: var(--steel);
-    stroke-width: 2;
-    stroke-dasharray: 4 8;
-    fill: none;
-    opacity: 0.45;
-  }
-  .conveyor-svg .station {
-    fill: #fff;
-    stroke: var(--steel);
-    stroke-width: 2;
-    cursor: pointer;
-    transition: fill .25s ease, transform .25s ease;
-    transform-origin: center center;
-    transform-box: fill-box;
-  }
-  .conveyor-svg .station:hover { fill: var(--steel-12); }
-  .conveyor-svg .station.is-active { fill: var(--steel); }
-  .conveyor-svg .station-num {
-    font-family: var(--f-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    fill: var(--fog);
-    text-transform: uppercase;
-    pointer-events: none;
-  }
-  .conveyor-svg .station-num.is-active { fill: var(--steel); }
-  .conveyor-svg .traveler {
-    transition: transform .9s cubic-bezier(0.65, 0.05, 0.36, 1);
-  }
-  .conveyor-svg .traveler-pulse {
-    fill: var(--steel);
-    opacity: 0;
-    transform-origin: center;
-    transform-box: fill-box;
-  }
-  .conveyor-svg .traveler.is-arriving .traveler-pulse {
-    animation: pulse 1.2s ease-out;
-  }
-  @keyframes pulse {
-    0% { opacity: 0.6; r: 18; }
-    100% { opacity: 0; r: 60; }
-  }
-
   .steps-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    margin-top: 40px;
+    margin-top: 56px;
   }
+  /* Линейка конвейера — это верхняя граница самой колонки, а не отдельная
+     картинка над сеткой. Раньше SVG жил в своей системе координат: станции
+     не совпадали ни с одной колонкой и висели в 64px от общего левого края. */
   .step {
-    padding-top: 24px;
-    border-top: 2px solid rgba(31,42,51,0.08);
-    transition: border-color .18s linear;
-    cursor: pointer;
+    position: relative;
+    padding-top: 22px;
+    border-top: 1px solid rgba(31,42,51,0.14);
   }
-  .step:hover { opacity: 0.7; }
-  .step.is-active {
-    opacity: 1;
-    border-top-color: var(--steel);
+  .step::before {
+    content: ""; position: absolute; left: 0; top: -4px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--steel);
   }
-  .step .step-num {
-    font-family: var(--f-display); font-weight: 600;
-    font-size: 56px; line-height: 1; color: rgba(31,42,51,0.10);
-    letter-spacing: -0.02em;
-    transition: color .3s ease;
+  .step-num {
+    font-family: var(--f-mono); font-size: 12px; font-weight: 500;
+    letter-spacing: 0.08em; line-height: 1; color: var(--steel);
   }
-  .step.is-active .step-num { color: var(--steel); }
   .step h4 {
-    margin: 16px 0 8px; font-family: var(--f-display); font-weight: 500;
-    font-size: 20px; line-height: 1.2;
+    margin: 14px 0 10px;
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 20px; line-height: 1.2; color: var(--graphite);
   }
-  .step .step-desc { margin: 0 0 16px; color: var(--fog); font-size: 14px; line-height: 1.55; }
-  .step-flow { display: grid; gap: 10px; }
-  .step-flow > div {
-    font-family: var(--f-mono);
-    font-size: 12px;
-    color: var(--fog);
-    line-height: 1.5;
-  }
-  .step-flow b {
-    display: block;
-    color: var(--graphite);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .conveyor-controls {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    font-family: var(--f-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--fog);
-  }
-  .conveyor-controls .dot {
-    display: inline-block; width: 6px; height: 6px;
-    border-radius: 50%; background: var(--steel);
-    margin-right: 8px;
-    vertical-align: middle;
-  }
+  .step-desc { margin: 0; font-size: 15px; line-height: 1.6; color: var(--graphite); }
 
   /* — FAQ — */
   .faq { background: var(--warm-white); padding: 96px var(--pad-x); }
@@ -1301,21 +1211,14 @@
     .prod-gallery { grid-template-columns: 1fr; gap: 12px; margin-bottom: 40px; }
     .equip-grid { grid-template-columns: repeat(2, 1fr); }
     .certs-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .steps { grid-template-columns: 1fr 1fr; gap: 24px; }
-    .steps-row { grid-template-columns: 1fr 1fr; gap: 16px; }
-    .step .step-num { font-size: 40px; }
-    .conveyor-svg { height: 120px; }
+    .steps-row { grid-template-columns: 1fr 1fr; gap: 32px 24px; margin-top: 40px; }
     .contact-grid { grid-template-columns: 1fr; grid-template-areas: "info" "form" "map"; gap: 32px; }
     .footer-cols { grid-template-columns: 1fr; gap: 24px; }
   }
   @media (max-width: 520px) {
     .works-gallery { grid-template-columns: 1fr; }
     .proof-strip { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; }
-    .steps-row { grid-template-columns: 1fr; gap: 12px; }
-    .step { padding-top: 16px; }
-    .step .step-num { font-size: 32px; }
-    .conveyor-svg { height: 100px; }
+    .steps-row { grid-template-columns: 1fr; gap: 28px; }
     .hero-title { font-size: 36px; }
     .h1 { font-size: 30px !important; }
   }
@@ -1758,79 +1661,30 @@
       <div class="num">Порядок работы</div>
       <div>
         <h2 class="h1">Как мы работаем</h2>
-        <div class="tag" style="color: var(--steel); margin-top: 16px;">ЗАПРОС → СОГЛАСОВАНИЕ → ПРОИЗВОДСТВО → ОТГРУЗКА</div>
+        <p class="lead">Четыре этапа от первого письма до отгрузки. На каждом понятно, что нужно от вас и что делаем мы.</p>
       </div>
     </div>
 
-    <div class="conveyor">
-      <svg class="conveyor-svg" id="conveyor" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
-        <!-- station labels above -->
-        <g>
-          <text class="station-num" x="60" y="34" text-anchor="middle" data-num="0">01</text>
-          <text class="station-num" x="420" y="34" text-anchor="middle" data-num="1">02</text>
-          <text class="station-num" x="780" y="34" text-anchor="middle" data-num="2">03</text>
-          <text class="station-num" x="1140" y="34" text-anchor="middle" data-num="3">04</text>
-        </g>
-        <!-- track lines -->
-        <line class="track-base" x1="60" y1="80" x2="1140" y2="80"/>
-        <line class="track-dash" x1="60" y1="80" x2="1140" y2="80"/>
-        <!-- stations -->
-        <g>
-          <circle class="station" cx="60"   cy="80" r="14" data-step="0"/>
-          <circle class="station" cx="420"  cy="80" r="14" data-step="1"/>
-          <circle class="station" cx="780"  cy="80" r="14" data-step="2"/>
-          <circle class="station" cx="1140" cy="80" r="14" data-step="3"/>
-        </g>
-        <!-- traveler — small molecule -->
-        <g class="traveler" id="traveler" transform="translate(60, 80)">
-          <circle class="traveler-pulse" cx="0" cy="0" r="18"/>
-          <g transform="translate(-22, -22)">
-            <!-- compact molecule, viewBox 0 0 44 44 around -->
-            <g stroke="var(--steel)" stroke-width="1.6" stroke-linecap="round" fill="none">
-              <line x1="10" y1="10" x2="28" y2="10"/><line x1="28" y1="10" x2="28" y2="28"/>
-              <line x1="28" y1="28" x2="10" y2="28"/><line x1="10" y1="28" x2="10" y2="10"/>
-              <line x1="16" y1="16" x2="34" y2="16"/><line x1="34" y1="16" x2="34" y2="34"/>
-              <line x1="34" y1="34" x2="16" y2="34"/><line x1="16" y1="34" x2="16" y2="16"/>
-              <line x1="10" y1="10" x2="16" y2="16"/><line x1="28" y1="10" x2="34" y2="16"/>
-              <line x1="10" y1="28" x2="16" y2="34"/><line x1="28" y1="28" x2="34" y2="34"/>
-            </g>
-            <g fill="var(--steel)">
-              <circle cx="10" cy="10" r="2"/><circle cx="28" cy="10" r="2"/>
-              <circle cx="10" cy="28" r="2"/><circle cx="28" cy="28" r="2"/>
-              <circle cx="16" cy="16" r="2"/><circle cx="34" cy="16" r="2"/>
-              <circle cx="16" cy="34" r="2"/><circle cx="34" cy="34" r="2"/>
-              <circle cx="20" cy="20" r="1.2"/><circle cx="24" cy="20" r="1.2"/>
-              <circle cx="20" cy="24" r="1.2"/><circle cx="24" cy="24" r="1.2"/>
-            </g>
-          </g>
-        </g>
-      </svg>
-
-      <div class="steps-row" id="stepsRow">
-        <div class="step is-active" data-step="0">
-          <div class="step-num">01</div>
-          <h4>Запрос</h4>
-          <p class="step-desc">Описание задачи, фото деталей, объём работ. Направление технического задания, КД. Согласование требований Заказчика.</p>
-        </div>
-        <div class="step" data-step="1">
-          <div class="step-num">02</div>
-          <h4>Согласование</h4>
-          <p class="step-desc">Подготовка коммерческого предложения. Договор / Счёт-Договор. Согласование графика выполнения работ.</p>
-        </div>
-        <div class="step" data-step="2">
-          <div class="step-num">03</div>
-          <h4>Производство</h4>
-          <p class="step-desc">Входной контроль. Выполнение работ согласно ТЗ / КД и проверка качества на соответствие требованиям ГОСТ.</p>
-        </div>
-        <div class="step" data-step="3">
-          <div class="step-num">04</div>
-          <h4>Отгрузка</h4>
-          <p class="step-desc">Комплектация, упаковка согласно требованиям Заказчика. Подготовка закрывающих документов и Сертификата качества.</p>
-        </div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Запрос</h4>
+        <p class="step-desc">Описание задачи, фото деталей, объём работ. Направление технического задания, КД. Согласование требований Заказчика.</p>
       </div>
-
-      <div class="conveyor-controls">
-        <span>Нажмите на этап, чтобы посмотреть подробнее</span>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Согласование</h4>
+        <p class="step-desc">Подготовка коммерческого предложения. Договор / Счёт-Договор. Согласование графика выполнения работ.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Производство</h4>
+        <p class="step-desc">Входной контроль. Выполнение работ согласно ТЗ / КД и проверка качества на соответствие требованиям ГОСТ.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h4>Отгрузка</h4>
+        <p class="step-desc">Комплектация, упаковка согласно требованиям Заказчика. Подготовка закрывающих документов; сертификат качества — по запросу.</p>
       </div>
     </div>
   </div>
@@ -2479,38 +2333,6 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
     formStarted = true;
     window.galarsTrack('form_start', {});
   });
-})();
-
-// — Conveyor «Как работаем» —
-(() => {
-  const svg = document.getElementById('conveyor');
-  const traveler = document.getElementById('traveler');
-  const stepsRow = document.getElementById('stepsRow');
-  if (!svg || !traveler || !stepsRow) return;
-
-  const stations = svg.querySelectorAll('.station');
-  const stationNums = svg.querySelectorAll('.station-num');
-  const stepCards = stepsRow.querySelectorAll('.step');
-  const stationX = [60, 420, 780, 1140];
-  let current = 0;
-
-  function setStep(n, fromUser) {
-    current = n;
-    traveler.setAttribute('transform', `translate(${stationX[n]}, 80)`);
-    traveler.classList.remove('is-arriving');
-    // re-trigger pulse animation
-    void traveler.offsetWidth;
-    traveler.classList.add('is-arriving');
-    stations.forEach((s, i) => s.classList.toggle('is-active', i === n));
-    stationNums.forEach((s, i) => s.classList.toggle('is-active', i === n));
-    stepCards.forEach((c, i) => c.classList.toggle('is-active', i === n));
-  }
-
-
-  stations.forEach((s, i) => s.addEventListener('click', () => setStep(i, true)));
-  stepCards.forEach((c, i) => c.addEventListener('click', () => setStep(i, true)));
-
-  setStep(0);
 })();
 
 // — Contact form: production-ready —
