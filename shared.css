@@ -33,6 +33,7 @@
   border: 1px solid currentColor;
   border-radius: 24px;
   font-family: var(--f-text); font-weight: 500; font-size: 13px; line-height: 1;
+  white-space: nowrap;
   transition: background .2s, color .2s;
 }
 .site-header .header-cta:hover { background: currentColor; }
