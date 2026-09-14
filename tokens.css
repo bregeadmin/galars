@@ -47,7 +47,7 @@ html, body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, не hidden: hidden делает body скролл-контейнером и ломает position:sticky */
 }
 
 img, svg { display: block; max-width: 100%; }
