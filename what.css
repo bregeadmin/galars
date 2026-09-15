@@ -191,3 +191,23 @@
   .hang{transform:rotate(-1.4deg)!important}
   .gl{display:none}
 }
+
+/* ——— образец-болт: тот же металл и те же слои покрытия, вырезанные по силуэту болта (clipPath #boltClip в index.html) ——— */
+.pl.bolt{clip-path:url(#boltClip);border-radius:0;box-shadow:none}
+.pl.bolt .hole{display:none}
+.hang:has(.pl.bolt){filter:drop-shadow(0 14px 18px rgba(31,42,51,.35))}
+.dark .hang:has(.pl.bolt){filter:drop-shadow(0 16px 20px rgba(0,0,0,.6))}
+.pl.bolt::after{content:"";position:absolute;inset:0;z-index:5;pointer-events:none;mix-blend-mode:overlay;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.30) 0 27%,rgba(255,255,255,.22) 27% 64%,rgba(0,0,0,.34) 64% 100%) 0 0/100% 23.5% no-repeat,        /* грани головки */
+    linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0)) 0 23.5%/100% 6% no-repeat,                                                 /* тень под головкой */
+    repeating-linear-gradient(178deg,rgba(255,255,255,.34) 0 .9%,rgba(0,0,0,.42) .9% 1.8%) 50% 82%/42% 63% no-repeat,                  /* резьба */
+    linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,.45) 100%) 50% 100%/42% 8% no-repeat}                                            /* фаска */
+.pl.bolt .stamp{right:auto;left:50%;transform:translateX(-50%);bottom:auto;top:8.5%;color:rgba(0,0,0,.5)}
+
+/* 3D-болт (bolt3d.js): CSS-слои прячем, канвас шире коробки, чтобы поворот не резался */
+.pl.b3d{clip-path:none;background:none;box-shadow:none;overflow:visible;isolation:auto}
+.pl.b3d::before,.pl.b3d::after,.pl.b3d .cl,.pl.b3d .lvl,.pl.b3d .gl,.pl.b3d .hole,.pl.b3d .stamp{display:none}
+.pl.b3d .b3d-canvas{position:absolute;left:-25%;top:-9%;width:150%;height:118%;pointer-events:none;filter:drop-shadow(0 18px 16px rgba(31,42,51,.32))}
+.dark .pl.b3d .b3d-canvas{filter:drop-shadow(0 20px 18px rgba(0,0,0,.55))}
+.hang:has(.pl.b3d){transform:rotate(0deg)!important;filter:none}
