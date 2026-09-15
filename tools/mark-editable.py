@@ -90,6 +90,7 @@ def mark(page: pathlib.Path):
         inner = masked[m.end():end]
         text = re.sub(r'<[^>]+>', '', inner).strip()
         if not text: continue
+        if re.search(r'<[^>]*\sid="', inner): continue   # внутри есть элементы с id — ими управляют скрипты
         counter += 1
         inserts.append((m.end() - len(m.group(4)) - 1, f' data-e="{key}#{counter}"'))
 
@@ -112,7 +113,20 @@ def mark(page: pathlib.Path):
         counter += 1
         inserts.append((m.end() - len(m.group(4)) - 1, f' data-e="{key}#{counter}" data-kind="slot"'))
 
+    # снять метки с текстовых блоков, внутри которых есть элементы с id
+    removals = []
+    for i, m in enumerate(tokens):
+        if m.group(1) or i not in close_of or m.group(2).lower() not in TEXT_TAGS: continue
+        attrs = m.group(3)
+        if not marked_already(attrs): continue
+        inner = masked[m.end():close_of[i].start()]
+        if re.search(r'<[^>]*\sid="', inner):
+            mm = re.search(r'\sdata-e="[^"]*"', attrs)
+            removals.append((m.start() + 1 + len(m.group(2)) + mm.start(), mm.end() - mm.start()))
     out = src
+    for pos, ln in sorted(removals, key=lambda x: -x[0]):
+        out = out[:pos] + out[pos + ln:]
+    inserts = [(pos - sum(ln for rp, ln in removals if rp < pos), text) for pos, text in inserts]
     for pos, text in sorted(inserts, key=lambda x: -x[0]):
         out = out[:pos] + text + out[pos:]
 
@@ -123,7 +137,7 @@ def mark(page: pathlib.Path):
 
     if out != src:
         page.write_text(out, encoding='utf-8')
-    return len(inserts)
+    return len(inserts) - len(removals)
 
 if __name__ == '__main__':
     pages = sorted(p for p in list(ROOT.glob('*.html')) + list(ROOT.glob('coatings/*.html')) if p.name not in SERVICE_PAGES)
