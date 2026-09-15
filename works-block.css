@@ -99,3 +99,7 @@ html.ed-on .wk2-track{pointer-events:none}                       /* в режи�
 
 /* страница после тёмной вставки: верхний отступ короче обычного */
 .page-content.page-content-after-works{padding-top:80px}
+
+/* по решению 15.09: без подписей на фото — подпись под лупой и номера на миниатюрах скрыты (текст остаётся для читалок и режима правки) */
+.wk2-text{position:absolute;left:-9999px}
+.wk2-th .wk2-n{display:none}
