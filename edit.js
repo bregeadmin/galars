@@ -4,7 +4,7 @@
    galars-publish), тот меняет их в файле страницы и делает коммит в репозиторий. */
 (function () {
   'use strict';
-  var PUBLISH_URL = window.GALARS_PUBLISH_URL || 'https://SET-AFTER-DEPLOY.supabase.co/functions/v1/galars-publish';
+  var PUBLISH_URL = window.GALARS_PUBLISH_URL || 'https://vxdgsuwaxkejwdxiqztj.supabase.co/functions/v1/galars-publish';
   var MAX_SIDE = 1600, JPEG_Q = 0.82, MAX_BATCH_BYTES = 3.5 * 1024 * 1024;
 
   // ---- где мы: путь страницы относительно корня сайта ----
