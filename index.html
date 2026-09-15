@@ -918,24 +918,7 @@
   .footer { background: var(--graphite); color: var(--card); padding: 56px var(--pad-x) 32px; position: relative; overflow: hidden; }
   .footer .pattern { opacity: 0.04; }
   .footer-inner { position: relative; max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 80px; align-items: flex-start; }
-  .footer .galars-stamp {
-    font-family: var(--f-display); font-weight: 700;
-    font-size: 36px; letter-spacing: 0.08em;
-  }
-  .footer .galars-stamp-img {
-    display: block;
-    height: 52px;
-    width: auto;
-    margin-bottom: 8px;
-    mix-blend-mode: screen;
-  }
-  .drawer-head .galars-stamp-img {
-    display: block;
-    height: 32px;
-    width: auto;
-    margin-bottom: 4px;
-    mix-blend-mode: screen;
-  }
+  .footer .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 32px; letter-spacing: 0.06em; line-height: 1; color: var(--card); margin-bottom: 10px; }
   .footer .stamp-desc {
     font-family: var(--f-mono); font-size: 11px;
     letter-spacing: 0.08em;
@@ -1011,7 +994,7 @@
     box-shadow: -16px 0 48px rgba(0,0,0,0.4);
   }
   .drawer-head { display: flex; justify-content: space-between; align-items: flex-start; }
-  .drawer-head .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 28px; letter-spacing: 0.08em; }
+  .drawer-head .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 22px; letter-spacing: 0.06em; line-height: 1; color: var(--card); margin-bottom: 6px; }
   .drawer-head .galars-sub { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: rgba(219,211,202,0.5); margin-top: 4px; }
   .drawer-close {
     width: 36px; height: 36px; border-radius: 8px;
@@ -1191,7 +1174,7 @@
   <div class="drawer-panel">
     <div class="drawer-head">
       <div>
-        <img class="galars-stamp-img" src="img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+        <div class="galars-stamp">ГАЛАРС</div>
         <div class="galars-sub">С 2003 · СПб</div>
       </div>
       <button type="button" class="drawer-close" id="drawerClose" aria-label="Закрыть меню">×</button>
@@ -1458,7 +1441,7 @@
     <div class="fr" data-dir="1"><img src="img/works/galv/g05.jpg" alt="Крупные точёные детали" loading="lazy" width="1600" height="1067" data-e="index#87"></div>
     <div class="fr" data-dir="1"><img src="img/works/galv/g07.jpg" alt="Загрузка подвески в ванну" loading="lazy" width="1600" height="1067" data-e="index#88"></div>
     <div class="fr" data-dir="1"><img src="img/works/galv/g06.jpg" alt="Контроль толщины покрытия" loading="lazy" width="1600" height="1067" data-e="index#89"></div>
-    <div class="fr" data-dir="1"><img src="img/uploads/rc6-1697-mu30oa9i.jpg" alt="Линия ванн" loading="lazy" width="1600" height="1067" data-e="index#90"></div>
+    <div class="fr" data-dir="1"><img src="img/works/galv/g08.jpg" alt="Линия ванн" loading="lazy" width="1600" height="1067" data-e="index#90"></div>
     <div class="fr ph-card" data-dir="1" data-e="index#98" data-kind="slot"><div class="ph-material">Фото 08</div></div>
     <div class="fr ph-card" data-dir="1" data-e="index#99" data-kind="slot"><div class="ph-material">Фото 09</div></div>
     <div class="spool spool-2"><div class="ix">02</div><div class="nm">Вакуумная<br>металлизация</div><div class="ct">7 плёнок</div><a class="ln" href="vakuum.html#works">Все работы →</a></div>
@@ -1831,7 +1814,7 @@
   <div class="pattern"></div>
   <div class="footer-inner">
     <div>
-      <img class="galars-stamp-img" src="img/logo/galars-04-wordmark-light.png" alt="ГАЛАРС">
+      <div class="galars-stamp">ГАЛАРС</div>
       <div class="stamp-desc">центр гальванических покрытий</div>
       <div class="stamp-sub">2003 — 2026 · СПб</div>
     </div>
