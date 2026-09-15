@@ -1,0 +1,88 @@
+/* Блок «Работы» на внутренних страницах (vakuum.html, coatings/index.html).
+   Дизайн — Эмиль Ковальски, 15.09.2026: лайтбокс не поверх страницы, а в ней —
+   большой «стенд» + тихая сетка плиток. Клик по плитке меняет фото в стенде.
+   12 мест: пустые слоты .ph-card видны только в режиме правки (?edit) и заполняются
+   перетаскиванием — сервер превращает их в фото. Скрипт — works-block.js. */
+.wk{padding:96px var(--pad-x) 104px;border-top:1px solid rgba(31,42,51,.1);--ease:cubic-bezier(.32,.72,0,1);font-variant-numeric:tabular-nums}
+.wk-in{max-width:var(--max-w);margin:0 auto;display:grid;grid-template-columns:285px minmax(0,1fr);column-gap:0}
+.wk :where(h2,p,figure,figcaption){margin:0}
+.wk button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.wk img{display:block;max-width:100%}
+.wk .rail{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fog);display:flex;align-items:flex-start;gap:12px;padding-top:14px}
+.wk .rail::before{content:"";width:24px;height:1px;background:var(--fog);margin-top:8px;flex:none}
+.wk .wk-h2{font-family:var(--f-display);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em}
+.wk .wk-lead{max-width:600px;margin-top:16px;font-size:16px;line-height:1.55;color:var(--graphite)}
+.wk .wk-tag{margin-top:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--steel)}
+
+/* стенд */
+.wk .stage{margin-top:40px;position:relative}
+.wk .stage[hidden]{display:none}
+.wk .stage-img{position:relative;aspect-ratio:3/2;border-radius:6px;overflow:hidden;background:var(--graphite-2);isolation:isolate}
+.wk .stage-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .22s linear}
+.wk .stage-img img.on{opacity:1}
+.wk .stage-img::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(31,42,51,.08);border-radius:6px;pointer-events:none}
+.wk .stage-cap{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;column-gap:20px;padding:14px 0;border-bottom:1px solid rgba(31,42,51,.12)}
+.wk .stage-cap .cap{font-weight:500;font-size:16px;line-height:1.3;transition:opacity .12s linear}
+.wk .stage-cap .cap.fade{opacity:0}
+.wk .stage-cap .ctr{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:var(--fog);white-space:nowrap}
+.wk .nav{display:flex;gap:6px}
+.wk .nav button{width:36px;height:36px;border-radius:50%;border:1px solid rgba(31,42,51,.18);display:grid;place-items:center;color:var(--graphite);transition:border-color .12s linear,background-color .12s linear}
+.wk .nav button:hover{border-color:var(--graphite)}
+.wk .nav button:active{background:rgba(31,42,51,.06)}
+.wk .nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* плитки */
+.wk .thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+.wk .th{position:relative;display:block;border-radius:4px;overflow:hidden;background:var(--graphite-2);aspect-ratio:4/3;outline:2px solid transparent;outline-offset:2px;transition:outline-color .12s linear;cursor:pointer}
+.wk .th img{width:100%;height:100%;object-fit:cover;filter:brightness(.96);transition:filter .15s linear}
+.wk .th:hover img{filter:brightness(1.05)}
+.wk .th.on{outline-color:var(--steel)}
+.wk .th.on img{filter:brightness(1)}
+.wk .th .n{position:absolute;left:10px;top:8px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.6)}
+.wk .th .c,.wk .th.ph-card.has-photo .ph-material{position:absolute;left:0;right:0;bottom:0;margin:0;padding:24px 10px 9px;font-family:var(--f-text);font-size:12px;font-weight:500;letter-spacing:0;line-height:1.3;color:#fff;background:linear-gradient(180deg,rgba(20,27,33,0) 0%,rgba(20,27,33,.72) 100%);text-shadow:none}
+.wk .th:focus-visible{outline-color:var(--steel);outline-offset:3px}
+/* слот: посетителю не виден; в режиме правки — место под фото; после заполнения — обычная плитка */
+.wk .th.ph-card{display:none;flex-direction:row;justify-content:center;align-items:center;text-align:center;outline:1px dashed rgba(31,42,51,.3);outline-offset:-1px;background:transparent;color:var(--fog);font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px;line-height:1.6}
+.wk .th.ph-card .ph-material{font-family:inherit;font-size:inherit;letter-spacing:inherit;color:inherit;padding:0}
+.wk .th.ph-card.has-photo{display:block;outline:2px solid transparent;outline-offset:2px;background:var(--graphite-2);padding:0;text-transform:none;letter-spacing:0}
+.wk .th.ph-card.has-photo img{position:absolute;inset:0}
+html.ed-on .wk .th.ph-card:not(.has-photo){display:flex}
+html.ed-on .wk .th.ph-card:not(.has-photo):hover{outline-color:var(--steel);color:var(--steel)}
+
+.wk .wk-note{max-width:640px;margin-top:32px;font-size:14px;line-height:1.6;color:var(--fog)}
+.wk .wk-cta{margin-top:28px}
+.wk .wk-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:2px;background:var(--steel);color:#fff;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:background-color .12s linear;text-decoration:none}
+.wk .wk-btn:hover{background:#185B72}.wk .wk-btn:active{background:#14495C}
+.wk .wk-btn .ar{display:inline-block;transition:transform .2s var(--ease)}.wk .wk-btn:hover .ar{transform:translateX(3px)}
+.wk .wk-btn:focus-visible,.wk .nav button:focus-visible{outline:2px solid var(--steel);outline-offset:3px}
+
+@media (max-width:900px){
+  .wk{padding:56px var(--pad-x) 64px}
+  .wk-in{grid-template-columns:minmax(0,1fr);row-gap:20px}
+  .wk .col{min-width:0}
+  .wk .rail{padding-top:0}
+  .wk .wk-h2{font-size:30px}
+  .wk .stage{margin-top:24px}
+  .wk .stage-cap{grid-template-columns:minmax(0,1fr) auto;row-gap:8px}
+  .wk .stage-cap .nav{grid-column:2;grid-row:1/3}
+  .wk .stage-cap .ctr{grid-column:1;grid-row:2}
+  .wk .thumbs{display:flex;gap:8px;overflow-x:auto;margin:16px calc(-1 * var(--pad-x)) 0;padding:6px var(--pad-x);scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad-x);scrollbar-width:none}
+  .wk .thumbs::-webkit-scrollbar{display:none}
+  .wk .th{flex:0 0 96px;scroll-snap-align:start}
+  .wk .th .c,.wk .th.ph-card.has-photo .ph-material{display:none}
+  .wk .th .n{left:6px;top:5px}
+  html.ed-on .wk .th.ph-card:not(.has-photo){flex:0 0 96px;font-size:9px;padding:6px}
+  .wk .wk-btn{width:100%;justify-content:center;height:auto;padding:15px 20px;text-align:center;line-height:1.4}
+}
+@media (prefers-reduced-motion:reduce){
+  .wk .stage-img img,.wk .stage-cap .cap,.wk .th,.wk .th img,.wk .wk-btn .ar{transition:none!important}
+}
+
+/* Вариант «в потоке страницы»: блок стоит среди content-block с той же сеткой 220/64 */
+.wk.wk-inline{padding:0;border-top:0;margin-bottom:80px}
+.wk.wk-inline .wk-in{grid-template-columns:220px minmax(0,1fr);column-gap:64px}
+.wk.wk-inline .rail{font-size:13px;letter-spacing:.08em;padding-top:0}
+.wk.wk-inline .rail::before{width:32px;margin-top:9px}
+.wk.wk-inline .wk-h2{font-size:32px}
+.wk.wk-inline .stage{margin-top:28px}
+@media (max-width:900px){ .wk.wk-inline{margin-bottom:56px} .wk.wk-inline .wk-in{grid-template-columns:minmax(0,1fr)} }

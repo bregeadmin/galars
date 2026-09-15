@@ -1116,7 +1116,17 @@
     .hero-title { font-size: 36px; }
     .h1 { font-size: 30px !important; }
   }
-  </style>
+  
+  /* — Работы: два ряда по направлениям, индексы 01/02 как в секции «Что делаем» — */
+  .works-group + .works-group { margin-top: 40px; }
+  .works-group-h { display: flex; align-items: baseline; gap: 14px; padding-bottom: 12px; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.14); }
+  .works-group-h .wg-i { font-family: var(--f-mono); font-size: 12px; letter-spacing: 0.1em; color: var(--steel); }
+  .works-group-h .wg-t { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 20px; letter-spacing: -0.01em; color: #fff; }
+  .works-group-h .wg-n { margin-left: auto; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .works-group .works-gallery { margin-bottom: 0; }
+  .works-group:last-of-type { margin-bottom: 32px; }
+  @media (max-width: 900px) { .works-group + .works-group { margin-top: 28px; } .works-group-h .wg-t { font-size: 17px; } }
+</style>
 </head>
 <body>
 
@@ -1438,11 +1448,13 @@
       <div>
         <h2 class="h1" data-e="index#37">Работы</h2>
         <div class="tag" style="color: var(--steel); margin-top: 16px;">СЕРИЙНЫЕ ПАРТИИ · ОПЫТНЫЕ ОБРАЗЦЫ · ШТУЧНЫЕ ЗАКАЗЫ</div>
-        <p class="lead" style="margin-top: 16px;" data-e="index#38">Детали и партии на нашем участке: подготовка, загрузка на подвески, готовое покрытие и контроль. Съёмка на производстве ГАЛАРСа на ул. Электропультовцев.</p>
+        <p class="lead" style="margin-top: 16px;" data-e="index#38">Два участка на ул. Электропультовцев: ванны — подготовка, загрузка на подвески, готовое покрытие и контроль; вакуумная металлизация — камера, загрузка деталей, пульт и готовые образцы.</p>
       </div>
     </div>
 
-    <div class="works-gallery">
+    <div class="works-group">
+      <div class="works-group-h"><span class="wg-i">01</span><h3 class="wg-t" data-e="index#90">Гальваника в ваннах</h3><span class="wg-n">8 фото</span></div>
+      <div class="works-gallery">
       <button type="button" class="work-tile" data-full="img/works/w01.jpg" data-cap="Втулки на подвесках">
         <img src="img/works/w01.jpg" alt="Втулки на подвесках — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900" data-e="index#82">
         <span class="t-n">01</span>
@@ -1483,26 +1495,52 @@
         <span class="t-n">08</span>
         <span class="t-cap">Крупные точёные детали</span>
       </button>
-      <button type="button" class="work-tile" data-full="img/works/w09.jpg" data-cap="Подвеска с деталями">
-        <img src="img/works/w09.jpg" alt="Подвеска с деталями — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900" data-e="index#90">
-        <span class="t-n">09</span>
-        <span class="t-cap">Подвеска с деталями</span>
+      </div>
+    </div>
+    <div class="works-group">
+      <div class="works-group-h"><span class="wg-i">02</span><h3 class="wg-t" data-e="index#91">Вакуумная металлизация</h3><span class="wg-n">8 фото</span></div>
+      <div class="works-gallery">
+      <button type="button" class="work-tile" data-full="img/works/vac/v01-chamber.jpg" data-cap="Вакуумная камера, дверь открыта">
+        <img src="img/works/vac/v01-chamber.jpg" alt="Вакуумная камера, дверь открыта — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#92">
+        <span class="t-n">01</span>
+        <span class="t-cap">Вакуумная камера, дверь открыта</span>
       </button>
-      <button type="button" class="work-tile" data-full="img/works/w10.jpg" data-cap="Обмер детали перед запуском">
-        <img src="img/works/w10.jpg" alt="Обмер детали перед запуском — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900" data-e="index#91">
-        <span class="t-n">10</span>
-        <span class="t-cap">Обмер детали перед запуском</span>
+      <button type="button" class="work-tile" data-full="img/works/vac/v02-loading.jpg" data-cap="Загрузка деталей в камеру">
+        <img src="img/works/vac/v02-loading.jpg" alt="Загрузка деталей в камеру — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#93">
+        <span class="t-n">02</span>
+        <span class="t-cap">Загрузка деталей в камеру</span>
       </button>
-      <button type="button" class="work-tile" data-full="img/works/w11.jpg" data-cap="Контроль толщины покрытия">
-        <img src="img/works/w11.jpg" alt="Контроль толщины покрытия — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900" data-e="index#92">
-        <span class="t-n">11</span>
-        <span class="t-cap">Контроль толщины покрытия</span>
+      <button type="button" class="work-tile" data-full="img/works/vac/v03-control.jpg" data-cap="Пульт управления установкой">
+        <img src="img/works/vac/v03-control.jpg" alt="Пульт управления установкой — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#94">
+        <span class="t-n">03</span>
+        <span class="t-cap">Пульт управления установкой</span>
       </button>
-      <button type="button" class="work-tile" data-full="img/works/w12.jpg" data-cap="Партия колец">
-        <img src="img/works/w12.jpg" alt="Партия колец — ГАЛАРС, гальваническое производство" loading="lazy" width="1200" height="900" data-e="index#93">
-        <span class="t-n">12</span>
-        <span class="t-cap">Партия колец</span>
+      <button type="button" class="work-tile" data-full="img/works/vac/v04-samples.jpg" data-cap="Образцы после напыления">
+        <img src="img/works/vac/v04-samples.jpg" alt="Образцы после напыления — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#95">
+        <span class="t-n">04</span>
+        <span class="t-cap">Образцы после напыления</span>
       </button>
+      <button type="button" class="work-tile" data-full="img/works/vac/v05-chamber-operator.jpg" data-cap="Оператор у камеры">
+        <img src="img/works/vac/v05-chamber-operator.jpg" alt="Оператор у камеры — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#96">
+        <span class="t-n">05</span>
+        <span class="t-cap">Оператор у камеры</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/vac/v06-grille.jpg" data-cap="Решётка радиатора после напыления">
+        <img src="img/works/vac/v06-grille.jpg" alt="Решётка радиатора после напыления — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#97">
+        <span class="t-n">06</span>
+        <span class="t-cap">Решётка радиатора после напыления</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/vac/v07-figurines.jpg" data-cap="Декоративные статуэтки">
+        <img src="img/works/vac/v07-figurines.jpg" alt="Декоративные статуэтки — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#98">
+        <span class="t-n">07</span>
+        <span class="t-cap">Декоративные статуэтки</span>
+      </button>
+      <button type="button" class="work-tile" data-full="img/works/vac/v08-coils.jpg" data-cap="Катушки после напыления">
+        <img src="img/works/vac/v08-coils.jpg" alt="Катушки после напыления — ГАЛАРС, вакуумная металлизация" loading="lazy" width="1200" height="800" data-e="index#99">
+        <span class="t-n">08</span>
+        <span class="t-cap">Катушки после напыления</span>
+      </button>
+      </div>
     </div>
 
     <p class="works-note" data-e="index#39">Марки покрытий и материалы по конкретным позициям не публикуем — работаем по конструкторской документации заказчика. Что именно и как можем покрыть вашу деталь, скажет технолог после оценки.</p>
