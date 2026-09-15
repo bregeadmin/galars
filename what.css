@@ -33,7 +33,7 @@
 }
 /* водяной знак 01/02 — под контентом, как оттиск на пластине; берёт тон покрытия */
 .wm{position:absolute;z-index:0;right:-.22em;top:-.22em;font-family:var(--f-display);font-weight:700;font-size:500px;line-height:1;letter-spacing:-.07em;
-  color:color-mix(in oklch,var(--tone) 6.5%,transparent);
+  color:color-mix(in oklch,color-mix(in oklch,var(--tone) 45%,var(--graphite)) 9%,transparent); /* на кремовом тон сам по себе сливается — подмешиваем графит */
   font-variant-numeric:tabular-nums;user-select:none;pointer-events:none;transition:color var(--tone-dur) var(--ease-out)}
 .dark .wm{color:color-mix(in oklch,var(--tone) 8%,transparent)}
 .half > *:not(.wm){position:relative;z-index:1}
