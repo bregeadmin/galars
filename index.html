@@ -299,7 +299,7 @@
     width: 12px; height: 1px; background: var(--steel);
   }
   .dir-out {
-    background: #fff; border: 1px solid rgba(31,42,51,0.08);
+    background: var(--card); border: 1px solid rgba(31,42,51,0.08);
     border-radius: 8px; padding: 32px;
     display: grid; gap: 16px; justify-items: start;
   }
@@ -438,7 +438,7 @@
   .production .section-head .num::before { background: var(--steel); }
   .prod-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 64px; }
   .prod-card {
-    background: #fff; border-radius: 8px; padding: 40px;
+    background: var(--card); border-radius: 8px; padding: 40px;
     box-shadow: var(--shadow-card);
   }
   .prod-card h3 {
@@ -478,7 +478,7 @@
   }
 
   /* — CALCULATOR — */
-  .calc { background: #fff; padding: 96px var(--pad-x); }
+  .calc { background: var(--card); padding: 96px var(--pad-x); }
   .calc-inner { max-width: var(--max-w); margin: 0 auto; }
   .calc-grid {
     margin-top: 40px;
@@ -499,7 +499,7 @@
   .calc-field select,
   .calc-field input[type="number"] {
     font-family: var(--f-text); font-size: 18px; font-weight: 500;
-    background: #fff;
+    background: var(--card);
     border: 1px solid rgba(31,42,51,0.10);
     border-radius: 6px;
     padding: 14px 18px;
@@ -757,7 +757,7 @@
   .form-field textarea.input-task { min-height: 132px; }
   .contact-form .btn-submit {
     justify-self: flex-start;
-    background: #fff; color: var(--steel); border-color: #fff;
+    background: var(--card); color: var(--steel); border-color: var(--card);
   }
   .contact-form .btn-submit:hover { background: var(--graphite); color: #fff; border-color: var(--graphite); }
   .req-list li { position: relative; padding: 3px 0 3px 18px; }
@@ -801,7 +801,7 @@
     background-repeat: no-repeat;
     background-position: right center;
   }
-  .input-select option { color: var(--graphite); background: #fff; }
+  .input-select option { color: var(--graphite); background: var(--card); }
   /* Success state */
   .form-success {
     display: grid; gap: 12px; justify-items: flex-start;
@@ -881,8 +881,8 @@
     margin-top: 2px;
   }
   .consent input:checked ~ .consent-box {
-    background: #fff;
-    border-color: #fff;
+    background: var(--card);
+    border-color: var(--card);
   }
   .consent input:checked ~ .consent-box::after {
     content: ""; position: absolute;

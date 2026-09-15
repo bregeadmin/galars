@@ -17,7 +17,7 @@
   .doc-lead { font-size: 18px; line-height: 1.5; opacity: 0.78; max-width: 760px; }
   .doc-meta { margin-top: 28px; font-family: var(--f-mono); font-size: 13px; opacity: 0.6; }
 
-  .howto { background: #fff; border: 1.5px solid var(--steel); border-radius: 4px; padding: 24px 28px; margin-bottom: 40px; }
+  .howto { background: var(--card); border: 1.5px solid var(--steel); border-radius: 4px; padding: 24px 28px; margin-bottom: 40px; }
   .howto h2 { font-family: var(--f-display); font-weight: 600; font-size: 20px; margin: 0 0 16px; }
   .howto ol { margin: 0; padding-left: 22px; line-height: 1.7; font-size: 15px; }
   .howto li { margin-bottom: 10px; }
@@ -26,7 +26,7 @@
   .legend .l-mark { display: inline-block; width: 14px; height: 14px; border: 1.5px solid var(--graphite); border-radius: 50%; vertical-align: -3px; margin-right: 8px; }
   .legend .l-box { display: inline-block; width: 14px; height: 14px; border: 1.5px solid var(--graphite); vertical-align: -3px; margin-right: 8px; }
 
-  .toc { background: #fff; border: 1px solid rgba(31,42,51,0.12); border-radius: 4px; padding: 24px 28px; margin-bottom: 48px; }
+  .toc { background: var(--card); border: 1px solid rgba(31,42,51,0.12); border-radius: 4px; padding: 24px 28px; margin-bottom: 48px; }
   .toc h2 { font-family: var(--f-display); font-weight: 600; font-size: 20px; margin: 0 0 16px; }
   .toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; font-size: 15px; line-height: 1.8; list-style: none; }
   .toc a { color: var(--graphite); border-bottom: 1px dotted rgba(31,42,51,0.3); text-decoration: none; }
@@ -39,7 +39,7 @@
   .page-url { font-family: var(--f-mono); font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; }
   .page-purpose { font-size: 14px; line-height: 1.5; color: rgba(255,255,255,0.78); margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12); }
 
-  .page-body { background: #fff; border: 1px solid rgba(31,42,51,0.1); border-top: 0; border-radius: 0 0 4px 4px; }
+  .page-body { background: var(--card); border: 1px solid rgba(31,42,51,0.1); border-top: 0; border-radius: 0 0 4px 4px; }
 
   .block { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1.2fr); gap: 0; border-bottom: 1px solid rgba(31,42,51,0.08); }
   .block:last-child { border-bottom: 0; }
@@ -65,7 +65,7 @@
     border-radius: 2px;
     padding: 8px 10px;
     font-family: var(--f-text); font-size: 13px;
-    color: var(--graphite); background: #fff;
+    color: var(--graphite); background: var(--card);
     resize: vertical;
     min-height: 44px;
   }
@@ -87,7 +87,7 @@
   .actions .progress { font-family: var(--f-mono); font-size: 12px; color: rgba(31,42,51,0.6); margin-right: auto; }
   .actions button {
     font-family: var(--f-mono); font-weight: 500; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-    padding: 11px 18px; border: 1.5px solid var(--graphite); background: #fff; color: var(--graphite); cursor: pointer; border-radius: 2px;
+    padding: 11px 18px; border: 1.5px solid var(--graphite); background: var(--card); color: var(--graphite); cursor: pointer; border-radius: 2px;
     transition: all .15s ease;
   }
   .actions button:hover { background: var(--graphite); color: #fff; }
@@ -2802,7 +2802,7 @@ function copyAll() {
     () => {
       const overlay = document.createElement('div');
       overlay.style.cssText = 'position:fixed;inset:0;background:rgba(31,42,51,0.7);display:flex;align-items:center;justify-content:center;z-index:100;padding:24px';
-      overlay.innerHTML = '<div style="background:#fff;padding:24px;border-radius:4px;max-width:760px;width:100%"><div style="margin-bottom:12px;font-size:13px">Скопируйте вручную (⌘+A → ⌘+C):</div><textarea readonly style="width:100%;height:420px;font-family:monospace;font-size:12px">' + text + '</textarea><div style="text-align:right;margin-top:10px"><button onclick="this.closest(\'div[style*=fixed]\').remove()" style="padding:10px 16px">Закрыть</button></div></div>';
+      overlay.innerHTML = '<div style="background: var(--card);padding:24px;border-radius:4px;max-width:760px;width:100%"><div style="margin-bottom:12px;font-size:13px">Скопируйте вручную (⌘+A → ⌘+C):</div><textarea readonly style="width:100%;height:420px;font-family:monospace;font-size:12px">' + text + '</textarea><div style="text-align:right;margin-top:10px"><button onclick="this.closest(\'div[style*=fixed]\').remove()" style="padding:10px 16px">Закрыть</button></div></div>';
       document.body.appendChild(overlay);
     }
   );

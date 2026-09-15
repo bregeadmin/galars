@@ -350,7 +350,7 @@
   border-left: 2px solid transparent;
   transition: background .15s ease, border-color .15s ease;
 }
-.search-hit:hover, .search-hit.is-cur { background: #fff; border-left-color: var(--steel); }
+.search-hit:hover, .search-hit.is-cur { background: var(--card); border-left-color: var(--steel); }
 .search-hit .hit-top {
   display: flex; align-items: baseline; gap: 12px; justify-content: space-between;
   margin-bottom: 5px;
