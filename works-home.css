@@ -1,0 +1,103 @@
+/* «Работы» на главной — Эмиль Ковальски, 15.09.2026: одна лупа, два контактных листа 01/02. Скрипт — works-home.js. */
+/* =====================================================================
+   «РАБОТЫ» НА ГЛАВНОЙ · wkh · одна лупа, два контактных листа
+   Лупа — одна лента из всех кадров (01 гальваника → 02 вакуум): сдвиг честный, свайп нативный.
+   Под лупой два контактных листа с индексами 01/02 и именами направлений — той же системой,
+   что в секции «Что делаем». Принадлежность кадра читается сразу: индекс и имя направления
+   стоят над подписью в лупе и подсвечены у ленты, из которой выбран кадр.
+   Слоты .ph-card — только под html.ed-on; скрипт читает src/подписи из DOM.
+   ===================================================================== */
+.wkh{position:relative;background:var(--graphite);color:#fff;padding:120px 0 120px;--ease:cubic-bezier(.32,.72,0,1);font-variant-numeric:tabular-nums}
+.wkh :where(h2,h3,p,figure,figcaption){margin:0}
+.wkh button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+.wkh img{display:block;max-width:100%}
+.wkh-in{max-width:calc(var(--max-w) + 2 * var(--pad-x));margin:0 auto;padding:0 var(--pad-x)}
+/* шапка секции — как сейчас: метка → h2 → тэг → лид */
+.wkh-num{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8FCBDF;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.wkh-num::before{content:"";width:32px;height:1px;background:#8FCBDF}
+.wkh-h2{font-family:var(--f-display);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em}
+.wkh-tag{margin-top:16px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#8FCBDF}
+.wkh-lead{max-width:640px;margin-top:16px;font-size:16px;line-height:1.55;color:rgba(255,255,255,.72)}
+
+/* — лупа — */
+.wkh-lens{margin-top:56px;position:relative}
+.wkh-track{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:6px;background:var(--graphite-2);aspect-ratio:16/10;scroll-behavior:smooth;cursor:grab}
+.wkh-track:active{cursor:grabbing}
+.wkh-track::-webkit-scrollbar{display:none}
+.wkh-track figure{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;position:relative;height:100%}
+.wkh-track img{width:100%;height:100%;object-fit:cover}
+.wkh-lens::after{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.wkh-cap{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:end;column-gap:24px;padding:20px 0 0;min-height:92px}
+.wkh-big{font-family:var(--f-display);font-weight:300;font-size:72px;line-height:.9;letter-spacing:-.05em;color:#fff;width:1.85ch;position:relative;height:.9em;overflow:hidden}
+.wkh-big span{position:absolute;left:0;top:0;transition:transform .32s var(--ease),opacity .2s linear}
+.wkh-big span.out{transform:translateY(-105%);opacity:0}
+.wkh-big span.in{transform:translateY(105%);opacity:0;transition:none}
+.wkh-dir{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8FCBDF;transition:opacity .14s linear}
+.wkh-dir b{font-weight:500;color:#fff;margin-right:.6em}
+.wkh-text{margin-top:6px;font-weight:500;font-size:17px;line-height:1.3;color:#fff;transition:opacity .14s linear;padding-bottom:2px}
+.wkh-cap.fade .wkh-text,.wkh-cap.fade .wkh-dir{opacity:0}
+.wkh-ctr{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:rgba(255,255,255,.5);white-space:nowrap;padding-bottom:6px}
+.wkh-nav{display:flex;gap:6px;align-self:center}
+.wkh-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;color:#fff;transition:border-color .12s linear,background-color .12s linear}
+.wkh-nav button:hover{border-color:#fff}
+.wkh-nav button:active{background:rgba(255,255,255,.1)}
+.wkh-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+
+/* — два контактных листа: индекс + имя направления слева (система «Что делаем»), лента справа — */
+.wkh-sheets{margin-top:20px;border-top:1px solid rgba(255,255,255,.12)}
+.wkh-row{display:grid;grid-template-columns:220px minmax(0,1fr);column-gap:32px;align-items:center;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.wkh-lab{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:baseline;color:rgba(255,255,255,.5);transition:color .16s linear}
+.wkh-lab .i{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:inherit}
+.wkh-lab h3{font-family:var(--f-display);font-weight:500;font-size:15px;line-height:1.25;letter-spacing:-.01em;color:inherit}
+.wkh-lab .k{grid-column:2;font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-top:4px}
+.wkh-row.on .wkh-lab{color:#fff}
+.wkh-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;padding:3px;margin:-3px}
+.wkh-strip::-webkit-scrollbar{display:none}
+.wkh-th{position:relative;flex:0 0 148px;aspect-ratio:3/2;border-radius:3px;overflow:hidden;background:var(--graphite-2);scroll-snap-align:start;outline:1.5px solid transparent;outline-offset:1.5px;transition:outline-color .12s linear}
+.wkh-th img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .15s linear}
+.wkh-th:hover img{opacity:.9}
+.wkh-th.on{outline-color:#fff}
+.wkh-th.on img{opacity:1}
+.wkh-th .wkh-n{position:absolute;left:7px;top:5px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.wkh-th .wkh-c{position:absolute;left:-9999px}        /* подпись — только в лупе */
+.wkh-th:focus-visible{outline-color:#8FCBDF;outline-offset:2px}
+.wkh-th.ph-card{display:none;align-items:center;justify-content:center;text-align:center;outline:1px dashed rgba(255,255,255,.3);outline-offset:-1px;background:transparent;color:rgba(255,255,255,.55);font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px;cursor:pointer}
+.wkh-th.ph-card .ph-material{font:inherit;letter-spacing:inherit;color:inherit;margin:0}
+html.ed-on .wkh-th.ph-card:not(.has-photo){display:flex}
+html.ed-on .wkh-th.ph-card:not(.has-photo):hover{outline-color:#8FCBDF;color:#8FCBDF}
+.wkh-th.ph-card.has-photo{display:block;outline:1.5px solid transparent;outline-offset:1.5px;background:var(--graphite-2);padding:0}
+.wkh-th.ph-card.has-photo img{position:absolute;inset:0}
+.wkh-th.ph-card.has-photo .ph-material{position:absolute;left:-9999px}
+html.ed-on .wkh-th:not(.ph-card):hover::after,html.ed-on .wkh-th.has-photo:hover::after{content:"Заменить";position:absolute;right:5px;top:5px;font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(31,42,51,.8);padding:3px 6px;border-radius:2px}
+html.ed-on .wkh-track{pointer-events:none}
+
+.wkh-note{max-width:720px;margin-top:40px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.55)}
+.wkh-cta{margin-top:32px;display:flex;justify-content:center}
+.wkh-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 28px;border-radius:2px;background:var(--steel);color:#fff;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background-color .12s linear}
+.wkh-btn:hover{background:#2A84A3}.wkh-btn:active{background:#185B72}
+.wkh-btn .ar{display:inline-block;transition:transform .2s var(--ease)}.wkh-btn:hover .ar{transform:translateX(3px)}
+.wkh-btn:focus-visible,.wkh-nav button:focus-visible{outline:2px solid #8FCBDF;outline-offset:3px}
+
+@media (max-width:900px){
+  .wkh{padding:64px 0 72px}
+  .wkh-h2{font-size:30px}
+  .wkh-lens{margin:32px calc(-1 * var(--pad-x)) 0}
+  .wkh-track{border-radius:0;aspect-ratio:3/2}.wkh-lens::after{border-radius:0}
+  .wkh-cap{padding:16px var(--pad-x) 0;grid-template-columns:auto minmax(0,1fr) auto;row-gap:6px;min-height:0;align-items:start}
+  .wkh-big{font-size:44px;grid-row:1/3}
+  .wkh-ctr{grid-column:2;grid-row:2;padding:0}
+  .wkh-nav{grid-column:3;grid-row:1/3;align-self:start}
+  .wkh-nav button{width:36px;height:36px}
+  .wkh-sheets{margin-top:16px}
+  .wkh-row{grid-template-columns:minmax(0,1fr);row-gap:10px;padding:12px 0}
+  .wkh-lab{grid-template-columns:auto auto minmax(0,1fr);align-items:baseline}
+  .wkh-lab .k{grid-column:3;margin:0;text-align:right}
+  .wkh-strip{margin:-3px calc(-1 * var(--pad-x));padding:3px var(--pad-x);scroll-padding-inline:var(--pad-x)}
+  .wkh-th{flex-basis:96px}
+  .wkh-cta{justify-content:stretch}
+  .wkh-btn{width:100%;justify-content:center;height:auto;padding:15px 20px;text-align:center;line-height:1.4}
+}
+@media (prefers-reduced-motion:reduce){
+  .wkh-track{scroll-behavior:auto}
+  .wkh-big span,.wkh-text,.wkh-dir,.wkh-th,.wkh-th img,.wkh-btn .ar,.wkh-nav button,.wkh-lab{transition:none!important}
+}
