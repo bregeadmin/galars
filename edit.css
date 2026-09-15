@@ -1,0 +1,54 @@
+/* Режим правки (?edit). Грузится только редактору. */
+html.ed-on [data-e]:not(img):not([data-kind="slot"]) {
+  outline: 1px dashed rgba(31,111,139,.45); outline-offset: 3px; border-radius: 2px;
+  cursor: text; transition: outline-color .12s linear, background-color .12s linear;
+  min-height: 1em;
+}
+html.ed-on [data-e]:not(img):not([data-kind="slot"]):hover { outline-color: var(--steel, #1F6F8B); }
+html.ed-on [data-e]:not(img):not([data-kind="slot"]):focus { outline: 2px solid var(--steel, #1F6F8B); background: rgba(31,111,139,.06); }
+html.ed-on [data-e].ed-changed { outline-color: var(--bronze, #B87333) !important; }
+html.ed-on [data-e]:empty::before { content: '…'; color: rgba(31,42,51,.35); }
+
+html.ed-on img[data-e], html.ed-on [data-kind="slot"] { outline: 1px dashed rgba(31,111,139,.45); outline-offset: 3px; cursor: copy; position: relative; }
+html.ed-on img[data-e].ed-over, html.ed-on [data-kind="slot"].ed-over { outline: 3px solid var(--steel, #1F6F8B); outline-offset: 0; }
+html.ed-on img[data-e].ed-changed, html.ed-on [data-kind="slot"].ed-changed { outline-color: var(--bronze, #B87333) !important; }
+
+/* в режиме правки ссылки не ведут никуда — их текст можно править */
+html.ed-on a[href] { cursor: text; }
+
+/* полоска внизу */
+.ed-bar {
+  position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 9999;
+  display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 18px;
+  background: var(--graphite, #1F2A33); color: #fff; border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(31,42,51,.15), 0 16px 40px rgba(31,42,51,.35);
+  font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.ed-bar .ed-count { color: rgba(255,255,255,.7); }
+.ed-bar .ed-count b { color: #fff; font-weight: 500; }
+.ed-bar button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: #fff; background: rgba(255,255,255,.08); border: 0; border-radius: 3px; padding: 9px 14px; cursor: pointer; transition: background-color .1s linear; }
+.ed-bar button:hover { background: rgba(255,255,255,.16); }
+.ed-bar button:disabled { opacity: .4; cursor: default; }
+.ed-bar button.ed-primary { background: var(--steel, #1F6F8B); }
+.ed-bar button.ed-primary:hover { background: #185B72; }
+.ed-bar .ed-status { color: rgba(255,255,255,.7); text-transform: none; letter-spacing: 0; font-family: 'Onest', system-ui, sans-serif; font-size: 13px; max-width: 360px; white-space: normal; }
+.ed-bar .ed-status.ok { color: #9BD7B5; }
+.ed-bar .ed-status.err { color: #F0A8A0; }
+
+/* окно пароля / сообщения */
+.ed-veil { position: fixed; inset: 0; z-index: 10000; background: rgba(31,42,51,.6); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; }
+.ed-modal { background: #FAFAF7; color: #1F2A33; border-radius: 8px; padding: 28px 28px 24px; width: min(420px, calc(100vw - 32px)); box-shadow: 0 24px 64px rgba(0,0,0,.35); font-family: 'Onest', system-ui, sans-serif; }
+.ed-modal h2 { margin: 0 0 6px; font-family: 'Unbounded', system-ui, sans-serif; font-weight: 600; font-size: 20px; letter-spacing: -.01em; }
+.ed-modal p { margin: 0 0 18px; color: #5C6570; font-size: 14px; line-height: 1.5; }
+.ed-modal input[type="password"] { width: 100%; font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid rgba(31,42,51,.25); border-radius: 4px; background: #fff; }
+.ed-modal input[type="password"]:focus { outline: 2px solid #1F6F8B; outline-offset: 1px; border-color: transparent; }
+.ed-modal .ed-row { display: flex; gap: 10px; margin-top: 14px; align-items: center; }
+.ed-modal button { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; padding: 12px 18px; border: 0; border-radius: 3px; background: #1F6F8B; color: #fff; cursor: pointer; }
+.ed-modal button.ed-ghost { background: transparent; color: #5C6570; }
+.ed-modal .ed-err { color: #B23B2E; font-size: 13px; margin-left: auto; }
+
+/* слот с фото на страницах покрытий (стили самой карточки — в shared.css) */
+html.ed-on .ed-hint { position: fixed; left: 50%; top: 100px; transform: translateX(-50%); z-index: 9998; background: rgba(31,42,51,.9); color: #fff; padding: 8px 14px; border-radius: 4px; font: 12px/1.4 'Onest', system-ui, sans-serif; pointer-events: none; }
+
+@media (max-width: 900px) { .ed-bar { left: 12px; right: 12px; transform: none; flex-wrap: wrap; } }
