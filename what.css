@@ -210,4 +210,4 @@
 .pl.b3d::before,.pl.b3d::after,.pl.b3d .cl,.pl.b3d .lvl,.pl.b3d .gl,.pl.b3d .hole,.pl.b3d .stamp{display:none}
 .pl.b3d .b3d-canvas{position:absolute;left:-25%;top:-9%;width:150%;height:118%;pointer-events:none;filter:drop-shadow(0 18px 16px rgba(31,42,51,.32))}
 .dark .pl.b3d .b3d-canvas{filter:drop-shadow(0 20px 18px rgba(0,0,0,.55))}
-.hang:has(.pl.b3d){transform:rotate(0deg)!important;filter:none}
+.hang:has(.pl.b3d){transform:rotate(7deg)!important;filter:none} /* болт висит с наклоном: верх у крюка, низ уходит влево */
