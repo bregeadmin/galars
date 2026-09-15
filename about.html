@@ -95,7 +95,7 @@
   }
 
   .facts-block {
-    background: var(--graphite); color: #fff;
+    background: var(--graphite); color: var(--card);
     border-radius: 8px;
     padding: 64px;
     display: grid;
@@ -110,17 +110,17 @@
     background-image: url('molecule.svg');
     background-size: 220px 220px;
     background-repeat: repeat;
-    opacity: 0.04; color: #fff; pointer-events: none;
+    opacity: 0.04; color: var(--card); pointer-events: none;
   }
   .facts-block .fact-cell { position: relative; }
   .facts-block .fact-num {
     font-family: var(--f-display); font-weight: 600;
     font-size: 56px; line-height: 1; letter-spacing: -0.02em;
   }
-  .facts-block .fact-num .unit { font-size: 22px; color: rgba(255,255,255,0.5); margin-left: 4px; font-weight: 500; }
+  .facts-block .fact-num .unit { font-size: 22px; color: rgba(219,211,202,0.5); margin-left: 4px; font-weight: 500; }
   .facts-block .fact-lbl {
     font-family: var(--f-mono); font-size: 12px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(219,211,202,0.55);
     margin-top: 12px; letter-spacing: 0.08em; text-transform: uppercase;
   }
 
@@ -168,7 +168,7 @@
 
   .cta-row {
     margin-top: 80px;
-    background: var(--steel); color: #fff;
+    background: var(--steel); color: var(--card);
     border-radius: 8px;
     padding: 56px;
     display: grid;
@@ -177,7 +177,7 @@
     align-items: center;
   }
   .cta-row h3 { margin: 0 0 8px; font-family: var(--f-display); font-weight: 600; font-size: 28px; }
-  .cta-row p { margin: 0; color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.5; }
+  .cta-row p { margin: 0; color: rgba(219,211,202,0.75); font-size: 16px; line-height: 1.5; }
 
   @media (max-width: 900px) {
     .about-intro, .who-block { grid-template-columns: 1fr; gap: 16px; margin-bottom: 64px; }
@@ -281,8 +281,8 @@
     <h1 data-e="about#1">Наследие «Арсенала», современный цех.</h1>
     <p class="lead" data-e="about#2">ГАЛАРС вырос из гальванического цеха ленинградского завода «Арсенал» — производства с трёхвековой инженерной репутацией. Сегодня — самостоятельное гальваническое производство в Санкт-Петербурге. 40+ видов покрытий и обработок, работа по КД заказчика для предприятий ВПК, авиации, судостроения и приборостроения.</p>
     <svg class="accent-diagonal on-dark" viewBox="0 0 280 64" fill="none" aria-hidden="true">
-      <line x1="0" y1="50" x2="260" y2="10" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
-      <line x1="8" y1="60" x2="276" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+      <line x1="0" y1="50" x2="260" y2="10" stroke="rgba(219,211,202,0.25)" stroke-width="1"/>
+      <line x1="8" y1="60" x2="276" y2="20" stroke="rgba(219,211,202,0.15)" stroke-width="1"/>
       <circle cx="60" cy="42" r="4" fill="currentColor"/>
       <circle cx="140" cy="30" r="4" fill="currentColor"/>
       <circle cx="220" cy="18" r="4" fill="currentColor"/>

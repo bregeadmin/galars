@@ -7,7 +7,7 @@
    12 мест: 8 фото + 4 слота .ph-card (видны только в html.ed-on). Скрипт читает фото из
    <img src> и подписи из текста — после замены в режиме правки всё живёт.
    ===================================================================== */
-.wk2{position:relative;background:var(--graphite);color:#fff;padding:88px 0 96px;--ease:cubic-bezier(.32,.72,0,1);font-variant-numeric:tabular-nums}
+.wk2{position:relative;background:var(--graphite);color: var(--card);padding:88px 0 96px;--ease:cubic-bezier(.32,.72,0,1);font-variant-numeric:tabular-nums}
 .wk2 :where(h2,p,figure,figcaption){margin:0}
 .wk2 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
 .wk2 img{display:block;max-width:100%}
@@ -17,7 +17,7 @@
 .wk2-rail{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8FCBDF;display:flex;gap:12px;align-items:flex-start;padding-top:12px}
 .wk2-rail::before{content:"";width:32px;height:1px;background:#8FCBDF;margin-top:9px;flex:none}
 .wk2-h2{font-family:var(--f-display);font-weight:600;font-size:44px;line-height:1.08;letter-spacing:-.02em}
-.wk2-lead{max-width:600px;margin-top:16px;font-size:16px;line-height:1.55;color:rgba(255,255,255,.72)}
+.wk2-lead{max-width:600px;margin-top:16px;font-size:16px;line-height:1.55;color:rgba(219,211,202,.72)}
 .wk2-tag{margin-top:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8FCBDF}
 
 /* — лупа: один кадр на всю ширину контейнера; лента кадров едет горизонтально — */
@@ -27,24 +27,24 @@
 .wk2-track::-webkit-scrollbar{display:none}
 .wk2-track figure{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;position:relative;height:100%}
 .wk2-track img{width:100%;height:100%;object-fit:cover}
-.wk2-lens::after{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none}
+.wk2-lens::after{content:"";position:absolute;inset:0;border-radius:6px;box-shadow:inset 0 0 0 1px rgba(219,211,202,.08);pointer-events:none}
 /* подпись под лупой: огромный номер кадра — как водяной знак секции «Что делаем», но живой */
 .wk2-cap{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;align-items:baseline;column-gap:24px;padding:20px 0 0;min-height:88px}
-.wk2-num{font-family:var(--f-display);font-weight:300;font-size:72px;line-height:.9;letter-spacing:-.05em;color:#fff;width:1.85ch;position:relative;height:.9em;overflow:hidden}
+.wk2-num{font-family:var(--f-display);font-weight:300;font-size:72px;line-height:.9;letter-spacing:-.05em;color: var(--card);width:1.85ch;position:relative;height:.9em;overflow:hidden}
 .wk2-num span{position:absolute;left:0;top:0;transition:transform .32s var(--ease),opacity .2s linear}
 .wk2-num span.out{transform:translateY(-105%);opacity:0}
 .wk2-num span.in{transform:translateY(105%);opacity:0;transition:none}
-.wk2-text{font-weight:500;font-size:17px;line-height:1.3;color:#fff;transition:opacity .14s linear}
+.wk2-text{font-weight:500;font-size:17px;line-height:1.3;color: var(--card);transition:opacity .14s linear}
 .wk2-text.fade{opacity:0}
-.wk2-ctr{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:rgba(255,255,255,.5);white-space:nowrap}
+.wk2-ctr{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;color:rgba(219,211,202,.5);white-space:nowrap}
 .wk2-nav{display:flex;gap:6px;align-self:center}
-.wk2-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.22);display:grid;place-items:center;color:#fff;transition:border-color .12s linear,background-color .12s linear}
+.wk2-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(219,211,202,.22);display:grid;place-items:center;color: var(--card);transition:border-color .12s linear,background-color .12s linear}
 .wk2-nav button:hover{border-color:#fff}
-.wk2-nav button:active{background:rgba(255,255,255,.1)}
+.wk2-nav button:active{background:rgba(219,211,202,.1)}
 .wk2-nav svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
 /* — контактный лист: лента миниатюр, едет за рукой; текущий кадр в рамке — */
-.wk2-sheet{position:relative;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)}
+.wk2-sheet{position:relative;margin-top:16px;padding-top:16px;border-top:1px solid rgba(219,211,202,.12)}
 .wk2-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;padding:3px 0 6px;margin:0 -3px}
 .wk2-strip::-webkit-scrollbar{display:none}
 .wk2-th{position:relative;flex:0 0 180px;aspect-ratio:3/2;border-radius:3px;overflow:hidden;background:var(--graphite-2);scroll-snap-align:start;outline:1.5px solid transparent;outline-offset:1.5px;transition:outline-color .12s linear}
@@ -52,23 +52,23 @@
 .wk2-th:hover img{opacity:.9}
 .wk2-th.on{outline-color:#fff}
 .wk2-th.on img{opacity:1}
-.wk2-th .wk2-n{position:absolute;left:8px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7)}
+.wk2-th .wk2-n{position:absolute;left:8px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color: var(--card);text-shadow:0 1px 4px rgba(0,0,0,.7)}
 .wk2-th .wk2-c{position:absolute;left:-9999px}                 /* подпись плитки — только для скрипта и читалок; глазу — в лупе */
 .wk2-th:focus-visible{outline-color:#8FCBDF;outline-offset:2px}
 /* слот: посетителю не виден; в режиме правки — место под фото; после заполнения (has-photo) — обычная миниатюра */
-.wk2-th.ph-card{display:none;align-items:center;justify-content:center;text-align:center;outline:1px dashed rgba(255,255,255,.3);outline-offset:-1px;background:transparent;color:rgba(255,255,255,.55);font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px;cursor:pointer}
+.wk2-th.ph-card{display:none;align-items:center;justify-content:center;text-align:center;outline:1px dashed rgba(219,211,202,.3);outline-offset:-1px;background:transparent;color:rgba(219,211,202,.55);font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px;cursor:pointer}
 .wk2-th.ph-card .ph-material{font:inherit;letter-spacing:inherit;color:inherit;margin:0}
 html.ed-on .wk2-th.ph-card:not(.has-photo){display:flex}
 html.ed-on .wk2-th.ph-card:not(.has-photo):hover{outline-color:#8FCBDF;color:#8FCBDF}
 .wk2-th.ph-card.has-photo{display:block;outline:1.5px solid transparent;outline-offset:1.5px;background:var(--graphite-2);padding:0}
 .wk2-th.ph-card.has-photo img{position:absolute;inset:0}
 .wk2-th.ph-card.has-photo .ph-material{position:absolute;left:-9999px}
-html.ed-on .wk2-th:not(.ph-card):hover::after,html.ed-on .wk2-th.has-photo:hover::after{content:"Заменить";position:absolute;right:6px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(31,42,51,.8);padding:4px 8px;border-radius:2px}
+html.ed-on .wk2-th:not(.ph-card):hover::after,html.ed-on .wk2-th.has-photo:hover::after{content:"Заменить";position:absolute;right:6px;top:6px;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color: var(--card);background:rgba(31,42,51,.8);padding:4px 8px;border-radius:2px}
 html.ed-on .wk2-track{pointer-events:none}                       /* в режиме правки лупа не перехватывает клики */
 
-.wk2-note{max-width:640px;margin-top:36px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.55)}
+.wk2-note{max-width:640px;margin-top:36px;font-size:14px;line-height:1.6;color:rgba(219,211,202,.55)}
 .wk2-cta{margin-top:28px}
-.wk2-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:2px;background:var(--steel);color:#fff;font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background-color .12s linear}
+.wk2-btn{display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 24px;border-radius:2px;background:var(--steel);color: var(--card);font-family:var(--f-mono);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background-color .12s linear}
 .wk2-btn:hover{background:#2A84A3}.wk2-btn:active{background:#185B72}
 .wk2-btn .ar{display:inline-block;transition:transform .2s var(--ease)}.wk2-btn:hover .ar{transform:translateX(3px)}
 .wk2-btn:focus-visible,.wk2-nav button:focus-visible{outline:2px solid #8FCBDF;outline-offset:3px}

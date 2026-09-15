@@ -117,8 +117,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 
 .muted { color: var(--fog); }
-.on-dark { color: #fff; }
-.on-dark .muted { color: rgba(255,255,255,0.55); }
+.on-dark { color: var(--card); }
+.on-dark .muted { color: rgba(219,211,202,0.55); }
 
 /* — Кнопки — техничные, без подпрыгивания на hover — */
 .btn {
@@ -148,7 +148,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .btn:active { transform: translateY(1px); }
 .btn-primary {
   background: var(--steel);
-  color: #fff;
+  color: var(--card);
   border-color: var(--steel);
 }
 .btn-primary:hover {
@@ -160,8 +160,8 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   border-color: currentColor;
   color: var(--graphite);
 }
-.btn-secondary:hover { background: var(--graphite); color: #fff; border-color: var(--graphite); }
-.btn-secondary.on-dark { color: #fff; }
+.btn-secondary:hover { background: var(--graphite); color: var(--card); border-color: var(--graphite); }
+.btn-secondary.on-dark { color: var(--card); }
 .btn-secondary.on-dark:hover { background: var(--card); color: var(--graphite); border-color: var(--card); }
 
 /* стрелочные ссылки */
@@ -191,7 +191,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   border-radius: 24px;
   background: var(--steel-12);
   border: 1px solid var(--steel-50);
-  color: #fff;
+  color: var(--card);
   font-family: var(--f-text);
   font-weight: 500;
   font-size: 14px;
@@ -207,7 +207,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .chip.is-active[data-coat="chrome"] { background: var(--chrome); border-color: var(--chrome); color: var(--graphite); }
 .chip.is-active[data-coat="nickel"] { background: var(--nickel); border-color: var(--nickel); color: var(--graphite); }
 .chip.is-active[data-coat="silver"] { background: var(--silver); border-color: var(--silver); color: var(--graphite); }
-.chip.is-active[data-coat="brass"]  { background: var(--brass);  border-color: var(--brass);  color: #fff; }
+.chip.is-active[data-coat="brass"]  { background: var(--brass);  border-color: var(--brass);  color: var(--card); }
 .chip.is-active[data-coat="gold"]   { background: var(--gold);   border-color: var(--gold);   color: var(--graphite); }
 
 /* — Header — */
@@ -220,12 +220,12 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   justify-content: space-between;
   padding: 20px var(--pad-x);
   background: transparent;
-  color: #fff;
+  color: var(--card);
 }
 .site-header.is-condensed {
   background: rgba(31,42,51,0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(219,211,202,0.06);
 }
 .site-header.on-light {
   color: var(--graphite);
@@ -262,10 +262,10 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 
 /* — Утилиты секций — */
 .section { padding: 120px 0; }
-.section-dark { background: var(--graphite); color: #fff; }
+.section-dark { background: var(--graphite); color: var(--card); }
 .section-light { background: var(--warm-white); }
 .section-white { background: var(--card); }
-.section-steel { background: var(--steel); color: #fff; }
+.section-steel { background: var(--steel); color: var(--card); }
 .section-eyebrow {
   font-family: var(--f-mono);
   font-size: 13px;
@@ -281,9 +281,9 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle 1px at 12% 18%, rgba(255,255,255,0.5) 0, transparent 2px),
-    radial-gradient(circle 1px at 24% 32%, rgba(255,255,255,0.4) 0, transparent 2px),
-    radial-gradient(circle 1px at 38% 12%, rgba(255,255,255,0.4) 0, transparent 2px);
+    radial-gradient(circle 1px at 12% 18%, rgba(219,211,202,0.5) 0, transparent 2px),
+    radial-gradient(circle 1px at 24% 32%, rgba(219,211,202,0.4) 0, transparent 2px),
+    radial-gradient(circle 1px at 38% 12%, rgba(219,211,202,0.4) 0, transparent 2px);
   opacity: 0.06;
   pointer-events: none;
 }

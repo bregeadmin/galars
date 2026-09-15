@@ -15,12 +15,12 @@
 .film .fr img{width:100%;height:100%;object-fit:cover;filter:brightness(.97);transition:filter .3s linear;-webkit-user-drag:none}
 .film .fr:hover img{filter:brightness(1.03)}
 /* шпула — маркер направления */
-.film .spool{flex:0 0 auto;width:220px;height:520px;border-radius:4px;background:var(--graphite);color:#fff;scroll-snap-align:start;padding:28px 24px;display:flex;flex-direction:column}
+.film .spool{flex:0 0 auto;width:220px;height:520px;border-radius:4px;background:var(--graphite);color: var(--card);scroll-snap-align:start;padding:28px 24px;display:flex;flex-direction:column}
 .film .spool .ix{font-family:var(--f-display);font-weight:300;font-size:88px;line-height:.9;letter-spacing:-.05em}
 .film .spool .nm{margin-top:auto;font-family:var(--f-display);font-weight:600;font-size:20px;line-height:1.2;letter-spacing:-.01em}
-.film .spool .ct{margin-top:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.film .spool .ct{margin-top:10px;font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(219,211,202,.5)}
 .film .spool .ln{margin-top:18px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#8FCBDF;border-bottom:1px solid rgba(143,203,223,.5);padding-bottom:3px;align-self:flex-start}
-.film .spool-2{background:var(--steel)}.film .spool-2 .ln{color:#fff;border-bottom-color:rgba(255,255,255,.5)}.film .spool-2 .ct{color:rgba(255,255,255,.7)}
+.film .spool-2{background:var(--steel)}.film .spool-2 .ln{color: var(--card);border-bottom-color:rgba(219,211,202,.5)}.film .spool-2 .ct{color:rgba(219,211,202,.7)}
 /* индикатор положения */
 .rail{max-width:calc(var(--max-w) + 2*var(--pad-x));margin:8px auto 0;padding:0 var(--pad-x);display:flex;align-items:center;gap:20px}
 .rail .bar{flex:1;height:1px;background:rgba(31,42,51,.15);position:relative}

@@ -29,11 +29,11 @@
   .page-banner-pattern { background-image: url('molecule.svg'); }
   .footer .pattern { background-image: url('molecule.svg'); }
 
-  .specs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,0.10); }
+  .specs-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; padding-top: 56px; border-top: 1px solid rgba(219,211,202,0.10); }
   .spec { display: grid; gap: 8px; }
-  .spec .label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
-  .spec .value { font-family: var(--f-display); font-weight: 600; font-size: 20px; line-height: 1.25; color: #fff; }
-  .spec .sub { font-family: var(--f-mono); font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.45; }
+  .spec .label { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(219,211,202,0.5); }
+  .spec .value { font-family: var(--f-display); font-weight: 600; font-size: 20px; line-height: 1.25; color: var(--card); }
+  .spec .sub { font-family: var(--f-mono); font-size: 12px; color: rgba(219,211,202,0.6); line-height: 1.45; }
 
   .content-block { display: grid; grid-template-columns: 220px 1fr; gap: 64px; margin-bottom: 80px; }
   .content-block .num { font-family: var(--f-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); }
@@ -61,9 +61,9 @@
   .faq-list details[open] summary::after { content: "−"; }
   .faq-list .a { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: var(--graphite); }
 
-  .cta-row { margin-top: 80px; background: var(--steel); color: #fff; border-radius: 8px; padding: 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
+  .cta-row { margin-top: 80px; background: var(--steel); color: var(--card); border-radius: 8px; padding: 56px; display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; }
   .cta-row h3 { margin: 0 0 8px; font-family: var(--f-display); font-weight: 600; font-size: 28px; line-height: 1.15; }
-  .cta-row p { margin: 0; color: rgba(255,255,255,0.75); font-size: 16px; line-height: 1.5; }
+  .cta-row p { margin: 0; color: rgba(219,211,202,0.75); font-size: 16px; line-height: 1.5; }
   .cta-row .cta-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
   @media (max-width: 900px) {

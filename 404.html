@@ -12,7 +12,7 @@
 <style>
   body {
     background: var(--graphite);
-    color: #fff;
+    color: var(--card);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,7 @@
     background-image: url('/molecule.svg');
     background-size: 200px 200px;
     background-repeat: repeat;
-    opacity: 0.04; color: #fff; pointer-events: none;
+    opacity: 0.04; color: var(--card); pointer-events: none;
   }
   .nfp-inner { position: relative; max-width: 640px; }
   .nfp-num {
@@ -43,11 +43,11 @@
     color: var(--steel);
     margin-bottom: 24px;
   }
-  .nfp-num .center { color: rgba(255,255,255,0.85); }
+  .nfp-num .center { color: rgba(219,211,202,0.85); }
   .nfp-eyebrow {
     font-family: var(--f-mono); font-size: 12px;
     letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: rgba(219,211,202,0.55);
     margin-bottom: 24px;
   }
   .nfp-title {
@@ -58,7 +58,7 @@
   }
   .nfp-sub {
     font-size: 17px; line-height: 1.5;
-    color: rgba(255,255,255,0.7);
+    color: rgba(219,211,202,0.7);
     max-width: 480px;
     margin: 0 auto 40px;
   }
@@ -69,7 +69,7 @@
   .nfp-mol {
     width: 120px; height: 120px;
     margin: 0 auto 32px;
-    color: rgba(255,255,255,0.25);
+    color: rgba(219,211,202,0.25);
     animation: spin 12s linear infinite;
   }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -77,13 +77,13 @@
   .nfp-links {
     margin-top: 64px;
     padding-top: 32px;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(219,211,202,0.08);
     display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
     font-family: var(--f-mono); font-size: 12px;
     letter-spacing: 0.06em; text-transform: uppercase;
   }
   .nfp-links a {
-    color: rgba(255,255,255,0.55);
+    color: rgba(219,211,202,0.55);
     transition: color .2s;
   }
   .nfp-links a:hover { color: var(--steel); }

@@ -37,17 +37,17 @@
 
   table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
   th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid rgba(31,42,51,0.1); vertical-align: top; }
-  th { background: var(--graphite); color: #fff; font-family: var(--f-display); font-weight: 600; font-size: 13px; }
+  th { background: var(--graphite); color: var(--card); font-family: var(--f-display); font-weight: 600; font-size: 13px; }
   tbody tr:nth-child(even) { background: rgba(31,42,51,0.02); }
 
   .badge { display: inline-block; font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-right: 6px; }
-  .badge.crit { background: #C33; color: #fff; }
-  .badge.high { background: var(--bronze); color: #fff; }
-  .badge.med  { background: var(--steel); color: #fff; }
+  .badge.crit { background: #C33; color: var(--card); }
+  .badge.high { background: var(--bronze); color: var(--card); }
+  .badge.med  { background: var(--steel); color: var(--card); }
   .badge.low  { background: rgba(31,42,51,0.15); color: var(--graphite); }
-  .badge.new  { background: #2A7B5C; color: #fff; }
-  .badge.rm   { background: rgba(31,42,51,0.6); color: #fff; }
-  .badge.done { background: #2A7B5C; color: #fff; }
+  .badge.new  { background: #2A7B5C; color: var(--card); }
+  .badge.rm   { background: rgba(31,42,51,0.6); color: var(--card); }
+  .badge.done { background: #2A7B5C; color: var(--card); }
   .phase.is-done { border-color: #2A7B5C; }
   .phase .done-note { font-size: 14px; color: #2A7B5C; margin: 0 0 10px; font-weight: 600; }
 
@@ -100,11 +100,11 @@
 </div>
 
 <!-- ============ TL;DR ============ -->
-<div style="background:#1F2A33;color:#fff;border-radius:8px;padding:24px 28px;margin:0 0 40px;">
+<div style="background:#1F2A33;color: var(--card);border-radius:8px;padding:24px 28px;margin:0 0 40px;">
   <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#B87333;margin-bottom:8px;">Обновление 10 августа 2026</div>
   <div style="font-family:'Unbounded',sans-serif;font-weight:600;font-size:20px;line-height:1.25;margin-bottom:8px;">Этот план выполнен. Отчёт — на отдельной странице</div>
-  <p style="margin:0 0 14px;font-size:15px;line-height:1.55;color:rgba(255,255,255,.7);max-width:680px;">Здесь остался исходный перечень замечаний. Что по каждому из них сделано, что решено иначе и каких данных ещё ждём от вас — смотрите в отчёте.</p>
-  <a href="status.html" style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#fff;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;">Что просили и что сделано →</a>
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.55;color:rgba(219,211,202,.7);max-width:680px;">Здесь остался исходный перечень замечаний. Что по каждому из них сделано, что решено иначе и каких данных ещё ждём от вас — смотрите в отчёте.</p>
+  <a href="status.html" style="display:inline-block;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color: var(--card);border-bottom:1px solid rgba(219,211,202,.4);padding-bottom:3px;">Что просили и что сделано →</a>
 </div>
 <h2 id="tldr">1. Итог одной строкой</h2>
 <div class="callout critical">

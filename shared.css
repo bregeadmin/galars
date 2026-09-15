@@ -6,13 +6,13 @@
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px var(--pad-x);
   background: transparent;
-  color: #fff;
+  color: var(--card);
   transition: background .2s ease, color .2s ease, border-color .2s ease;
 }
 .site-header.is-condensed {
   background: rgba(31,42,51,0.92);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(219,211,202,0.06);
 }
 .site-header.on-light {
   color: var(--graphite);
@@ -125,30 +125,30 @@
 .drawer-panel {
   position: absolute; right: 0; top: 0; bottom: 0;
   width: 80%; max-width: 360px;
-  background: var(--graphite); color: #fff;
+  background: var(--graphite); color: var(--card);
   padding: 32px 28px;
   overflow-y: auto;
   box-shadow: -16px 0 48px rgba(0,0,0,0.4);
 }
 .drawer-head { display: flex; justify-content: space-between; align-items: flex-start; }
 .drawer-head .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 28px; letter-spacing: 0.08em; }
-.drawer-head .galars-sub { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.drawer-head .galars-sub { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; color: rgba(219,211,202,0.5); margin-top: 4px; }
 .drawer-close {
   width: 36px; height: 36px; border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: transparent; color: #fff; cursor: pointer;
+  border: 1px solid rgba(219,211,202,0.2);
+  background: transparent; color: var(--card); cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px; line-height: 1;
 }
 .drawer-nav { margin-top: 48px; display: grid; gap: 0; }
 .drawer-nav a {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 20px 0; border-bottom: 1px solid rgba(219,211,202,0.08);
   font-family: var(--f-display); font-weight: 500; font-size: 22px;
-  color: #fff;
+  color: var(--card);
 }
-.drawer-nav a .n { font-family: var(--f-mono); font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; margin-right: 14px; }
-.drawer-nav a .arrow { color: rgba(255,255,255,0.4); }
+.drawer-nav a .n { font-family: var(--f-mono); font-size: 11px; color: rgba(219,211,202,0.4); letter-spacing: 0.08em; margin-right: 14px; }
+.drawer-nav a .arrow { color: rgba(219,211,202,0.4); }
 .drawer-contact { margin-top: 40px; }
 .drawer-contact a {
   display: flex; align-items: center; gap: 12px; padding: 10px 0;
@@ -159,7 +159,7 @@
 /* — Универсальная шапка-баннер для внутренних страниц — */
 .page-banner {
   position: relative;
-  background: var(--graphite); color: #fff;
+  background: var(--graphite); color: var(--card);
   padding: 200px var(--pad-x) 100px;
   overflow: hidden;
 }
@@ -174,7 +174,7 @@
   background-image: url('molecule.svg');
   background-size: 220px 220px;
   background-repeat: repeat;
-  opacity: 0.05; color: #fff; pointer-events: none;
+  opacity: 0.05; color: var(--card); pointer-events: none;
 }
 .page-banner-inner {
   position: relative; max-width: var(--max-w); margin: 0 auto;
@@ -182,11 +182,11 @@
 .page-banner .breadcrumb {
   font-family: var(--f-mono); font-size: 12px;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(219,211,202,0.55);
   margin-bottom: 32px;
 }
-.page-banner .breadcrumb a { color: rgba(255,255,255,0.55); }
-.page-banner .breadcrumb a:hover { color: #fff; }
+.page-banner .breadcrumb a { color: rgba(219,211,202,0.55); }
+.page-banner .breadcrumb a:hover { color: var(--card); }
 .page-banner .breadcrumb .sep { margin: 0 10px; opacity: 0.4; }
 .page-banner h1 {
   margin: 0;
@@ -196,16 +196,16 @@
 }
 .page-banner .lead {
   margin-top: 28px;
-  font-size: 19px; color: rgba(255,255,255,0.72);
+  font-size: 19px; color: rgba(219,211,202,0.72);
   line-height: 1.5; max-width: 720px;
 }
 .page-banner .meta-row {
   display: flex; gap: 32px; flex-wrap: wrap;
   margin-top: 48px;
   font-family: var(--f-mono); font-size: 13px;
-  color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em;
+  color: rgba(219,211,202,0.6); text-transform: uppercase; letter-spacing: 0.08em;
 }
-.page-banner .meta-row .v { color: #fff; }
+.page-banner .meta-row .v { color: var(--card); }
 
 /* — Общий контейнер контента — */
 .page-content {
@@ -215,13 +215,13 @@
 .page-content-inner { max-width: var(--max-w); margin: 0 auto; }
 
 /* — FOOTER — */
-.footer { background: var(--graphite); color: #fff; padding: 80px var(--pad-x) 40px; position: relative; overflow: hidden; }
+.footer { background: var(--graphite); color: var(--card); padding: 80px var(--pad-x) 40px; position: relative; overflow: hidden; }
 .footer .pattern {
   position: absolute; inset: 0;
   background-image: url('molecule.svg');
   background-size: 220px 220px;
   background-repeat: repeat;
-  opacity: 0.04; color: #fff; pointer-events: none;
+  opacity: 0.04; color: var(--card); pointer-events: none;
 }
 .footer-inner { position: relative; max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: auto 1fr auto; gap: 80px; align-items: flex-start; }
 .footer .galars-stamp { font-family: var(--f-display); font-weight: 700; font-size: 36px; letter-spacing: 0.08em; }
@@ -229,26 +229,26 @@
 .footer .stamp-sub {
   font-family: var(--f-mono); font-size: 11px;
   letter-spacing: 0.08em; text-transform: uppercase;
-  color: rgba(255,255,255,0.45); margin-top: 8px;
+  color: rgba(219,211,202,0.45); margin-top: 8px;
 }
 .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; }
 .footer-col .h {
   font-family: var(--f-mono); font-size: 12px;
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.45); margin-bottom: 16px;
+  color: rgba(219,211,202,0.45); margin-bottom: 16px;
 }
 .footer-col ul { display: grid; gap: 10px; }
-.footer-col a { font-family: var(--f-mono); font-size: 13px; color: rgba(255,255,255,0.78); }
+.footer-col a { font-family: var(--f-mono); font-size: 13px; color: rgba(219,211,202,0.78); }
 .footer-col a:hover { color: var(--steel); }
 .footer-social { display: flex; flex-direction: column; gap: 12px; }
-.footer-social a { font-family: var(--f-mono); font-size: 13px; color: rgba(255,255,255,0.78); }
+.footer-social a { font-family: var(--f-mono); font-size: 13px; color: rgba(219,211,202,0.78); }
 .footer-bottom {
   position: relative;
   max-width: var(--max-w); margin: 64px auto 0;
   display: flex; justify-content: space-between;
-  padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px; border-top: 1px solid rgba(219,211,202,0.08);
   font-family: var(--f-mono); font-size: 12px;
-  color: rgba(255,255,255,0.4); letter-spacing: 0.04em;
+  color: rgba(219,211,202,0.4); letter-spacing: 0.04em;
 }
 
 @media (max-width: 1100px) {
@@ -288,13 +288,13 @@
   display: flex; align-items: center; gap: 12px;
   width: 100%;
   margin-top: 32px; padding: 14px 0;
-  border-top: 1px solid rgba(255,255,255,0.12);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  color: rgba(255,255,255,0.75);
+  border-top: 1px solid rgba(219,211,202,0.12);
+  border-bottom: 1px solid rgba(219,211,202,0.12);
+  color: rgba(219,211,202,0.75);
   font-family: var(--f-text); font-size: 15px;
   text-align: left;
 }
-.drawer-search:hover { color: #fff; }
+.drawer-search:hover { color: var(--card); }
 
 .search-overlay {
   position: fixed; inset: 0; z-index: 200;
@@ -383,4 +383,4 @@
 .ph-card.has-photo { position: relative; justify-content: flex-end; align-items: stretch; text-align: left; }
 .ph-card.has-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .ph-card.has-photo .ph-mark, .ph-card.has-photo .ph-caption, .ph-card.has-photo .ph-coat { display: none; }
-.ph-card.has-photo .ph-material { position: relative; z-index: 1; margin: 0; padding: 40px 14px 12px; color: #fff; background: linear-gradient(180deg, rgba(31,42,51,0) 0%, rgba(31,42,51,.85) 100%); text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+.ph-card.has-photo .ph-material { position: relative; z-index: 1; margin: 0; padding: 40px 14px 12px; color: var(--card); background: linear-gradient(180deg, rgba(31,42,51,0) 0%, rgba(31,42,51,.85) 100%); text-shadow: 0 1px 6px rgba(0,0,0,.4); }
