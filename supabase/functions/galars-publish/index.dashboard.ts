@@ -197,9 +197,16 @@ Deno.serve(async (req) => {
       const url = prefix + path;
       if (e.tag === 'img') {
         let open = src.slice(e.openStart, e.openEnd);
+        const oldSrc = /\ssrc\s*=\s*"([^"]*)"/.exec(open)?.[1] || '';
         open = setAttr(open, 'src', url); open = stripAttr(open, 'srcset');
         if (im.w && im.h) { open = setAttr(open, 'width', String(im.w)); open = setAttr(open, 'height', String(im.h)); }
         src = src.slice(0, e.openStart) + open + src.slice(e.openEnd);
+        // \u043f\u043b\u0438\u0442\u043a\u0430 \u00ab\u0420\u0430\u0431\u043e\u0442\u00bb: \u0443 \u043a\u043d\u043e\u043f\u043a\u0438-\u043e\u0431\u0451\u0440\u0442\u043a\u0438 \u043b\u0435\u0436\u0438\u0442 \u0430\u0434\u0440\u0435\u0441 \u0431\u043e\u043b\u044c\u0448\u043e\u0439 \u0432\u0435\u0440\u0441\u0438\u0438 \u0434\u043b\u044f \u043b\u0430\u0439\u0442\u0431\u043e\u043a\u0441\u0430 \u2014 \u043e\u0431\u043d\u043e\u0432\u043b\u044f\u0435\u043c \u0438 \u0435\u0433\u043e
+        if (oldSrc) {
+          const from = Math.max(0, e.openStart - 400);
+          const before = src.slice(from, e.openStart).replace(new RegExp('data-full="' + oldSrc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"'), 'data-full="' + url + '"');
+          src = src.slice(0, from) + before + src.slice(e.openStart);
+        }
       } else { // \u0441\u043b\u043e\u0442 .ph-card
         let open = addClass(src.slice(e.openStart, e.openEnd), 'has-photo');
         const alt = sanitize(String(im.alt || '')).replace(/<[^>]+>/g, '');

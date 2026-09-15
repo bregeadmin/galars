@@ -197,9 +197,16 @@ Deno.serve(async (req) => {
       const url = prefix + path;
       if (e.tag === 'img') {
         let open = src.slice(e.openStart, e.openEnd);
+        const oldSrc = /\ssrc\s*=\s*"([^"]*)"/.exec(open)?.[1] || '';
         open = setAttr(open, 'src', url); open = stripAttr(open, 'srcset');
         if (im.w && im.h) { open = setAttr(open, 'width', String(im.w)); open = setAttr(open, 'height', String(im.h)); }
         src = src.slice(0, e.openStart) + open + src.slice(e.openEnd);
+        // плитка «Работ»: у кнопки-обёртки лежит адрес большой версии для лайтбокса — обновляем и его
+        if (oldSrc) {
+          const from = Math.max(0, e.openStart - 400);
+          const before = src.slice(from, e.openStart).replace(new RegExp('data-full="' + oldSrc.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '"'), 'data-full="' + url + '"');
+          src = src.slice(0, from) + before + src.slice(e.openStart);
+        }
       } else { // слот .ph-card
         let open = addClass(src.slice(e.openStart, e.openEnd), 'has-photo');
         const alt = sanitize(String(im.alt || '')).replace(/<[^>]+>/g, '');

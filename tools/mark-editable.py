@@ -16,6 +16,7 @@ import re, pathlib, sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TEXT_TAGS = {'h1','h2','h3','h4','p','li','dt','dd','figcaption','td','th','summary'}
 SKIP_CONTAINERS = {'header','nav','footer','script','style','template','svg','noscript','button','select','textarea'}
+IMG_SKIP = {'header','nav','footer','script','style','template','svg','noscript'}   # картинки внутри кнопок (плитки «Работ») — тоже редактируем
 VOID = {'area','base','br','col','embed','hr','img','input','link','meta','param','source','track','wbr'}
 SERVICE_PAGES = {'plan.html','status.html','site-map.html','404.html'}
 
@@ -67,8 +68,11 @@ def mark(page: pathlib.Path):
     inserts = []  # (pos, text)
     # для проверки «внутри контейнера» — список интервалов skip-контейнеров
     skip_spans = [(tokens[i].start(), close_of[i].end()) for i in close_of if tokens[i].group(2).lower() in SKIP_CONTAINERS]
+    img_skip_spans = [(tokens[i].start(), close_of[i].end()) for i in close_of if tokens[i].group(2).lower() in IMG_SKIP]
     def in_skip(pos):
         return any(a <= pos < b for a, b in skip_spans)
+    def in_img_skip(pos):
+        return any(a <= pos < b for a, b in img_skip_spans)
 
     # интервалы текстовых кандидатов, чтобы помечать только внутренние
     cand = []
@@ -98,7 +102,7 @@ def mark(page: pathlib.Path):
     for i, m in enumerate(tokens):
         if m.group(1) or m.group(2).lower() != 'img': continue
         attrs = m.group(3)
-        if marked_already(attrs) or in_skip(m.start()) or has_attr(attrs, 'id'): continue
+        if marked_already(attrs) or in_img_skip(m.start()) or has_attr(attrs, 'id'): continue
         s = attr(attrs, 'src')
         if not s or '/logo/' in s or 'favicon' in s or s.endswith('.svg') or 'apple-touch' in s: continue
         counter += 1
