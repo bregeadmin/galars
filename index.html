@@ -656,7 +656,7 @@
   .geo-map .city:hover .d,
   .geo-map .city.is-hi .d { fill: var(--bronze); }
   .geo-map .city:hover .lbl,
-  .geo-map .city.is-hi .lbl { fill: #fff; }
+  .geo-map .city.is-hi .lbl { fill: var(--card); }
   .geo-map .hub .d { fill: var(--steel); }
   .geo-map .hub .ring { fill: none; stroke: var(--steel); stroke-width: 1; opacity: 0.45; }
   .geo-map .hub .lbl { fill: #fff; font-weight: 600; font-size: 14px; }
@@ -1584,7 +1584,7 @@
     </div>
 
     <div class="geo-map-wrap">
-      <svg class="geo-map" id="geoMap" viewBox="0 0 1200 460" role="img" aria-label="Схема городов, из которых поступают детали на покрытие: Санкт-Петербург, Мурманск, Архангельск, Великий Новгород, Подольск, Могилёв, Белгород, Саранск, Нижнекамск, Омск, Новосибирск, Томск">
+      <svg class="geo-map" id="geoMap" viewBox="0 0 1200 460" role="img" aria-label="Схема городов, из которых поступают детали на покрытие: Санкт-Петербург, Мурманск, Архангельск, Северодвинск, Великий Новгород, Подольск, Могилёв, Белгород, Нижний Новгород, Саранск, Нижнекамск, Омск, Новосибирск, Томск">
         <!-- сетка координат: широта и долгота, без условных границ -->
         <g class="grat" aria-hidden="true">
           <line x1="268" y1="30" x2="268" y2="430"/>
@@ -1601,6 +1601,11 @@
           <line class="link" x1="84" y1="227" x2="136" y2="67"/>
           <circle class="d" cx="136" cy="67" r="5"/>
           <text class="lbl" x="150" y="71">Мурманск</text>
+        </g>
+        <g class="city" data-city="severodvinsk">
+          <line class="link" x1="84" y1="227" x2="264" y2="145"/>
+          <circle class="d" cx="264" cy="145" r="5"/>
+          <text class="lbl" x="250" y="149" text-anchor="end">Северодвинск</text>
         </g>
         <g class="city" data-city="arkhangelsk">
           <line class="link" x1="84" y1="227" x2="278" y2="145"/>
@@ -1626,6 +1631,11 @@
           <line class="link" x1="84" y1="227" x2="203" y2="392"/>
           <circle class="d" cx="203" cy="392" r="5"/>
           <text class="lbl" x="217" y="396">Белгород</text>
+        </g>
+        <g class="city" data-city="nnovgorod">
+          <line class="link" x1="84" y1="227" x2="344" y2="291"/>
+          <circle class="d" cx="344" cy="291" r="5"/>
+          <text class="lbl" x="358" y="295">Нижний Новгород</text>
         </g>
         <g class="city" data-city="saransk">
           <line class="link" x1="84" y1="227" x2="366" y2="328"/>
@@ -1665,10 +1675,12 @@
     <div class="geo-chips" id="geoChips">
       <span class="geo-chip" data-city="murmansk">Мурманск</span>
       <span class="geo-chip" data-city="arkhangelsk">Архангельск</span>
+      <span class="geo-chip" data-city="severodvinsk">Северодвинск</span>
       <span class="geo-chip" data-city="novgorod">Великий Новгород</span>
       <span class="geo-chip" data-city="podolsk">Подольск</span>
       <span class="geo-chip" data-city="mogilev">Могилёв, Беларусь</span>
       <span class="geo-chip" data-city="belgorod">Белгород</span>
+      <span class="geo-chip" data-city="nnovgorod">Нижний Новгород</span>
       <span class="geo-chip" data-city="saransk">Саранск</span>
       <span class="geo-chip" data-city="nizhnekamsk">Нижнекамск</span>
       <span class="geo-chip" data-city="omsk">Омск</span>
@@ -1677,7 +1689,7 @@
     </div>
 
     <div class="geo-stats">
-      <div class="s"><div class="v">11</div><div class="k">городов-заказчиков</div></div>
+      <div class="s"><div class="v">13</div><div class="k">городов-заказчиков</div></div>
       <div class="s"><div class="v">2</div><div class="k">страны</div></div>
       <div class="s"><div class="v">3 700<span style="font-size:0.55em"> км</span></div><div class="k">от СПб до Томска</div></div>
     </div>
