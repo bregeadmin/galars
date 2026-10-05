@@ -1921,11 +1921,13 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
   const COATINGS = {
     base:   { color: 0x4a5460, metalness: 0.50, roughness: 0.60, envIntensity: 0.7 },
     // Материалы 3D-модели — реальные металлические PBR по каждому покрытию
-    chrome: { color: 0xdde4ec, metalness: 1.00, roughness: 0.05, envIntensity: 1.50 }, // холодный зеркальный хром
-    nickel: { color: 0xe4d9b8, metalness: 0.95, roughness: 0.20, envIntensity: 1.00 }, // тёплый матовый никель
-    copper: { color: 0xc07540, metalness: 1.00, roughness: 0.18, envIntensity: 1.10 }, // красноватая медь
-    silver: { color: 0xf5f2e8, metalness: 1.00, roughness: 0.12, envIntensity: 1.20 }, // матовое серебро (без блескообразующих)
-    tin:    { color: 0xd0d0d5, metalness: 0.85, roughness: 0.28, envIntensity: 0.90 }  // матовое олово
+    // Цвета — измеренная отражательная способность металлов (F0, Unity/UE PBR-таблица),
+    // переведённая в sRGB; шероховатость — по описаниям покрытий на самом сайте.
+    chrome: { color: 0xc4c5c4, metalness: 1.00, roughness: 0.14, envIntensity: 1.25 }, // хром нейтрально-серый, не голубой
+    nickel: { color: 0xd4cdc0, metalness: 1.00, roughness: 0.22, envIntensity: 1.05 }, // никель чуть тёплый, не жёлтый
+    copper: { color: 0xfad1c2, metalness: 1.00, roughness: 0.25, envIntensity: 1.10 }, // свежее меднение — розово-лососевое
+    silver: { color: 0xfcfaf5, metalness: 1.00, roughness: 0.40, envIntensity: 1.00 }, // серебро без блескообразующих — матовое
+    tin:    { color: 0xe7e5e0, metalness: 1.00, roughness: 0.45, envIntensity: 0.95 }  // олово техническое — матовое
   };
 
   // — Geometry —
