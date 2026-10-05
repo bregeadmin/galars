@@ -445,7 +445,7 @@
     margin: 0 0 24px; font-family: var(--f-display); font-weight: 600;
     font-size: 24px;
   }
-  .equip-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .equip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   .equip-cell .num { font-family: var(--f-display); font-weight: 600; font-size: 32px; }
   .equip-cell .lbl { font-family: var(--f-mono); font-size: 12px; color: var(--fog); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
   .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -1294,7 +1294,7 @@
         <dt data-e="index#8">Задачи</dt><dd data-e="index#9">крупные детали, серийные партии, военная приёмка</dd>
         <dt data-e="index#10">Ванны</dt><dd data-e="index#11">до 4 000 × 780 × 800 мм</dd>
         <dt data-e="index#12">Основа</dt><dd data-e="index#13">сталь, нержавейка, алюминий, медь, титан, магний</dd>
-        <dt data-e="index#14">Контроль</dt><dd data-e="index#15">ГОСТ 9.301-86 · ГОСТ 9.302-88</dd>
+        <dt data-e="index#14">Контроль</dt><dd data-e="index#15">ГОСТ 9.301-2025 · ГОСТ 9.916-2023 (ГОЗ — 9.301-86 · 9.302-88)</dd>
       </dl>
       <div class="bench" id="bench-g">
         <figure class="pw">
@@ -1375,7 +1375,6 @@
         <h3 data-e="index#25">Оборудование и мощности</h3>
         <div class="equip-grid">
           <div class="equip-cell"><div class="num">40<span style="font-size:0.6em">+</span></div><div class="lbl">Видов покрытий</div></div>
-          <div class="equip-cell"><div class="num">13</div><div class="lbl">Тех.процессов</div></div>
           <div class="equip-cell"><div class="num">150<span style="font-size:0.6em">+</span></div><div class="lbl">Специалистов</div></div>
           <div class="equip-cell"><div class="num">22</div><div class="lbl">Года на рынке</div></div>
         </div>
@@ -1462,7 +1461,7 @@
     <div class="section-head">
       <div class="num">Почему нам доверяют</div>
       <div>
-        <h2 class="h1" data-e="index#40">Почему деталь можно отдать нам</h2>
+        <h2 class="h1" data-e="index#40">Почему заказчики выбирают нас</h2>
         <p class="lead" style="margin-top: 16px; color: var(--graphite); max-width: 720px;" data-e="index#41">Гальваника — процесс, в котором ошибку видно только на готовой детали. Поэтому мы разбираем задачу до запуска, а не после.</p>
       </div>
     </div>
@@ -1478,7 +1477,7 @@
         <div class="w-n">02</div>
         <div>
           <h3 data-e="index#44">Технологическая оценка до запуска</h3>
-          <p data-e="index#45">Перед началом работ технологический отдел анализирует материал, геометрию детали, требования к покрытию и возможные ограничения процесса.</p>
+          <p data-e="index#45">Перед началом работ технологический отдел анализирует КД заказчика — материал детали, её геометрию, требования к покрытию и возможные технологические ограничения.</p>
         </div>
       </div>
       <div class="why-item">
@@ -1515,7 +1514,7 @@
       <div class="proof">
         <div class="p-tag">Стандарты</div>
         <div class="p-val">ГОСТ 9.301 · 9.302 · 9.305</div>
-        <p data-e="index#54">Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-86 и ГОСТ 9.302-88.</p>
+        <p data-e="index#54">Нанесение — по ГОСТ 9.305-84, контроль — по ГОСТ 9.301-2025 и ГОСТ 9.916-2023 (для заказов ГОЗ — по ГОСТ 9.301-86 и ГОСТ 9.302-88).</p>
       </div>
       <div class="proof">
         <div class="p-tag">Сертификация СМК</div>
@@ -1715,6 +1714,8 @@
         <div class="value" style="font-size:15px; line-height:1.5;"><a href="mailto:info@galars.ru" data-event="email_click">info@galars.ru</a></div>
         <div class="label" style="margin-top:16px;">Отдел кадров</div>
         <div class="value" style="font-size:15px; line-height:1.5;"><a href="mailto:hr@galars.ru" data-event="email_click">hr@galars.ru</a></div>
+        <div class="label" style="margin-top:16px;">Технологический отдел</div>
+        <div class="value" style="font-size:15px; line-height:1.5;"><a href="mailto:techno@galars.ru" data-event="email_click">techno@galars.ru</a></div>
         <div class="label" style="margin-top:16px;">Бухгалтерия</div>
         <div class="value" style="font-size:15px; line-height:1.5;"><a href="mailto:buh3@galars.ru" data-event="email_click">buh3@galars.ru</a></div>
         <div class="reqs">
@@ -1723,7 +1724,7 @@
         </div>
       </div>
       <form class="contact-form" id="contactForm" method="post" enctype="multipart/form-data" data-endpoint="" novalidate>
-        <p class="form-intro" data-e="index#71">Напишите, что нужно, и приложите чертежи — хоть один, хоть двадцать на разные детали. Технолог посмотрит и ответит с вариантом покрытия, ориентиром цены и сроком.</p>
+        <p class="form-intro" data-e="index#71">Напишите, что нужно, и приложите чертежи — хоть один, хоть двадцать на разные детали. Заявку примет менеджер, расчётный отдел посчитает площади, технологи проверят КД и при необходимости согласуют вопросы с вами, после чего вы получите коммерческое предложение со сроками и условиями оплаты.</p>
 
         <div class="form-required-info" style="background: rgba(219,211,202,0.07); border-left: 3px solid rgba(219,211,202,0.55); padding: 16px 18px; margin-bottom: 24px; border-radius: 0 4px 4px 0;">
           <div style="font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--card); margin-bottom: 10px;">Что помогает нам посчитать быстрее</div>
@@ -1785,7 +1786,7 @@
         </div>
 
         <button type="submit" class="btn btn-submit" data-event="form_submit">Отправить</button>
-        <p class="form-meta" data-e="index#77">Обычно отвечаем в течение 1 рабочего дня. Для срочных задач — звоните: <a href="tel:+78127777811" data-event="phone_click">+7&nbsp;(812)&nbsp;777-78-11</a>.</p>
+        <p class="form-meta" data-e="index#77">На технический вопрос отвечаем в тот же день. Расчёт по комплекту чертежей занимает больше времени — назовём срок после первого просмотра. Для срочных задач — звоните: <a href="tel:+78127777811" data-event="phone_click">+7&nbsp;(812)&nbsp;777-78-11</a>.</p>
 
         <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
 
@@ -1796,13 +1797,13 @@
             <path d="M15 24l7 7 12-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <h3 data-e="index#78">Заявка отправлена</h3>
-          <p data-e="index#79">Ответим в течение 1 рабочего дня. Для срочных задач — <a href="tel:+78127777811">+7&nbsp;(812)&nbsp;777-78-11</a>.</p>
+          <p data-e="index#79">Посмотрим документацию и вернёмся со сроком расчёта. Для срочных задач — <a href="tel:+78127777811">+7&nbsp;(812)&nbsp;777-78-11</a>.</p>
           <button type="button" class="btn btn-secondary on-dark" id="formReset">Отправить ещё одну</button>
         </div>
       </form>
 
       <div class="map-wrap" aria-label="Карта проезда">
-        <iframe title="ГАЛАРС на карте — ул. Электропультовцев, 7, СПб" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=30.4462%2C59.9285&mode=search&text=улица%20Электропультовцев%2C%207%2C%20%D0%A1%D0%9F%D0%B1&z=16" allowfullscreen></iframe>
+        <iframe title="ГАЛАРС на карте — ул. Электропультовцев, 7, СПб" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=30.4462%2C59.9285&z=17&pt=30.4462,59.9285,pm2rdm" allowfullscreen></iframe>
       </div>
     </div>
   </div>
