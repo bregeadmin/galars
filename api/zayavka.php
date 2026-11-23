@@ -116,20 +116,20 @@ if (!file_exists($storage . '/.htaccess')) {
     @file_put_contents($storage . '/.htaccess', "Deny from all\nphp_flag engine off\n");
 }
 
+// Считаем только ПРИНЯТЫЕ заявки. Если считать и отбитые по ошибке в полях,
+// человек, трижды забывший галочку согласия, окажется заблокирован на час.
 $limit = isset($CFG['rate_limit_per_hour']) ? (int)$CFG['rate_limit_per_hour'] : 10;
+$rate_file = $storage . '/.rate-' . md5(client_ip()) . '.txt';
+$rate_fresh = array();
 if ($limit > 0) {
-    $rate_file = $storage . '/.rate-' . md5(client_ip()) . '.txt';
     $hits = array();
     if (is_file($rate_file)) {
         $raw = @file_get_contents($rate_file);
         if ($raw !== false && $raw !== '') $hits = explode(',', trim($raw));
     }
     $now = time();
-    $fresh = array();
-    foreach ($hits as $t) { if ($now - (int)$t < 3600) $fresh[] = (int)$t; }
-    if (count($fresh) >= $limit) fail(429, 'too_many_requests');
-    $fresh[] = $now;
-    @file_put_contents($rate_file, implode(',', $fresh), LOCK_EX);
+    foreach ($hits as $t) { if ($now - (int)$t < 3600) $rate_fresh[] = (int)$t; }
+    if (count($rate_fresh) >= $limit) fail(429, 'too_many_requests');
 }
 
 // ---------- поля ----------
@@ -192,6 +192,12 @@ foreach ($_FILES as $field => $f) {
     if ($safe === '') $safe = 'file.' . $ext;
 
     $files[] = array('name' => $safe, 'type' => $ALLOWED[$ext], 'path' => $f['tmp_name']);
+}
+
+// Заявка прошла проверки — вот теперь засчитываем её в лимит частоты.
+if ($limit > 0) {
+    $rate_fresh[] = time();
+    @file_put_contents($rate_file, implode(',', $rate_fresh), LOCK_EX);
 }
 
 // ---------- копия заявки на диск ----------

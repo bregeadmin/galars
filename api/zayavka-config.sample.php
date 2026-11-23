@@ -27,6 +27,8 @@ return array(
   'allowed_origins' => array(
     'https://galars.ru',
     'https://www.galars.ru',
+    // На время проверки, пока сайт ещё на старом адресе, добавить:
+    // 'https://bregeadmin.github.io',
   ),
 
   // Не больше стольких заявок с одного адреса за час.
