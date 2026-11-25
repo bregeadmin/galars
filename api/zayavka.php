@@ -122,7 +122,13 @@ $storage = isset($CFG['storage']) ? $CFG['storage'] : (__DIR__ . '/../zayavki');
 if (!is_dir($storage)) @mkdir($storage, 0750, true);
 // Папка не должна отдаваться вебом и не должна выполнять скрипты.
 if (!file_exists($storage . '/.htaccess')) {
-    @file_put_contents($storage . '/.htaccess', "Deny from all\nphp_flag engine off\n");
+    // Apache 2.4 и 2.2 закрывают папку разными директивами, а php_flag
+    // есть только при mod_php: без обёрток любая строка роняет сервер в 500.
+    $deny = "<IfModule mod_authz_core.c>\n  Require all denied\n</IfModule>\n"
+          . "<IfModule !mod_authz_core.c>\n  Order allow,deny\n  Deny from all\n</IfModule>\n"
+          . "<IfModule mod_php5.c>\n  php_flag engine off\n</IfModule>\n"
+          . "<IfModule mod_php7.c>\n  php_flag engine off\n</IfModule>\n";
+    @file_put_contents($storage . '/.htaccess', $deny);
 }
 
 // Считаем только ПРИНЯТЫЕ заявки. Если считать и отбитые по ошибке в полях,

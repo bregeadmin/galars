@@ -61,8 +61,25 @@ def main():
     # Папка для копий заявок — пустая, но закрытая от веба.
     zay = os.path.join(DIST, 'zayavki')
     os.makedirs(zay, exist_ok=True)
+    # Apache 2.4 и 2.2 закрывают папку разными директивами, а php_flag
+    # существует только при mod_php: без обёрток любая из строк роняет
+    # сервер в 500.
     with open(os.path.join(zay, '.htaccess'), 'w') as fh:
-        fh.write('Deny from all\nphp_flag engine off\n')
+        fh.write(
+            '<IfModule mod_authz_core.c>\n'
+            '  Require all denied\n'
+            '</IfModule>\n'
+            '<IfModule !mod_authz_core.c>\n'
+            '  Order allow,deny\n'
+            '  Deny from all\n'
+            '</IfModule>\n'
+            '<IfModule mod_php5.c>\n'
+            '  php_flag engine off\n'
+            '</IfModule>\n'
+            '<IfModule mod_php7.c>\n'
+            '  php_flag engine off\n'
+            '</IfModule>\n'
+        )
 
     print('Собрано в dist/')
     print('  файлов:  %d' % copied)
