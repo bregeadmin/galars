@@ -2369,12 +2369,39 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправляем…';
 
+    // Запасной путь: письмо через почтовую программу, без вложений.
+    // Нужен и когда приёмник не настроен, и когда он почему-то не ответил —
+    // человек с чертежами не должен упереться в красную надпись.
+    const openMailClient = () => {
+      const subject = `Заявка с сайта — ${company || name}`;
+      const bodyLines = [
+        `Имя: ${name}`,
+        `Контакт: ${contact}`,
+        company ? `Организация: ${company}` : null,
+        '',
+        'Задача:',
+        task,
+        '',
+        'Согласие на обработку персональных данных: дано'
+      ].filter(l => l !== null);
+      if (selectedFiles.length > 0) {
+        bodyLines.push('', `(Файлов подготовлено: ${selectedFiles.length}. Прикрепите их вручную перед отправкой письма.)`);
+      }
+      window.location.href = `mailto:info@galars.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+      setStatus(selectedFiles.length > 0
+        ? 'Открыта почтовая программа. Прикрепите файлы вручную перед отправкой.'
+        : 'Открыта почтовая программа с готовым письмом.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Отправить';
+    };
+
     // 3) если задан endpoint — POST вместе с файлами.
     //    Свой путь ('api/zayavka.php') — всегда свой домен, CORS не нужен.
     //    Чужой абсолютный адрес принимаем только по https, чтобы чертежи
     //    никогда не ушли открытым текстом.
     const endpointOk = endpoint && (endpoint.indexOf('://') === -1 || endpoint.startsWith('https://'));
     if (endpointOk) {
+      let serverAnswered = false;
       try {
         const fd = new FormData();
         fd.append('name', name);
@@ -2384,37 +2411,35 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
         fd.append('consent', 'Дано');
         selectedFiles.forEach((f, i) => fd.append(`file_${i + 1}`, f, f.name));
         const res = await fetch(endpoint, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        showSuccess();
-      } catch (err) {
-        setStatus('Не получилось отправить. Попробуйте ещё раз или напишите на info@galars.ru.', 'error');
+        if (res.ok) { showSuccess(); return; }
+
+        // Сервер ответил отказом. Разбираем: виновата заявка или настройка.
+        let error = '';
+        try { error = ((await res.json()) || {}).error || ''; } catch (e) {}
+        serverAnswered = true;
+
+        // Приёмник ещё не настроен или почта у него не сложилась — это не
+        // вина посетителя, молча уводим в почтовую программу.
+        if (res.status >= 500 || error === 'config_missing') { openMailClient(); return; }
+
+        if (res.status === 413) {
+          setStatus('Файлы слишком тяжёлые для отправки через сайт. Пришлите их письмом на info@galars.ru.', 'error');
+        } else if (res.status === 429) {
+          setStatus('Слишком много заявок подряд. Подождите немного или напишите на info@galars.ru.', 'error');
+        } else {
+          setStatus('Заявка не принята. Проверьте поля или напишите на info@galars.ru.', 'error');
+        }
         submitBtn.disabled = false;
         submitBtn.textContent = 'Отправить';
+      } catch (err) {
+        // Сети нет, или приёмника нет вовсе — почтовая программа как запасной путь.
+        if (!serverAnswered) openMailClient();
       }
       return;
     }
 
-    // 4) запасной путь — письмо через почтовую программу (без вложений)
-    const subject = `Заявка с сайта — ${company || name}`;
-    const bodyLines = [
-      `Имя: ${name}`,
-      `Контакт: ${contact}`,
-      company ? `Организация: ${company}` : null,
-      '',
-      'Задача:',
-      task,
-      '',
-      'Согласие на обработку персональных данных: дано'
-    ].filter(l => l !== null);
-    if (selectedFiles.length > 0) {
-      bodyLines.push('', `(Файлов подготовлено: ${selectedFiles.length}. Прикрепите их вручную перед отправкой письма.)`);
-    }
-    window.location.href = `mailto:info@galars.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-    setStatus(selectedFiles.length > 0
-      ? 'Открыта почтовая программа. Прикрепите файлы вручную перед отправкой.'
-      : 'Открыта почтовая программа с готовым письмом.');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Отправить';
+    // 4) endpoint не задан — сразу почтовая программа
+    openMailClient();
   });
 })();
 
