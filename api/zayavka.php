@@ -75,6 +75,15 @@ if (!isset($_SERVER['REQUEST_METHOD'])) fail(400, 'bad_request');
 
 $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 $allowed = isset($CFG['allowed_origins']) ? $CFG['allowed_origins'] : array();
+
+// Своя же страница разрешена всегда, независимо от того, что в настройках и
+// по какой схеме открыт сайт. Иначе заявка с http://galars.ru или с адреса,
+// который забыли внести в allowed_origins, упиралась бы в 403.
+if (isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST'] !== '') {
+    $self_host = $_SERVER['HTTP_HOST'];
+    $allowed[] = 'https://' . $self_host;
+    $allowed[] = 'http://' . $self_host;
+}
 if ($origin !== '' && in_array($origin, $allowed, true)) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Vary: Origin');

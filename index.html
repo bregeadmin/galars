@@ -1723,7 +1723,7 @@
           Полные реквизиты и лицензии — по запросу
         </div>
       </div>
-      <form class="contact-form" id="contactForm" method="post" enctype="multipart/form-data" data-endpoint="" novalidate>
+      <form class="contact-form" id="contactForm" method="post" enctype="multipart/form-data" data-endpoint="api/zayavka.php" novalidate>
         <p class="form-intro" data-e="index#71">Напишите, что нужно, и приложите чертежи — хоть один, хоть двадцать на разные детали. Заявку примет менеджер, расчётный отдел посчитает площади, технологи проверят КД и при необходимости согласуют вопросы с вами, после чего вы получите коммерческое предложение со сроками и условиями оплаты.</p>
 
         <div class="form-required-info" style="background: rgba(219,211,202,0.07); border-left: 3px solid rgba(219,211,202,0.55); padding: 16px 18px; margin-bottom: 24px; border-radius: 0 4px 4px 0;">
@@ -2369,8 +2369,12 @@ import { RoomEnvironment } from './vendor/RoomEnvironment.js';
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправляем…';
 
-    // 3) если задан endpoint — POST вместе с файлами
-    if (endpoint && endpoint.startsWith('https://')) {
+    // 3) если задан endpoint — POST вместе с файлами.
+    //    Свой путь ('api/zayavka.php') — всегда свой домен, CORS не нужен.
+    //    Чужой абсолютный адрес принимаем только по https, чтобы чертежи
+    //    никогда не ушли открытым текстом.
+    const endpointOk = endpoint && (endpoint.indexOf('://') === -1 || endpoint.startsWith('https://'));
+    if (endpointOk) {
       try {
         const fd = new FormData();
         fd.append('name', name);
