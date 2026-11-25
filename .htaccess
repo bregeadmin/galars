@@ -18,31 +18,36 @@
   RewriteCond %{HTTP_HOST} ^www\.galars\.ru$ [NC]
   RewriteRule ^(.*)$ https://galars.ru/$1 [R=301,L]
 
+  # Цели заданы полным адресом с https: сервер стоит за openresty и сам
+  # считает, что соединение по http — иначе каждый переход сваливался бы
+  # на незащищённый адрес. Флаг NE у якорных целей: без него Apache
+  # кодирует решётку в %23 и ссылка ведёт в «страница не найдена».
+
   # О компании
-  RewriteRule ^about/?$                /about.html      [R=301,L]
-  RewriteRule ^about/price/?$          /#contact        [R=301,L]
-  RewriteRule ^about/zakaz/?$          /#how            [R=301,L]
+  RewriteRule ^about/?$              https://galars.ru/about.html          [R=301,L]
+  RewriteRule ^about/price/?$        https://galars.ru/#contact            [R=301,NE,L]
+  RewriteRule ^about/zakaz/?$        https://galars.ru/#how                [R=301,NE,L]
 
   # Гальваника и всё, что под ней
-  RewriteRule ^galvan/?$               /coatings/       [R=301,L]
-  RewriteRule ^galvan/gost/?$          /faq.html        [R=301,L]
-  RewriteRule ^galvan/oborud/?$        /about.html      [R=301,L]
-  RewriteRule ^galvan/federal/?$       /about.html      [R=301,L]
-  RewriteRule ^galvan/ohrana/?$        /about.html      [R=301,L]
-  RewriteRule ^galvan/licenz(/.*)?$    /about.html      [R=301,L]
-  RewriteRule ^galvan/.*$              /coatings/       [R=301,L]
+  RewriteRule ^galvan/?$             https://galars.ru/coatings/           [R=301,L]
+  RewriteRule ^galvan/gost/?$        https://galars.ru/faq.html            [R=301,L]
+  RewriteRule ^galvan/oborud/?$      https://galars.ru/about.html          [R=301,L]
+  RewriteRule ^galvan/federal/?$     https://galars.ru/about.html          [R=301,L]
+  RewriteRule ^galvan/ohrana/?$      https://galars.ru/about.html          [R=301,L]
+  RewriteRule ^galvan/licenz(/.*)?$  https://galars.ru/about.html          [R=301,L]
+  RewriteRule ^galvan/.*$            https://galars.ru/coatings/           [R=301,L]
 
   # Контакты и вакансии
-  RewriteRule ^contacts/?$             /#contact        [R=301,L]
-  RewriteRule ^vacancy/?$              /vacancies.html  [R=301,L]
+  RewriteRule ^contacts/?$           https://galars.ru/#contact            [R=301,NE,L]
+  RewriteRule ^vacancy/?$            https://galars.ru/vacancies.html      [R=301,L]
 
   # Фотографии производства — теперь лента работ на главной
-  RewriteRule ^photo(/.*)?$            /#works          [R=301,L]
+  RewriteRule ^photo(/.*)?$          https://galars.ru/#works              [R=301,NE,L]
 
   # Новостей, выставок и гостевой книги на новом сайте нет
-  RewriteRule ^news(/.*)?$             /                [R=301,L]
-  RewriteRule ^vystavki/?$             /                [R=301,L]
-  RewriteRule ^book/?$                 /                [R=301,L]
+  RewriteRule ^news(/.*)?$           https://galars.ru/                    [R=301,L]
+  RewriteRule ^vystavki/?$           https://galars.ru/                    [R=301,L]
+  RewriteRule ^book/?$               https://galars.ru/                    [R=301,L]
 </IfModule>
 
 # --- Кодировка -------------------------------------------------------
