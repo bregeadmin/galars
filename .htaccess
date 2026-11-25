@@ -4,6 +4,47 @@
 # значит хостинг не разрешает какую-то из строк ниже. Удалить этот файл,
 # сайт заработает, и написать разработчику.
 
+# --- Адреса старого сайта --------------------------------------------
+# Старый сайт жил на путях без .html: /about, /galvan, /contacts и так
+# далее. Они в индексе поисковиков с 2016 года и в чужих ссылках. Без
+# перенаправления каждый такой переход упёрся бы в «страница не найдена»,
+# и накопленные позиции обнулились бы.
+# Снято с архива старого сайта от 25.11.2026 (его sitemap.xml).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # www → основной адрес. Было и на старом сайте, но вело на http;
+  # теперь сразу на https.
+  RewriteCond %{HTTP_HOST} ^www\.galars\.ru$ [NC]
+  RewriteRule ^(.*)$ https://galars.ru/$1 [R=301,L]
+
+  # О компании
+  RewriteRule ^about/?$                /about.html      [R=301,L]
+  RewriteRule ^about/price/?$          /#contact        [R=301,L]
+  RewriteRule ^about/zakaz/?$          /#how            [R=301,L]
+
+  # Гальваника и всё, что под ней
+  RewriteRule ^galvan/?$               /coatings/       [R=301,L]
+  RewriteRule ^galvan/gost/?$          /faq.html        [R=301,L]
+  RewriteRule ^galvan/oborud/?$        /about.html      [R=301,L]
+  RewriteRule ^galvan/federal/?$       /about.html      [R=301,L]
+  RewriteRule ^galvan/ohrana/?$        /about.html      [R=301,L]
+  RewriteRule ^galvan/licenz(/.*)?$    /about.html      [R=301,L]
+  RewriteRule ^galvan/.*$              /coatings/       [R=301,L]
+
+  # Контакты и вакансии
+  RewriteRule ^contacts/?$             /#contact        [R=301,L]
+  RewriteRule ^vacancy/?$              /vacancies.html  [R=301,L]
+
+  # Фотографии производства — теперь лента работ на главной
+  RewriteRule ^photo(/.*)?$            /#works          [R=301,L]
+
+  # Новостей, выставок и гостевой книги на новом сайте нет
+  RewriteRule ^news(/.*)?$             /                [R=301,L]
+  RewriteRule ^vystavki/?$             /                [R=301,L]
+  RewriteRule ^book/?$                 /                [R=301,L]
+</IfModule>
+
 # --- Кодировка -------------------------------------------------------
 # Подтверждено в панели nic.ru: сайт настроен на Windows-1251, сервер
 # подставляет её всем страницам. Новый сайт в UTF-8, поэтому кодировку
